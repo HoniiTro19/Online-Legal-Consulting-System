@@ -33465,9 +33465,9 @@
 										"$ref": "AAAAAAFx7GhnHUTjZz8="
 									},
 									"font": "Arial;13;0",
-									"left": 342,
+									"left": 340,
 									"top": 207,
-									"width": 53.49169921875,
+									"width": 56.95751953125,
 									"height": 13,
 									"alpha": 3.9114214078491036,
 									"distance": 37.12142238654117,
@@ -36142,6 +36142,19 @@
 							"templateParameterCompartment": {
 								"$ref": "AAAAAAFx6hmIbogu2/E="
 							}
+						},
+						{
+							"_type": "UMLTextView",
+							"_id": "AAAAAAFx86fJ22hJzpk=",
+							"_parent": {
+								"$ref": "AAAAAAFx6NegIl67P8A="
+							},
+							"font": "Arial;13;0",
+							"left": 192,
+							"top": 16,
+							"width": 62,
+							"height": 25,
+							"text": "类的描述"
 						}
 					]
 				},
@@ -41541,7 +41554,7 @@
 											"font": "Arial;13;0",
 											"left": 208,
 											"top": -108,
-											"width": 90.27001953125,
+											"width": 94.44677734375,
 											"height": 13,
 											"text": "(from 设计类图)"
 										},
@@ -42218,6 +42231,19 @@
 							"headQualifiersCompartment": {
 								"$ref": "AAAAAAFx7Hp3LkvMty4="
 							}
+						},
+						{
+							"_type": "UMLTextView",
+							"_id": "AAAAAAFx86g9aGiys6Q=",
+							"_parent": {
+								"$ref": "AAAAAAFx6hvla4iBes8="
+							},
+							"font": "Arial;13;0",
+							"left": 328,
+							"top": 632,
+							"width": 62,
+							"height": 25,
+							"text": "设计类图"
 						}
 					]
 				},
@@ -49735,7 +49761,7 @@
 									"containerExtending": true,
 									"left": 236,
 									"top": 644,
-									"width": 79.380859375,
+									"width": 84.484375,
 									"height": 36,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAFx6jQdKKXk3mo="
@@ -49923,7 +49949,7 @@
 									"containerExtending": true,
 									"left": 236,
 									"top": 708,
-									"width": 79.380859375,
+									"width": 84.484375,
 									"height": 36,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAFx6jQdKaXuTg8="
@@ -50111,7 +50137,7 @@
 									"containerExtending": true,
 									"left": 236,
 									"top": 764,
-									"width": 79.380859375,
+									"width": 84.484375,
 									"height": 36,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAFx6jQdKaX4QTU="
@@ -50299,7 +50325,7 @@
 									"containerExtending": true,
 									"left": 236,
 									"top": 820,
-									"width": 92.013671875,
+									"width": 94.919921875,
 									"height": 36,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAFx6jQdKaYC97Y="
@@ -50487,7 +50513,7 @@
 									"containerExtending": true,
 									"left": 236,
 									"top": 876,
-									"width": 79.380859375,
+									"width": 84.484375,
 									"height": 36,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAFx6jQdKaYMoJs="
@@ -51415,7 +51441,7 @@
 									"containerExtending": true,
 									"left": 740,
 									"top": 60,
-									"width": 120.396484375,
+									"width": 133.322265625,
 									"height": 22
 								},
 								{
@@ -51572,7 +51598,7 @@
 									"containerExtending": true,
 									"left": 740,
 									"top": 96,
-									"width": 79.380859375,
+									"width": 84.484375,
 									"height": 36,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAFx6jQdKaY/vIU="
@@ -51760,7 +51786,7 @@
 									"containerExtending": true,
 									"left": 740,
 									"top": 148,
-									"width": 79.380859375,
+									"width": 84.484375,
 									"height": 36,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAFx6jQdKaZJYsk="
@@ -56274,7 +56300,7 @@
 											"font": "Arial;13;0",
 											"left": 480,
 											"top": 1008,
-											"width": 64.27001953125,
+											"width": 68.44677734375,
 											"height": 13,
 											"text": "(from 包图)"
 										},
@@ -56393,7 +56419,7 @@
 											"font": "Arial;13;0",
 											"left": 1504,
 											"top": 1720,
-											"width": 90.27001953125,
+											"width": 94.44677734375,
 											"height": 13,
 											"text": "(from 用户接口)"
 										},
@@ -56572,7 +56598,7 @@
 											"font": "Arial;13;0",
 											"left": 1128,
 											"top": 1696,
-											"width": 90.27001953125,
+											"width": 94.44677734375,
 											"height": 13,
 											"text": "(from 用户接口)"
 										},
@@ -56751,7 +56777,7 @@
 											"font": "Arial;13;0",
 											"left": 824,
 											"top": 1696,
-											"width": 90.27001953125,
+											"width": 94.44677734375,
 											"height": 13,
 											"text": "(from 用户接口)"
 										},
@@ -56930,7 +56956,7 @@
 											"font": "Arial;13;0",
 											"left": 480,
 											"top": 496,
-											"width": 64.27001953125,
+											"width": 68.44677734375,
 											"height": 13,
 											"text": "(from 包图)"
 										},
@@ -57043,7 +57069,7 @@
 											"font": "Arial;13;0",
 											"left": 480,
 											"top": 32,
-											"width": 64.27001953125,
+											"width": 68.44677734375,
 											"height": 13,
 											"text": "(from 包图)"
 										},
@@ -57151,7 +57177,7 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"top": 888,
-											"width": 90.27001953125,
+											"width": 94.44677734375,
 											"height": 13,
 											"text": "(from 用户接口)"
 										},
@@ -57328,7 +57354,7 @@
 											"font": "Arial;13;0",
 											"left": -328,
 											"top": 888,
-											"width": 90.27001953125,
+											"width": 94.44677734375,
 											"height": 13,
 											"text": "(from 用户接口)"
 										},
@@ -57695,7 +57721,7 @@
 											"font": "Arial;13;0",
 											"left": 1424,
 											"top": 1080,
-											"width": 90.27001953125,
+											"width": 94.44677734375,
 											"height": 13,
 											"text": "(from 应用接口)"
 										},
@@ -57874,7 +57900,7 @@
 											"font": "Arial;13;0",
 											"left": -520,
 											"top": -48,
-											"width": 90.27001953125,
+											"width": 94.44677734375,
 											"height": 13,
 											"text": "(from 应用接口)"
 										},
@@ -58054,7 +58080,7 @@
 											"font": "Arial;13;0",
 											"left": -856,
 											"top": -16,
-											"width": 90.27001953125,
+											"width": 94.44677734375,
 											"height": 13,
 											"text": "(from 应用接口)"
 										},
@@ -59579,7 +59605,7 @@
 											"font": "Arial;13;0",
 											"left": -768,
 											"top": -760,
-											"width": 90.27001953125,
+											"width": 94.44677734375,
 											"height": 13,
 											"text": "(from 服务接口)"
 										},
@@ -59759,7 +59785,7 @@
 											"font": "Arial;13;0",
 											"left": -312,
 											"top": -864,
-											"width": 90.27001953125,
+											"width": 94.44677734375,
 											"height": 13,
 											"text": "(from 服务接口)"
 										},
@@ -61496,6 +61522,19 @@
 							"headQualifiersCompartment": {
 								"$ref": "AAAAAAFx7IfjJl8nQ0c="
 							}
+						},
+						{
+							"_type": "UMLTextView",
+							"_id": "AAAAAAFx86jpYGtsnaI=",
+							"_parent": {
+								"$ref": "AAAAAAFx7HNJM0oizsw="
+							},
+							"font": "Arial;13;0",
+							"left": 160,
+							"top": 32,
+							"width": 60,
+							"height": 33,
+							"text": "包图"
 						}
 					]
 				},
@@ -65459,6 +65498,19 @@
 							"propertyLabel": {
 								"$ref": "AAAAAAFx7NKyAmucT1c="
 							}
+						},
+						{
+							"_type": "UMLTextView",
+							"_id": "AAAAAAFx86k9+22C2iQ=",
+							"_parent": {
+								"$ref": "AAAAAAFx7LMsjmBV8so="
+							},
+							"font": "Arial;13;0",
+							"left": 344,
+							"top": 576,
+							"width": 60,
+							"height": 25,
+							"text": "活动图"
 						}
 					]
 				}
