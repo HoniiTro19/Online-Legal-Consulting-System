@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--author 刘权达 用户评论-->
+<mapper namespace="com.huidong.legalsys.dao.CommentDao">
+    <resultMap id="commentMap" type="com.huidong.legalsys.domain.Comment">
+        <result column="id" javaType="Integer" jdbcType="INTEGER" property="id"></result>
+        <result column="aid" javaType="Integer" jdbcType="INTEGER" property="aid"></result>
+        <result column="publishdate" javaType="String" jdbcType="VARCHAR" property="publishDate"></result>
+        <result column="content" javaType="String" jdbcType="VARCHAR" property="content"></result>
+        <result column="reply" javaType="String" jdbcType="VARCHAR" property="reply"></result>
+        <result column="email" javaType="String" jdbcType="VARCHAR" property="email"></result>
+        <result column="ignore" javaType="Integer" jdbcType="INTEGER" property="ignore"></result>
+    </resultMap>
+    <!--fix by 高谦 select你妹啊？-->
+    <insert id="addComment">
+        insert into message
+        values (null,#{aid},now(),#{content},null,#{email},0);
+    </insert>
+    <select id="replyComment" >
+        update message set reply = #{reply} where id = #{id}
+    </select>
+    <select id="commentsByArticle" resultMap="commentMap">
+        select * from message where aid = #{aid} order by message.publishdate desc
+    </select>
+
+    <!--高谦添加  用于获取所有的评论-->
+    <resultMap id="commentWithArticle" type="com.huidong.legalsys.domain.Comment">
+        <result column="id" javaType="Integer" jdbcType="INTEGER" property="id"></result>
+        <result column="aid" javaType="Integer" jdbcType="INTEGER" property="aid"></result>
+        <result column="publishdate" javaType="String" jdbcType="VARCHAR" property="publishDate"></result>
+        <result column="content" javaType="String" jdbcType="VARCHAR" property="content"></result>
+        <result column="reply" javaType="String" jdbcType="VARCHAR" property="reply"></result>
+        <result column="email" javaType="String" jdbcType="VARCHAR" property="email"></result>
+        <result column="ignore" javaType="Integer" jdbcType="INTEGER" property="ignore"></result>
+        <result column="title" javaType="String" jdbcType="VARCHAR" property="title"></result>
+    </resultMap>
+    <select id="getAllComments" resultMap="commentWithArticle">
+        select message.*,article.title from article,message where message.aid=article.id and article.status=1
+        order by message.publishdate desc
+    </select>
+
+    <!--write by 高谦 -->
+    <update id="fixComment">
+        update message set message.reply=#{reply} where message.id=#{id}
+    </update>
+
+    <!--write by 高谦 -->
+    <delete id="delComment">
+        delete from message where message.id=#{id}
+    </delete>
+</mapper>
+

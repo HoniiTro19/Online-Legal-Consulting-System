@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--用户登录-->
+<mapper namespace="com.huidong.legalsys.dao.UserDao">
+    <resultMap id="loginMap" type="com.huidong.legalsys.domain.User">
+        <result column="phone" javaType="String" jdbcType="VARCHAR" property="phone"></result>
+        <result column="name" javaType="String" jdbcType="VARCHAR" property="name"></result>
+        <result column="password" javaType="String" jdbcType="VARCHAR" property="password"></result>
+        <result column="idno" javaType="String" jdbcType="VARCHAR" property="idno"></result>
+        <result column="licenseurl" javaType="String" jdbcType="VARCHAR" property="licenseurl"></result>
+        <result column="firmname" javaType="String" jdbcType="VARCHAR" property="firmname"></result>
+    </resultMap>
+
+    <insert id="register" parameterType="com.huidong.legalsys.domain.User">
+        insert user select * where not exists(select 1 from user where phone = #{phone})
+    </insert>
+
+    <select id="loginByPhone" resultType="com.huidong.legalsys.domain.User">
+        select * from user where phone = #{phone} and password = #{password}
+    </select>
+
+    <update id="changePassword">
+        update user set password = #{new} where phone = #{phone} and old = #{password}
+    </update>
+
+    <update id="uploadLicenseurl">
+        update user set licenseurl = #{new} where phone = #{phone}
+    </update>
+
+    <update id="uploadFirmname">
+        update user set firmname = #{new} where phone = #{phone}
+    </update>
+
+    <select id="getAllUsers" resultType="com.huidong.legalsys.domain.User">
+        select * from user
+    </select>
+</mapper>

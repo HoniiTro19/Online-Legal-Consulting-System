@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="/compoment/common::backstatic"></head>
+<body>
+<!-- HTML start-->
+<!--side start-->
+<div class="side" th:replace="/compoment/common::left"></div>
+<!--side end -->
+<!--header start-->
+<div class="header clear" th:replace="/compoment/common::top"></div>
+<!--header end -->
+
+<!--main start-->
+<div class="main">
+	<div class="pad20">
+		<!--title start-->
+		<div class="postion ">
+			<div class="pos-txt"><span class="fz24 padr5">首页</span></div>
+		</div>
+		<!--title end-->
+		<!--stats start-->
+		<div class="stats-cont row mart20">
+			<div class="col-sm-3">
+				<div class="stats-panel stats-green clear">
+					<div class="left"><img src="/images/backmanage/stats3.png" height="104" width="83" alt=""></div>
+					<div class="auto stats-txt">
+						<p>轮播管理</p>
+					</div>
+					<a href="/manage/banner" class="more clear"><span class="left">查看详情</span> <i class="right fa fa-angle-right"></i></a>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="stats-panel stats-blue clear">
+					<div class="left"><img src="/images/backmanage/stats1.png" height="104" width="83" alt=""></div>
+					<div class="auto stats-txt">
+						<p>留言管理</p>
+					</div>
+					<a href="/manage/comment" class="more clear"><span class="left">查看详情</span> <i class="right fa fa-angle-right"></i></a>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="stats-panel stats-red clear">
+					<div class="left"><img src="/images/backmanage/stats2.png" height="104" width="83" alt=""></div>
+					<div class="auto stats-txt">
+						<p>文章草稿箱</p>
+					</div>
+					<a href="/manage/article" class="more clear"><span class="left">查看详情</span> <i class="right fa fa-angle-right"></i></a>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="stats-panel stats-green clear">
+					<div class="left"><img src="/images/backmanage/stats3.png" height="104" width="83" alt=""></div>
+					<div class="auto stats-txt">
+						<p>访客统计</p>
+					</div>
+					<a onclick="alert('开发中，敬请期待！')" class="more clear"><span class="left">敬请期待</span> <i class="right fa fa-angle-right"></i></a>
+				</div>
+			</div>
+		</div>
+		<!--stats end-->
+		<!--chart start-->
+		<div class="chart mart20">
+			<div class="tit1 clear">
+				<span class="left txt-left txt-red"><i class="fa fa-share-alt"></i>访客统计</span>
+			</div>
+
+			<div class="padt10">
+				<div class="chart-box padt10">
+					<div id="chart-container" class="chart-container"></div>
+				</div>
+			</div>
+		</div>
+		<!--chart end-->
+	</div>
+	<div th:replace="compoment/copy::copy"></div>
+</div>
+<!--main end-->
+
+<!--end js load-->
+<script src="/js/backmanage/jquery-1.9.1.min.js"></script>
+<script src="/js/backmanage/bootstrap.min.js"></script>
+<script src="/js/backmanage/highcharts.js"></script>
+<script src="/js/backmanage/common.js"></script>
+<script type="text/javascript">
+	$(function () {
+		$('#chart-container').highcharts({
+			chart: {
+				type: 'area',
+				spacingBottom: 30
+			},
+			title: {
+				text: ''
+			},
+			subtitle: {
+				text: '',
+				floating: true,
+				align: 'right',
+				verticalAlign: 'bottom',
+				y: 15
+			},
+			legend: {
+				layout: 'vertical',
+				align: 'left',
+				verticalAlign: 'top',
+				x: 150,
+				y: 150,
+				floating: true,
+				borderWidth: 1,
+				backgroundColor: '#FFFFFF'
+			},
+			xAxis: {
+				categories: [ '星期日','星期一', '星期二', '星期三', '星期四', '星期五', '星期六']
+			},
+			yAxis: {
+				title: {
+					text: '访问量'
+				},
+				labels: {
+					formatter: function() {
+						return this.value;
+					}
+				}
+			},
+			tooltip: {
+				formatter: function() {
+					return '<b>'+ this.series.name +'</b><br/>'+
+							this.x +': '+ this.y;
+				}
+			},
+			plotOptions: {
+				area: {
+					fillOpacity: 0.5
+				}
+			},
+			credits: {
+				enabled: false
+			},
+			series: [{
+				name: '访问量',
+				data: [34,20,50,120,30,60,70]
+			}]
+		});
+	});
+</script>
+</body>
+</html>
