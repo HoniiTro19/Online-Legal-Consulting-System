@@ -14,10 +14,8 @@ import lombok.Data;
  * city 用户律所所在城市
  */
 
-@Data
 public class User {
     private String phone;
-    private String nickname;
     private String name;
     private String password;
     private String idno;
@@ -28,11 +26,58 @@ public class User {
     public String toString() {
         return "User{" +
                 "phone=" + phone +
-                ", nickname=" + nickname +
                 ", name=" + name +
                 ", password=" + password +
                 ", idno=" + idno +
                 ", licenseurl=" + licenseurl +
                 ", firmname=" + firmname + "}";
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getIdno() {
+        return idno;
+    }
+
+    public void setIdno(String idno) {
+        this.idno = idno;
+    }
+
+    public String getLicenseurl() {
+        return licenseurl;
+    }
+
+    public void setLicenseurl(String licenseurl) {
+        this.licenseurl = licenseurl;
+    }
+
+    public String getFirmname() {
+        return firmname;
+    }
+
+    public void setFirmname(String firmname) {
+        this.firmname = firmname;
     }
 }

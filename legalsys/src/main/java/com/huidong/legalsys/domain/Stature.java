@@ -13,7 +13,6 @@ import lombok.Data;
  * clickrate 法条的点击数
  */
 
-@Data
 public class Stature {
     private Integer lawid;
     private Integer part;
@@ -22,4 +21,72 @@ public class Stature {
     private String title;
     private String content;
     private Integer clickrate;
+
+    @Override
+    public String toString(){
+        return "Stature{" +
+                "lawid=" + lawid +
+                ",part=" + part +
+                ",chapter=" + chapter +
+                ",article=" + article +
+                ",title=" + title +
+                ",content=" + content +
+                ",clickrate=" + clickrate + "}";
+    }
+
+    public Integer getLawid() {
+        return lawid;
+    }
+
+    public void setLawid(Integer lawid) {
+        this.lawid = lawid;
+    }
+
+    public Integer getPart() {
+        return part;
+    }
+
+    public void setPart(Integer part) {
+        this.part = part;
+    }
+
+    public Integer getChapter() {
+        return chapter;
+    }
+
+    public void setChapter(Integer chapter) {
+        this.chapter = chapter;
+    }
+
+    public Integer getArticle() {
+        return article;
+    }
+
+    public void setArticle(Integer article) {
+        this.article = article;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public Integer getClickrate() {
+        return clickrate;
+    }
+
+    public void setClickrate(Integer clickrate) {
+        this.clickrate = clickrate;
+    }
 }

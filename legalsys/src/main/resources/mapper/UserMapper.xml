@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
+
+<!--mybatis实现UserDao定义的接口-->
+
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<!--用户登录-->
+
 <mapper namespace="com.huidong.legalsys.dao.UserDao">
-    <resultMap id="loginMap" type="com.huidong.legalsys.domain.User">
-        <result column="phone" javaType="String" jdbcType="VARCHAR" property="phone"></result>
+    <resultMap id="userMap" type="com.huidong.legalsys.domain.User">
+        <id column="phone" javaType="String" jdbcType="VARCHAR" property="phone"></id>
         <result column="name" javaType="String" jdbcType="VARCHAR" property="name"></result>
         <result column="password" javaType="String" jdbcType="VARCHAR" property="password"></result>
         <result column="idno" javaType="String" jdbcType="VARCHAR" property="idno"></result>
@@ -13,27 +16,33 @@
         <result column="firmname" javaType="String" jdbcType="VARCHAR" property="firmname"></result>
     </resultMap>
 
+    <select id="isRegisted" resultType="com.huidong.legalsys.domain.User">
+        select * from userTable where phone = #{phone}
+    </select>
+
     <insert id="register" parameterType="com.huidong.legalsys.domain.User">
-        insert user select * where not exists(select 1 from user where phone = #{phone})
+        insert into userTable(phone, name, password, idno, licenseurl, firmname)
+        values (#{phone}, #{name}, #{password}, #{idno}, #{licenseurl}, #{firmname})
     </insert>
 
-    <select id="loginByPhone" resultType="com.huidong.legalsys.domain.User">
-        select * from user where phone = #{phone} and password = #{password}
+    <select id="login" resultType="com.huidong.legalsys.domain.User">
+        select * from userTable where phone = #{phone} and password = #{password};
     </select>
 
     <update id="changePassword">
-        update user set password = #{new} where phone = #{phone} and old = #{password}
+        update userTable set password = #{newpassword} where phone = #{phone}
     </update>
 
     <update id="uploadLicenseurl">
-        update user set licenseurl = #{new} where phone = #{phone}
+        update userTable set licenseurl = #{newlicenseurl} where phone = #{phone}
     </update>
 
     <update id="uploadFirmname">
-        update user set firmname = #{new} where phone = #{phone}
+        update userTable set firmname = #{newfirmname} where phone = #{phone}
     </update>
 
     <select id="getAllUsers" resultType="com.huidong.legalsys.domain.User">
-        select * from user
+        select * from userTable
     </select>
+
 </mapper>

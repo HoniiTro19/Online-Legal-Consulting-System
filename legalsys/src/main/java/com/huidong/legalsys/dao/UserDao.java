@@ -14,7 +14,7 @@ import java.util.List;
  *  @Return: User 用户个人信息
  *
  * changePassword 修改密码
- *  @param: phone, oldpassword, newpassword 手机号，旧密码，新密码
+ *  @param: phone, newpassword 手机号，新密码
  *
  * uploadLicenseurl 上传律师执照
  *  @param: phone, newlicenseurl 手机号，新律师执照url
@@ -28,9 +28,10 @@ import java.util.List;
 
 @Repository
 public interface UserDao {
+    User isRegisted(String phone);
     void register(User user);
-    User loginByPhone(String phone, String password);
-    void changePassword(String phone, String oldpassword, String newpassword);
+    User login(String phone, String password);
+    void changePassword(String phone, String newpassword);
     void uploadLicenseurl(String phone, String newlicenseurl);
     void uploadFirmname(String phone, String newfirmname);
     List<User> getAllUsers();

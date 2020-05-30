@@ -12,37 +12,34 @@ DROP DATABASE IF EXISTS legalsys;
 CREATE DATABASE legalsys;
 use legalsys;
 
-DROP TABLE IF EXISTS `user`;
-CREATE TABLE `user`  (
+DROP TABLE IF EXISTS `userTable`;
+CREATE TABLE `userTable`  (
   `phone` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `nickname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `idno` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `licenseurl` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `firmname` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  `province` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  `city` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (phone) USING BTREE,
   UNIQUE(phone, idno)
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
-INSERT INTO user
-(phone, nickname, name, password, idno)
+INSERT INTO userTable
+(phone, name, password, idno)
 VALUES
-(15190218902, HoniiTro19, 张惠东, 111111, 320283199903064812);
+('15190218902', '张惠东', '111111', '320283199903064812');
 
-DROP TABLE IF EXISTS `stature`;
-CREATE TABLE `stature`  (
+DROP TABLE IF EXISTS `statureTable`;
+CREATE TABLE `statureTable`  (
   `lawid` int(11) NOT NULL,
   `part` int(11) NOT NULL,
   `chapter` int(11) NOT NULL,
   `article` int(11) NOT NULL,
   `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `content` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `clickrate` int(11) SET DEFAULT 0,
+  `clickrate` int(11) DEFAULT 0,
   PRIMARY KEY (`lawid`) USING BTREE,
-  UNIQUE(lawid, title, content)
+  UNIQUE(lawid)
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 DROP TABLE IF EXISTS `category`;
