@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!--mybatis实现LoginLogDao接口定义的功能-->
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.huidong.legalsys.dao.LoginLogDao">
+    <resultMap id="loginLogMap" type="com.huidong.legalsys.domain.LoginLog">
+        <id column="phone" javaType="String" jdbcType="VARCHAR" property="phone"></id>
+        <result column="ip" javaType="String" jdbcType="VARCHAR" property="ip"></result>
+        <result column="attempt" javaType="Integer" jdbcType="INTEGER" property="attempt"></result>
+        <result column="status" javaType="Integer" jdbcType="INTEGER" property="status"></result>
+        <result column="timeLatest" javaType="String" jdbcType="VARCHAR" property="timeLatest"></result>
+    </resultMap>
+
+    <insert id="newLogin" parameterType="com.huidong.legalsys.domain.LoginLog">
+        insert into loginLogTable(phone, ip, attempt, status, timeLatest)
+        values(#{phone}, #{ip}, #{attempt}, #{status}, #{timeLatest})
+    </insert>
+
+    <select id="isLogined" resultType="com.huidong.legalsys.domain.LoginLog">
+        select * from loginLogTable where phone = #{phone}
+    </select>
+
+    <update id="setIp">
+        update loginLogTable set ip = #{ip} where phone = #{phone}
+    </update>
+
+    <update id="addAttempt">
+        update loginLogTable set attempt = attempt + 1 where phone = #{phone}
+    </update>
+
+    <update id="setAttempt">
+        update loginLogTable set attempt = #{attempt} where phone = #{phone}
+    </update>
+
+    <update id="setStatus">
+        update loginLogTable set status = #{status} where phone = #{phone}
+    </update>
+
+    <update id="setTimeLatest">
+        update loginLogTable set timeLatest = #{timeLatest} where phone = #{phone}
+    </update>
+
+    <select id="getAllLoginLogs" resultType="com.huidong.legalsys.domain.LoginLog">
+        select * from loginLogTable
+    </select>
+
+    <select id="getConcurrentUsers" resultType="Integer">
+        select count(*) from loginLogTable where status = 0
+    </select>
+</mapper>

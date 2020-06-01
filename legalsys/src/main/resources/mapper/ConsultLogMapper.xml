@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!--mybatis实现ConsultLogDao定义的接口-->
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.huidong.legalsys.dao.ConsultLogDao">
+    <resultMap id="consultLogMap" type="com.huidong.legalsys.domain.ConsultLog">
+        <id column="phone" javaType="String" jdbcType="VARCHAR" property="phone"></id>
+        <result column="query" javaType="String" jdbcType="VARCHAR" property="query"></result>
+        <result column="type" javaType="Integer" jdbcType="BOOLEAN" property="type"></result>
+        <result column="result" javaType="String" jdbcType="VARCHAR" property="result"></result>
+        <result column="time" javaType="String" jdbcType="VARCHAR" property="time"></result>
+        <result column="status" javaType="Integer" jdbcType="INTEGER" property="status"></result>
+    </resultMap>
+
+    <insert id="newConsultLog" parameterType="com.huidong.legalsys.domain.ConsultLog">
+        insert into consultLogTable(phone, query, type, result, time, status)
+        values(#{phone}, #{query}, #{type}, #{result}, #{time}, #{status})
+    </insert>
+
+    <select id="getConsultLogsByPhone" resultType="com.huidong.legalsys.domain.ConsultLog">
+        select * from consultLogTable where phone = #{phone}
+    </select>
+
+    <select id="getConsultLogsByType" resultType="com.huidong.legalsys.domain.ConsultLog">
+        select * from consultLogTable where type = #{type}
+    </select>
+
+    <select id="getTopkConsultLogs" resultType="com.huidong.legalsys.domain.ConsultLog">
+        select * from consultLogTable order by time desc limit 5
+    </select>
+
+    <select id="getAllConsultLogs" resultType="com.huidong.legalsys.domain.ConsultLog">
+        select * from consultLogTable
+    </select>
+</mapper>

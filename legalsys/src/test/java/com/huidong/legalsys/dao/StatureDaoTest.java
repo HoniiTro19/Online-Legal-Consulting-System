@@ -21,17 +21,6 @@ public class StatureDaoTest extends TestCase {
 
     @Autowired
     private StatureDao statureDao;
-    @Value("#{systemProperties['config.statureurl']}")
-    private String staturexml;
-    @Value("#{systemProperties['config.topk']}")
-    private Integer topk;
-
-    @Test
-    public void initCommitTest(){
-        statureDao.initCommit(staturexml);
-        System.out.println("initCommitTest:\n" + "initialize ");
-        System.out.println("-------------------------------------------------------------------------------");
-    }
 
     @Test
     public void addClickrateTest(){
@@ -62,7 +51,7 @@ public class StatureDaoTest extends TestCase {
 
     @Test
     public void getTopkStaturesTest(){
-        List<Stature> statures = statureDao.getTopkStatures(topk);
+        List<Stature> statures = statureDao.getTopkStatures();
         System.out.println("getTopkStaturesTest:\n");
         for (Stature stature : statures){
             System.out.println(stature);
