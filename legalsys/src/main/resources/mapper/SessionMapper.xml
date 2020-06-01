@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!--mybatis实现SessionDao定义的接口-->
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.huidong.legalsys.dao.SessionDao">
+    <resultMap id="consultLogMap" type="com.huidong.legalsys.domain.Session">
+        <id column="id" javaType="Integer" jdbcType="INTEGER" property="id"></id>
+        <result column="phone" javaType="String" jdbcType="VARCHAR" property="phone"></result>
+        <result column="title" javaType="String" jdbcType="VARCHAR" property="title"></result>
+        <result column="content" javaType="String" jdbcType="VARCHAR" property="content"></result>
+        <result column="status" javaType="Integer" jdbcType="INTEGER" property="status"></result>
+    </resultMap>
+
+    <insert id="newSession" parameterType="com.huidong.legalsys.domain.Session" useGeneratedKeys="true" keyProperty="id"  keyColumn="id">
+        insert into sessionTable(phone, title, content, status)
+        values(#{phone}, #{title}, #{content}, #{status})
+    </insert>
+
+    <update id="setStatus">
+        update sessionTable set status = #{status} where id = #{id}
+    </update>
+
+    <select id="getAllSessions" resultType="com.huidong.legalsys.domain.Session">
+        select * from consultLogTable where status = 1
+    </select>
+</mapper>
