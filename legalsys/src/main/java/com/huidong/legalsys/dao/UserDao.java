@@ -28,7 +28,8 @@ import java.util.List;
 
 @Repository
 public interface UserDao {
-    User isRegisted(String phone);
+    String isRegisted(String phone);
+    String isRegistedLawyer(String phone);
     void register(User user);
     User login(String phone, String password);
     void changePassword(String phone, String newpassword);

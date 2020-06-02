@@ -7,13 +7,6 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.huidong.legalsys.dao.SessionDao">
-    <resultMap id="consultLogMap" type="com.huidong.legalsys.domain.Session">
-        <id column="id" javaType="Integer" jdbcType="INTEGER" property="id"></id>
-        <result column="phone" javaType="String" jdbcType="VARCHAR" property="phone"></result>
-        <result column="title" javaType="String" jdbcType="VARCHAR" property="title"></result>
-        <result column="content" javaType="String" jdbcType="VARCHAR" property="content"></result>
-        <result column="status" javaType="Integer" jdbcType="INTEGER" property="status"></result>
-    </resultMap>
 
     <insert id="newSession" parameterType="com.huidong.legalsys.domain.Session" useGeneratedKeys="true" keyProperty="id"  keyColumn="id">
         insert into sessionTable(phone, title, content, status)

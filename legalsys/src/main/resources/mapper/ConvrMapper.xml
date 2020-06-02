@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!--mybatis实现ConvrDao定义的接口-->
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.huidong.legalsys.dao.ConvrDao">
+
+    <select id="isestablished" resultType="com.huidong.legalsys.domain.Convr">
+        select * from convrTable where phone = #{phone} and lawyerphone = #{lawyerphone}
+    </select>
+
+    <insert id="newConvr" parameterType="com.huidong.legalsys.domain.Convr" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        insert into convrTable(phone, lawyerphone, convr, lawyerconvr, time, lawyertime)
+        values(#{phone}, #{lawyerphone}, #{convr}, #{lawyerconvr}, #{time}, #{lawyertime})
+    </insert>
+
+    <select id="getConvr" resultType="java.lang.String">
+        select convr from convrTable where phone = #{phone} and lawyerphone = #{lawyerphone}
+    </select>
+
+    <update id="setConvr">
+        update convrTable set convr = #{convr} where phone = #{phone} and lawyerphone = #{lawyerphone}
+    </update>
+
+    <select id="getLawyerConvr" resultType="java.lang.String">
+        select lawyerconvr from convrLogTable where phone = #{phone} and lawyerphone = #{lawyerphone}
+    </select>
+
+    <update id="setLawyerConvr">
+        update convrTable set lawyerconvr = #{lawyerconvr} where phone = #{phone} and lawyerphone = #{lawyerphone}
+    </update>
+
+    <select id="getTime" resultType="java.lang.String">
+        select time from convrTable where phone = #{phone} and lawyerphone = #{lawyerphone}
+    </select>
+
+    <update id="setTime">
+        update convrTable set time = #{time} where phone = #{phone} and lawyerphone = #{lawyerphone}
+    </update>
+
+    <select id="getLawyerTime" resultType="java.lang.String">
+        select lawyertime from convrTable where phone = #{phone} and lawyerphone = #{lawyerphone}
+    </select>
+
+    <update id="setLawyerTime">
+        update convrLogTable set lawyertime = #{lawyertime} where phone = #{phone} and lawyerphone = #{lawyerphone}
+    </update>
+    
+    <select id="getConvrLogsByPhone" resultType="com.huidong.legalsys.domain.Convr">
+        select * from convrLogTable where phone = #{phone}
+    </select>
+
+    <select id="getConvrLogsByLawyerPhone" resultType="com.huidong.legalsys.domain.Convr">
+        select * from convrLogTable where lawyerphone = #{lawyerphone}
+    </select>
+
+    <select id="getAllConvrLogs" resultType="com.huidong.legalsys.domain.Convr">
+        select * from convrLogTable
+    </select>
+</mapper>

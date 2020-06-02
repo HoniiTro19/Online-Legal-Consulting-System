@@ -7,15 +7,6 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.huidong.legalsys.dao.StatureDao">
-    <resultMap id="statureMap" type="com.huidong.legalsys.domain.Stature">
-        <id column="lawid" javaType="Integer" jdbcType="INTEGER" property="lawid"></id>
-        <result column="part" javaType="Integer" jdbcType="INTEGER" property="part"></result>
-        <result column="chapter" javaType="Integer" jdbcType="INTEGER" property="chapter"></result>
-        <result column="article" javaType="Integer" jdbcType="INTEGER" property="article"></result>
-        <result column="title" javaType="String" jdbcType="VARCHAR" property="title"></result>
-        <result column="content" javaType="String" jdbcType="VARCHAR" property="content"></result>
-        <result column="clickrate" javaType="Integer" jdbcType="INTEGER" property="clickrate"></result>
-    </resultMap>
 
     <update id="addClickrate">
         update statureTable set clickrate = clickrate + #{addNum} where lawid = #{lawid}
@@ -29,7 +20,7 @@
         select * from statureTable
     </select>
 
-    <select id="getTopkStatures" parameterType="java.lang.Integer" resultType="com.huidong.legalsys.domain.Stature">
+    <select id="getTopkStatures" resultType="com.huidong.legalsys.domain.Stature">
         select * from statureTable order by clickrate desc limit 5
     </select>
 </mapper>

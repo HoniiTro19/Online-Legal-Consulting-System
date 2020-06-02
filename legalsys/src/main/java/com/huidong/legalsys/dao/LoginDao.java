@@ -1,7 +1,8 @@
 package com.huidong.legalsys.dao;
 
-import com.huidong.legalsys.domain.LoginLog;
+import com.huidong.legalsys.domain.Login;
 import org.springframework.stereotype.Repository;
+import java.util.Date;
 import java.util.List;
 
 /* 登录日志表的数据访问类
@@ -18,25 +19,26 @@ import java.util.List;
  * setAttempt 设置当前的登录尝试次数
  *  @param: phone, attempt 手机号，尝试次数
  *
- * setStatus 设置用户登录状态
+ * setStatus 设置用户登录状态 {-1: "账号冻结", 0: "在线", 1:, "离线"}
  *  @param: phone 手机号
  *
  * setTimeLatest 设置用户最后一次登录的时间
  *  @param: phone, timeLatest 手机号，最后登陆时间
  *
- * getAllLoginLogs 获得所有用户的登录日志
+ * getAllLogins 获得所有用户的登录日志
  *  @return: List<LoginLog> 所有用户的登录日志
  */
 
 @Repository
-public interface LoginLogDao {
-    Boolean newLogin(LoginLog loginLog);
-    LoginLog isLogined(String phone);
-    Boolean setIp(String phone, String ip);
+public interface LoginDao {
+    Boolean newLogin(Login login);
+    Login isLogined(String phone);
     Boolean addAttempt(String phone);
-    Boolean setAttempt(String phone, Integer attempt);
+    Integer getAttempt(String phone);
     Boolean setStatus(String phone, Integer status);
-    Boolean setTimeLatest(String phone, String timeLatest);
-    List<LoginLog> getAllLoginLogs();
+    Integer getStatus(String phone);
+    Boolean setFreezetime(String phone, String freezetime);
+    String getFreezetime(String phone);
+    List<Login> getAllLogins();
     Integer getConcurrentUsers();
 }

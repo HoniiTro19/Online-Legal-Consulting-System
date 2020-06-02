@@ -1,6 +1,6 @@
 package com.huidong.legalsys.domain;
 
-public class ConsultLog {
+public class Consult {
     private String phone;
     private String query;
     private Integer type;

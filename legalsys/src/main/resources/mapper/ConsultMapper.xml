@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!--mybatis实现ConsultDao定义的接口-->
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.huidong.legalsys.dao.ConsultDao">
+
+    <insert id="newConsultLog" parameterType="com.huidong.legalsys.domain.Consult">
+        insert into consultTable(phone, query, type, result, time, status)
+        values(#{phone}, #{query}, #{type}, #{result}, #{time}, #{status})
+    </insert>
+
+    <select id="getConsultsByPhone" resultType="com.huidong.legalsys.domain.Consult">
+        select * from consultTable where phone = #{phone}
+    </select>
+
+    <select id="getConsultsByType" resultType="com.huidong.legalsys.domain.Consult">
+        select * from consultTable where type = #{type}
+    </select>
+
+    <select id="getTopkConsultLogs" resultType="com.huidong.legalsys.domain.Consult">
+        select * from consultTable order by time desc limit 5
+    </select>
+
+    <select id="getAllConsultLogs" resultType="com.huidong.legalsys.domain.Consult">
+        select * from consultTable
+    </select>
+</mapper>

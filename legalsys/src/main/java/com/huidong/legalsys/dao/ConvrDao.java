@@ -1,6 +1,6 @@
 package com.huidong.legalsys.dao;
 
-import com.huidong.legalsys.domain.ConvrLog;
+import com.huidong.legalsys.domain.Convr;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -10,7 +10,7 @@ import java.util.List;
  *  @param: phone, lawyerphone 普通用户手机号，律师用户手机号
  *  @return: ConvrLog 会话日志信息
  *
- * newConvrLog 新建用户会话
+ * newConvr 新建用户会话
  *  @param: convrLog 用户会话日志信息
  *  @return: Boolean
  *
@@ -32,9 +32,9 @@ import java.util.List;
  */
 
 @Repository
-public interface ConvrLogDao {
-    ConvrLog isestablished(String phone, String lawyerphone);
-    Boolean newConvrLog(ConvrLog convrLog);
+public interface ConvrDao {
+    Convr isestablished(String phone, String lawyerphone);
+    Boolean newConvr(Convr convr);
     String getConvr(String phone, String lawyerphone);
     Boolean setConvr(String convr, String phone, String lawyerphone);
     String getLawyerConvr(String phone, String lawyerphone);
@@ -43,7 +43,7 @@ public interface ConvrLogDao {
     Boolean setTime(String time, String phone, String lawyerphone);
     String getLawyerTime(String phone, String lawyerphone);
     Boolean setLawyerTime(String lawyertime, String phone, String lawyerphone);
-    List<ConvrLog> getConvrLogsByPhone(String phone);
-    List<ConvrLog> getConvrLogsByLawyerPhone(String lawyerphone);
-    List<ConvrLog> getAllConvrLogs();
+    List<Convr> getConvrsByPhone(String phone);
+    List<Convr> getConvrsByLawyerPhone(String lawyerphone);
+    List<Convr> getAllConvrs();
 }

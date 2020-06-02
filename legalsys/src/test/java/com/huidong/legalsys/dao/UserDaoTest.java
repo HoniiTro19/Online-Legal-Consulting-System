@@ -24,8 +24,8 @@ public class UserDaoTest {
     @Test
     public void isRegistedTest(){
         String phone = "15190218902";
-        User user = userDao.isRegisted(phone);
-        System.out.println("isRegistedTest:\n" + user);
+        String username = userDao.isRegisted(phone);
+        System.out.println("isRegistedTest:\n" + username);
         System.out.println("-------------------------------------------------------------------------------");
     }
 

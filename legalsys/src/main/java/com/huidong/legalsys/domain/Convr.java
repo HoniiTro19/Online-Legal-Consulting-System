@@ -1,6 +1,6 @@
 package com.huidong.legalsys.domain;
 
-public class ConvrLog {
+public class Convr {
     private Integer id;
     private String phone;
     private String lawyerphone;

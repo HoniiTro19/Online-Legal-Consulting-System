@@ -9,21 +9,21 @@ package com.huidong.legalsys.domain;
  * timeLatest 用户最后登录的时间
  */
 
-public class LoginLog {
+import java.util.Date;
+
+public class Login {
     private String phone;
-    private String ip;
     private Integer attempt;
     private Integer status;
-    private String timeLatest;
+    private String freezetime;
 
     @Override
     public String toString(){
         return "LoginLog{" +
                 "phone=" + phone +
-                ",ip=" + ip +
                 ",attempt=" + attempt +
                 ",status=" + status +
-                ",timeLatest=" + timeLatest + "}";
+                ",freezeTime=" + freezetime + "}";
     }
 
     public String getPhone() {
@@ -32,14 +32,6 @@ public class LoginLog {
 
     public void setPhone(String phone) {
         this.phone = phone;
-    }
-
-    public String getIp() {
-        return ip;
-    }
-
-    public void setIp(String ip) {
-        this.ip = ip;
     }
 
     public Integer getAttempt() {
@@ -58,11 +50,11 @@ public class LoginLog {
         this.status = status;
     }
 
-    public String getTimeLatest() {
-        return timeLatest;
+    public String getFreezeTime() {
+        return freezetime;
     }
 
-    public void setTimeLatest(String timeLatest) {
-        this.timeLatest = timeLatest;
+    public void setFreezeTime(String freezeTime) {
+        this.freezetime = freezeTime;
     }
 }
