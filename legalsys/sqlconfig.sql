@@ -58,13 +58,14 @@ CREATE TABLE `loginTable`  (
 
 DROP TABLE IF EXISTS `consultTable`;
 CREATE TABLE `consultTable`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `phone` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `query` varchar(5000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `type` int(11) NOT NULL COMMENT '咨询类型 0：相关法条预测 1：刑期预测',
   `result` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `time` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `status` int(11) NOT NULL,
-  PRIMARY KEY (`phone`) USING BTREE
+  PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 DROP TABLE IF EXISTS `convrTable`;

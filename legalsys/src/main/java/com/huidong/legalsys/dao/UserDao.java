@@ -32,8 +32,9 @@ public interface UserDao {
     String isRegistedLawyer(String phone);
     void register(User user);
     User login(String phone, String password);
-    void changePassword(String phone, String newpassword);
-    void uploadLicenseurl(String phone, String newlicenseurl);
-    void uploadFirmname(String phone, String newfirmname);
+    String getPassword(String phone);
+    void setPassword(String phone, String newpassword);
+    void setLicenseurl(String phone, String newlicenseurl);
+    void setFirmname(String phone, String newfirmname);
     List<User> getAllUsers();
 }

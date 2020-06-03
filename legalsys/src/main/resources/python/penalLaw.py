@@ -1,8 +1,12 @@
 import re
+import os
+srcPath = os.path.dirname(os.getcwd())
+penalPath = os.path.join(srcPath, 'penalLaw.txt')
+
 def extractLaw(lawDict):
     lawInd = 0
     lawLst = list()
-    civil = open('penalLaw.txt', 'r')
+    civil = open(penalPath, 'r')
     rawLaw = civil.read()
     civil.close()
     parPattern = re.compile(r'第[零一二三四五六七八九十百]+编.*')
@@ -75,7 +79,7 @@ print(lawDict)
 from xml.dom.minidom import Document
 
 doc = Document()
-DOCUMENT = doc.createElement('penalLaw')
+#DOCUMENT = doc.createElement('penalLaw')
 doc.appendChild(DOCUMENT)
 
 

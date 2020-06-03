@@ -33,6 +33,7 @@ import java.util.List;
 public interface ConsultDao {
     Boolean newConsult(Consult consult);
     List<Consult> getConsultsByPhone(String phone);
+    Boolean deleteConsult(Integer id);
     List<Consult> getConsultsByType(Integer type);
     List<Consult> getTopkConsults();
     List<Consult> getAllConsults();

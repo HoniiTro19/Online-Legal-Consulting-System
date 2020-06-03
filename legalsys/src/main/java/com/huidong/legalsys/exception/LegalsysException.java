@@ -1,14 +1,14 @@
 package com.huidong.legalsys.exception;
 
-import com.huidong.legalsys.enumeration.StatusEnum;
+import com.huidong.legalsys.enumeration.ErrorEnum;
 
 public class LegalsysException extends RuntimeException{
 
     private Integer code;
 
-    public LegalsysException(StatusEnum statusEnum){
-        super(statusEnum.getMsg());
-        this.code = statusEnum.getCode();
+    public LegalsysException(ErrorEnum errorEnum){
+        super(errorEnum.getMsg());
+        this.code = errorEnum.getCode();
     }
 
     public Integer getCode() {

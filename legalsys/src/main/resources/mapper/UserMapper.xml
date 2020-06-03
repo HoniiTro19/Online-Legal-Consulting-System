@@ -25,15 +25,19 @@
         select * from userTable where phone = #{phone} and password = #{password};
     </select>
 
-    <update id="changePassword">
+    <select id="getPassword" resultType="java.lang.String">
+        select password from userTable where phone = #{phone}
+    </select>
+
+    <update id="setPassword">
         update userTable set password = #{newpassword} where phone = #{phone}
     </update>
 
-    <update id="uploadLicenseurl">
+    <update id="setLicenseurl">
         update userTable set licenseurl = #{newlicenseurl} where phone = #{phone}
     </update>
 
-    <update id="uploadFirmname">
+    <update id="setFirmname">
         update userTable set firmname = #{newfirmname} where phone = #{phone}
     </update>
 

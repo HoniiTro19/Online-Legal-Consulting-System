@@ -9,7 +9,7 @@
 <mapper namespace="com.huidong.legalsys.dao.StatureDao">
 
     <update id="addClickrate">
-        update statureTable set clickrate = clickrate + #{addNum} where lawid = #{lawid}
+        update statureTable set clickrate = clickrate + 1 where lawid = #{lawid}
     </update>
 
     <select id="getStature" resultType="com.huidong.legalsys.domain.Stature">

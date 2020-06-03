@@ -8,6 +8,10 @@ import java.util.List;
 @Repository
 public interface SessionDao {
     Boolean newSession(Session session);
-    Boolean setStatus(Integer status, Integer id);
+    Integer isExist(Integer id);
+    String getPhone(Integer id);
+    String getTitle(Integer id);
+    String getContent(Integer id);
+    Boolean setStatus(Integer id, Integer status);
     List<Session> getAllSessions();
 }

@@ -26,7 +26,7 @@ import java.util.List;
 
 @Repository
 public interface StatureDao {
-    void addClickrate(Integer lawid, Integer addNum);
+    Boolean addClickrate(Integer lawid);
     Stature getStature(Integer lawid);
     List<Stature> getAllStatures();
     List<Stature> getTopkStatures();

@@ -54,28 +54,28 @@ public class UserDaoTest {
     }
 
     @Test
-    public void changePasswordTest(){
+    public void setPasswordTest(){
         String phone = "15190218902";
         String newpassword = "222222";
-        userDao.changePassword(phone, newpassword);
+        userDao.setPassword(phone, newpassword);
         System.out.println("changePasswordTest:\n" + "new password ");
         System.out.println("-------------------------------------------------------------------------------");
     }
 
     @Test
-    public void uploadLicenseurlTest(){
+    public void setLicenseurlTest(){
         String phone = "15190218903";
         String lincenseurl = "url1";
-        userDao.uploadLicenseurl(phone, lincenseurl);
+        userDao.setLicenseurl(phone, lincenseurl);
         System.out.println("uploadLicenseurlTest:\n" + "new licenseurl ");
         System.out.println("-------------------------------------------------------------------------------");
     }
 
     @Test
-    public void uploadFirmnameTest(){
+    public void setFirmnameTest(){
         String phone = "15190218903";
         String firmname = "天津市司法局";
-        userDao.uploadFirmname(phone, firmname);
+        userDao.setFirmname(phone, firmname);
         System.out.println("uploadFirmnameTest:\n" + "new firmname ");
         System.out.println("-------------------------------------------------------------------------------");
     }

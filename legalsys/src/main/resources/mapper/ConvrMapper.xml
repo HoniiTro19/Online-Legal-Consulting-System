@@ -18,35 +18,35 @@
     </insert>
 
     <select id="getConvr" resultType="java.lang.String">
-        select convr from convrTable where phone = #{phone} and lawyerphone = #{lawyerphone}
+        select convr from convrTable where id = #{id}
     </select>
 
     <update id="setConvr">
-        update convrTable set convr = #{convr} where phone = #{phone} and lawyerphone = #{lawyerphone}
+        update convrTable set convr = #{convr} where id = #{id}
     </update>
 
     <select id="getLawyerConvr" resultType="java.lang.String">
-        select lawyerconvr from convrLogTable where phone = #{phone} and lawyerphone = #{lawyerphone}
+        select lawyerconvr from convrLogTable where id = #{id}
     </select>
 
     <update id="setLawyerConvr">
-        update convrTable set lawyerconvr = #{lawyerconvr} where phone = #{phone} and lawyerphone = #{lawyerphone}
+        update convrTable set lawyerconvr = #{lawyerconvr} where id = #{id}
     </update>
 
     <select id="getTime" resultType="java.lang.String">
-        select time from convrTable where phone = #{phone} and lawyerphone = #{lawyerphone}
+        select time from convrTable where id = #{id}
     </select>
 
     <update id="setTime">
-        update convrTable set time = #{time} where phone = #{phone} and lawyerphone = #{lawyerphone}
+        update convrTable set time = #{time} where id = #{id}
     </update>
 
     <select id="getLawyerTime" resultType="java.lang.String">
-        select lawyertime from convrTable where phone = #{phone} and lawyerphone = #{lawyerphone}
+        select lawyertime from convrTable where id = #{id}
     </select>
 
     <update id="setLawyerTime">
-        update convrLogTable set lawyertime = #{lawyertime} where phone = #{phone} and lawyerphone = #{lawyerphone}
+        update convrLogTable set lawyertime = #{lawyertime} where id = #{id}
     </update>
     
     <select id="getConvrLogsByPhone" resultType="com.huidong.legalsys.domain.Convr">

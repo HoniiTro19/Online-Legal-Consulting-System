@@ -1,6 +1,7 @@
 package com.huidong.legalsys.domain;
 
 public class Consult {
+    private Integer id;
     private String phone;
     private String query;
     private Integer type;
@@ -11,12 +12,16 @@ public class Consult {
     @Override
     public String toString(){
         return "ConsultLog{" +
-                "phone=" + phone +
+                "id=" + id +
+                ",phone=" + phone +
                 ",query=" + query +
                 ",type=" + type +
                 ",result=" + result +
                 ",time=" + time +
                 ",status=" + status + "}";
+    }
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public void setPhone(String phone) {
@@ -46,4 +51,5 @@ public class Consult {
     public void setStatus(Integer status) {
         this.status = status;
     }
+
 }

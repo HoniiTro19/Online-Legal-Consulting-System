@@ -37,7 +37,7 @@ public class ConvrDaoTest extends TestCase {
         convr.setPhone("15190218902");
         convr.setLawyerphone("15190218905");
         convr.setConvr("你好！");
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = new Date();
         String timenow = simpleDateFormat.format(date);
         convr.setTime(timenow);
@@ -51,7 +51,7 @@ public class ConvrDaoTest extends TestCase {
 
     @Test
     public void getConvrTest() {
-        String convr = convrDao.getConvr("15190218902", "15190218903");
+        String convr = convrDao.getConvr(1);
         if (convr == null)
             System.out.println("getConvrTest:\n" + "failed");
         else
@@ -61,7 +61,7 @@ public class ConvrDaoTest extends TestCase {
 
     @Test
     public void setConvrTest() {
-        Boolean isSuccess = convrDao.setConvr("你好！" + "朋友！", "15190218902", "15190218903");
+        Boolean isSuccess = convrDao.setConvr("你好！" + "朋友！", 1);
         if (!isSuccess)
             System.out.println("addConvrTest:\n" + "add convr failed ");
         else
@@ -71,7 +71,7 @@ public class ConvrDaoTest extends TestCase {
 
     @Test
     public void getLawyerConvrTest() {
-        String lawyerconvr = convrDao.getLawyerConvr("15190218902", "15190218903");
+        String lawyerconvr = convrDao.getLawyerConvr(1);
         if (lawyerconvr == null)
             System.out.println("getLawyerConvrTest:\n" + "failed");
         else
@@ -81,7 +81,7 @@ public class ConvrDaoTest extends TestCase {
 
     @Test
     public void setLawyerConvrTest() {
-        Boolean isSuccess = convrDao.setLawyerConvr("请问有什么可以帮到您的吗", "15190218902", "15190218903");
+        Boolean isSuccess = convrDao.setLawyerConvr("请问有什么可以帮到您的吗", 1);
         if (!isSuccess)
             System.out.println("addLawyerConvrTest:\n" + "add lawyerconvr failed ");
         else
@@ -91,7 +91,7 @@ public class ConvrDaoTest extends TestCase {
 
     @Test
     public void getTimeTest() {
-        String time = convrDao.getTime("15190218902", "15190218903");
+        String time = convrDao.getTime(1);
         if (time == null)
             System.out.println("getTimeTest:\n" + "failed");
         else
@@ -104,7 +104,7 @@ public class ConvrDaoTest extends TestCase {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
         Date date = new Date();
         String timenow = simpleDateFormat.format(date);
-        Boolean isSuccess = convrDao.setTime(timenow, "15190218902", "15190218903");
+        Boolean isSuccess = convrDao.setTime(timenow, 1);
         if (!isSuccess)
             System.out.println("addTimeTest:\n" + "failed ");
         else
@@ -114,7 +114,7 @@ public class ConvrDaoTest extends TestCase {
 
     @Test
     public void getLawyerTimeTest() {
-        String time = convrDao.getLawyerTime("15190218902", "15190218903");
+        String time = convrDao.getLawyerTime(1);
         if (time == null)
             System.out.println("getLawyerTimeTest:\n" + "failed");
         else
@@ -127,7 +127,7 @@ public class ConvrDaoTest extends TestCase {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
         Date date = new Date();
         String timenow = simpleDateFormat.format(date);
-        Boolean isSuccess = convrDao.setLawyerTime(timenow, "15190218902", "15190218903");
+        Boolean isSuccess = convrDao.setLawyerTime(timenow, 1);
         if (!isSuccess)
             System.out.println("addLawyerTimeTest:\n" + "failed ");
         else

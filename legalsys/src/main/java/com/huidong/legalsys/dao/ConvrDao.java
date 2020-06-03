@@ -35,15 +35,16 @@ import java.util.List;
 public interface ConvrDao {
     Convr isestablished(String phone, String lawyerphone);
     Boolean newConvr(Convr convr);
-    String getConvr(String phone, String lawyerphone);
-    Boolean setConvr(String convr, String phone, String lawyerphone);
-    String getLawyerConvr(String phone, String lawyerphone);
-    Boolean setLawyerConvr(String lawyerconvr, String phone, String lawyerphone);
-    String getTime(String phone, String lawyerphone);
-    Boolean setTime(String time, String phone, String lawyerphone);
-    String getLawyerTime(String phone, String lawyerphone);
-    Boolean setLawyerTime(String lawyertime, String phone, String lawyerphone);
+    String getConvr(Integer id);
+    Boolean setConvr(String convr, Integer id);
+    String getLawyerConvr(Integer id);
+    Boolean setLawyerConvr(String lawyerconvr, Integer id);
+    String getTime(Integer id);
+    Boolean setTime(String time, Integer id);
+    String getLawyerTime(Integer id);
+    Boolean setLawyerTime(String lawyertime, Integer id);
     List<Convr> getConvrsByPhone(String phone);
     List<Convr> getConvrsByLawyerPhone(String lawyerphone);
+    Boolean deleteConvr(Integer id);
     List<Convr> getAllConvrs();
 }

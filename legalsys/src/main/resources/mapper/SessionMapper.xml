@@ -13,6 +13,22 @@
         values(#{phone}, #{title}, #{content}, #{status})
     </insert>
 
+    <select id="isExist" resultType="java.lang.Integer">
+        select id from sessionTable where id = #{id}
+    </select>
+
+    <select id="getPhone" resultType="java.lang.String">
+        select phone from sessionTable where id = #{id}
+    </select>
+
+    <select id="getTitle" resultType="java.lang.String">
+        select title from sessionTable where id = #{id}
+    </select>
+
+    <select id="getContent" resultType="java.lang.String">
+        select content from sessionTable where id = #{id}
+    </select>
+
     <update id="setStatus">
         update sessionTable set status = #{status} where id = #{id}
     </update>
