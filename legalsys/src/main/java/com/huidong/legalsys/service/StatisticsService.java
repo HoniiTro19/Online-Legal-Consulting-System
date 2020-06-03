@@ -31,7 +31,7 @@ public class StatisticsService {
         return usernum;
     }
 
-    public List<Stature> rcmdStature(){
+    public List<Stature> rcmdStatures(){
         List<Stature> statures = statureDao.getTopkStatures();
         return statures;
     }

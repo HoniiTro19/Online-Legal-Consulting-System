@@ -71,7 +71,7 @@ public class LoginServiceTest extends TestCase {
             //loginService.login(phone1, password1);
             loginService.login(phone2, password2);
         }catch (ParseException e){
-            System.out.println(e);
+            e.printStackTrace();
         }
     }
 }
