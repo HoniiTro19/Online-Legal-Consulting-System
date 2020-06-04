@@ -5,36 +5,75 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-/* 用户信息表的数据访问类
- * register 用户注册
- *  @param: user 用户信息
- *
- * loginByPhone 手机号登录
- *  @param: phone, password 手机号，密码
- *  @Return: User 用户个人信息
- *
- * changePassword 修改密码
- *  @param: phone, newpassword 手机号，新密码
- *
- * uploadLicenseurl 上传律师执照
- *  @param: phone, newlicenseurl 手机号，新律师执照url
- *
- * uploadFirmname 上传律所名称
- *  @param: phone, newfirmname 手机号，新公司名字
- *
- * getAllUsers 获得所有注册律师的信息
- *  @return List<User> 用户信息列表
+/**
+ * 用户信息表的数据访问类
  */
 
 @Repository
 public interface UserDao {
+    /**
+     * isRegisted 判断普通用户是否注册
+     * @param phone 用户电话号码
+     * @return String 用户电话号码
+     */
     String isRegisted(String phone);
+
+    /**
+     * isRegistedLawyer 判断律师用户是否注册
+     * @param phone 用户电话号码
+     * @return String 用户电话号码
+     */
     String isRegistedLawyer(String phone);
-    void register(User user);
+
+    /**
+     * register 用户注册
+     * @param user 用户信息
+     * @return Boolean 是否成功登记
+     */
+    Boolean register(User user);
+
+    /**
+     * login 手机号登录
+     * @param phone 手机号
+     * @param password 密码
+     * @return User 用户个人信息
+     */
     User login(String phone, String password);
+
+    /**
+     * getPassword 获取用户密码
+     * @param phone 手机号
+     * @return String 密码
+     */
     String getPassword(String phone);
-    void setPassword(String phone, String newpassword);
-    void setLicenseurl(String phone, String newlicenseurl);
-    void setFirmname(String phone, String newfirmname);
+
+    /**
+     * setPassword 重置密码
+     * @param phone 手机号
+     * @param newpassword 新密码
+     * @return Boolean 是否设置成功
+     */
+    Boolean setPassword(String phone, String newpassword);
+
+    /**
+     * setLicenseurl 重置律师执照
+     * @param phone 手机号
+     * @param newlicenseurl 新律师执照
+     * @return Boolean 是否设置成功
+     */
+    Boolean setLicenseurl(String phone, String newlicenseurl);
+
+    /**
+     * setFirmname 重置律所信息
+     * @param phone 手机号
+     * @param newfirmname 新律所信息
+     * @return Boolean 是否设置成功
+     */
+    Boolean setFirmname(String phone, String newfirmname);
+
+    /**
+     * getAllUsers 获得所有注册用户信息
+     * @return List<User> 所有注册用户信息
+     */
     List<User> getAllUsers();
 }

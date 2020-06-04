@@ -1,8 +1,8 @@
 package com.huidong.legalsys.handle;
 
-import com.huidong.legalsys.domain.Status;
+import com.huidong.legalsys.domain.Error;
 import com.huidong.legalsys.exception.*;
-import com.huidong.legalsys.util.StatusUtil;
+import com.huidong.legalsys.util.ErrorUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -16,13 +16,13 @@ public class ExceptionHandle {
 
     @ExceptionHandler(value = Exception.class)
     @ResponseBody
-    public Status handle(Exception exception) {
+    public Error handle(Exception exception) {
         if (exception instanceof LegalsysException) {
             LegalsysException legalsysException = (LegalsysException) exception;
-            return StatusUtil.error(legalsysException.getCode(), legalsysException.getMessage());
+            return ErrorUtil.error(legalsysException.getCode(), legalsysException.getMessage());
         }else {
             logger.error("[系统异常]{}", exception);
-            return StatusUtil.error(-1, "未知错误");
+            return ErrorUtil.error(-1, "未知错误");
         }
     }
 }

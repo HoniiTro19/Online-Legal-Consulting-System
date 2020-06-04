@@ -1,5 +1,15 @@
 package com.huidong.legalsys.domain;
 
+/**
+ * 讨论区咨询表单
+ * id 讨论区咨询编号
+ * phone 发布咨询用户的手机号
+ * title 咨询的标题
+ * content 咨询的内容
+ * status 咨询的状态
+ *  @see com.huidong.legalsys.enumeration.SessionStatusEnum
+ */
+
 public class Session {
     private Integer id;
     private String phone;

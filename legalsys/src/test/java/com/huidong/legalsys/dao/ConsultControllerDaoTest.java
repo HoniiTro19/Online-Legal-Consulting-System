@@ -33,7 +33,6 @@ public class ConsultControllerDaoTest extends TestCase {
         Date date = new Date();
         String timenow = simpleDateFormat.format(date);
         consult.setTime(timenow);
-        consult.setStatus(0);
         Boolean isSuccess = consultDao.newConsult(consult);
         if (!isSuccess)
             System.out.println("newConsultLogTest:\n" + "new consultLog failed ");
@@ -47,17 +46,6 @@ public class ConsultControllerDaoTest extends TestCase {
         String phone = "15190218902";
         List<Consult> consults = consultDao.getConsultsByPhone(phone);
         System.out.println("getConsultLogsByPhoneTest:\n");
-        for (Consult consult : consults){
-            System.out.println(consult);
-        }
-        System.out.println("-------------------------------------------------------------------------------");
-    }
-
-    @Test
-    public void getConsultLogsByTypeTest() {
-        Integer type = 1;
-        List<Consult> consults = consultDao.getConsultsByType(type);
-        System.out.println("getConsultLogsByTypeTest:\n");
         for (Consult consult : consults){
             System.out.println(consult);
         }

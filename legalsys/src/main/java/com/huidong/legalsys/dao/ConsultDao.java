@@ -5,36 +5,43 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-/* 用户咨询日志的数据访问类
- * newConsult 新建咨询
- *  @param: consultLog 用户咨询信息
- *  @return: ConsultLog 用户咨询信息
- *
- * getConsultsByPhone 根据手机号查询用户咨询日志
- *  @param: phone 手机号
- *  @return: List<ConsultLog> 用户咨询信息列表
- *
- * getConsultsByType 根据咨询类型查询用户咨询日志
- *  @param: type 咨询类型
- *  @return: List<ConsultLog> 用户咨询信息列表
- *
- * getTopkConsults 获得时间最近的k个咨询记录
- *  @param: topk k值
- *  @return: List<ConsultLog> 用户咨询信息列表
- *
- * getAllConsults 获得所有用户咨询记录
- *  @param: phone, newfirmname 手机号，新公司名字
- *
- * getAllUsers 获得所有注册律师的信息
- *  @return List<User> 用户信息列表
+/**
+ * 用户咨询日志的数据访问类
  */
 
 @Repository
 public interface ConsultDao {
+
+    /**
+     * newConsult 新建咨询记录
+     * @param consult 咨询信息
+     * @return Boolean 是否新建成功
+     */
     Boolean newConsult(Consult consult);
+
+    /**
+     * getConsultsByPhone 获得用户所有咨询记录
+     * @param phone 手机号
+     * @return List<Consult> 用户所有咨询记录
+     */
     List<Consult> getConsultsByPhone(String phone);
+
+    /**
+     * deleteConsult 删除记录
+     * @param id 咨询编号
+     * @return Boolean 是否成功删除
+     */
     Boolean deleteConsult(Integer id);
-    List<Consult> getConsultsByType(Integer type);
+
+    /**
+     * getTopkConsults 获得时间最近的k条咨询记录
+     * @return List<Consult> 时间最近的k条咨询记录
+     */
     List<Consult> getTopkConsults();
+
+    /**
+     * getAllConsults 获得所有的咨询记录
+     * @return List<Consult> 所有的咨询记录
+     */
     List<Consult> getAllConsults();
 }

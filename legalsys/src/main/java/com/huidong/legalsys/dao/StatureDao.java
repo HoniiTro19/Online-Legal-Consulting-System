@@ -5,29 +5,35 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-/* 法条信息表的数据访问类
- * initCommit 初始化法条信息库
- *  @param: staturexml xml格式法律条文的本地地址
- *
- * addClickrate 增加法律的点击数
- *  @param: lawid, addNum 法条编号，点击数增加量
- *
- * getStature 获得单一法条信息
- *  @param: lawid 法条编号
- *  @return: Stature 法条信息
- *
- * getAllStatures 获得所有法条信息
- *  @return 法条信息列表
- *
- * getTopkStatures 获得点击率前k的法条信息
- *  @param: topk k值
- *  @return: 法条信息列表
+/**
+ * 法条信息表的数据访问类
  */
 
 @Repository
 public interface StatureDao {
+    /**
+     * addClickrate 法条点击数加一
+     * @param lawid 法条编号
+     * @return Boolean 设置是否成功
+     */
     Boolean addClickrate(Integer lawid);
+
+    /**
+     * getStature 获得法条信息
+     * @param lawid 法条编号
+     * @return Stature 法条信息
+     */
     Stature getStature(Integer lawid);
+
+    /**
+     * getAllStatures 获得所有法条信息
+     * @return List<Stature> 所有法条信息
+     */
     List<Stature> getAllStatures();
+
+    /**
+     * getTopkStatures 获得点击数前k的法条信息
+     * @return List<Stature> 所有法条信息
+     */
     List<Stature> getTopkStatures();
 }

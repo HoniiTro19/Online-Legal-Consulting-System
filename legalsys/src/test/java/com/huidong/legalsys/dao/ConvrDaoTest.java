@@ -20,18 +20,6 @@ public class ConvrDaoTest extends TestCase {
     private ConvrDao convrDao;
 
     @Test
-    public void isestablishedTest(){
-        String phone = "15190218902";
-        String lawyerphone = "15190218903";
-        Convr convr = convrDao.isestablished(phone, lawyerphone);
-        if (convr == null)
-            System.out.println("isestablishedTest:\n" + "not established ");
-        else
-            System.out.println("newConsultLogTest:\n" + "established " + convr);
-
-    }
-
-    @Test
     public void newConvrLogTest() {
         Convr convr = new Convr();
         convr.setPhone("15190218902");

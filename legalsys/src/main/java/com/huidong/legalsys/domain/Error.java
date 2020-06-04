@@ -1,6 +1,14 @@
 package com.huidong.legalsys.domain;
 
-public class Status<T> {
+/**
+ * 错误实体
+ * code 错误代码
+ *  @see com.huidong.legalsys.enumeration.ErrorEnum
+ * msg 错误提示
+ * data 错误内容
+ */
+
+public class Error<T> {
 
     private Integer code;
     private String msg;
@@ -12,10 +20,6 @@ public class Status<T> {
 
     public void setCode(Integer code) {
         this.code = code;
-    }
-
-    public String getMsg() {
-        return msg;
     }
 
     public void setMsg(String msg) {

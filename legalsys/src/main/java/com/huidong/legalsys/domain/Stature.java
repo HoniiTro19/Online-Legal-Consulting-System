@@ -1,8 +1,6 @@
 package com.huidong.legalsys.domain;
 
-import lombok.Data;
-
-/*
+/**
  * 法律条文表单
  * lawid 法条在法条库中的编号
  * part 法条的"编"信息
@@ -34,28 +32,12 @@ public class Stature {
                 ",clickrate=" + clickrate + "}";
     }
 
-    public Integer getLawid() {
-        return lawid;
-    }
-
-    public void setLawid(Integer lawid) {
-        this.lawid = lawid;
-    }
-
     public Integer getPart() {
         return part;
     }
 
     public void setPart(Integer part) {
         this.part = part;
-    }
-
-    public Integer getChapter() {
-        return chapter;
-    }
-
-    public void setChapter(Integer chapter) {
-        this.chapter = chapter;
     }
 
     public Integer getArticle() {
@@ -80,13 +62,5 @@ public class Stature {
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    public Integer getClickrate() {
-        return clickrate;
-    }
-
-    public void setClickrate(Integer clickrate) {
-        this.clickrate = clickrate;
     }
 }

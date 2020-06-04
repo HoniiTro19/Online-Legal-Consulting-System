@@ -1,5 +1,16 @@
 package com.huidong.legalsys.domain;
 
+/**
+ * 用户会话表单
+ * id 会话编号
+ * phone 被受理用户的手机号
+ * lawyerphone 受理律师的手机号
+ * convr 被受理用户的会话内容
+ * lawyerconvr 受理律师的会话内容
+ * time 被受理用户的会话时间
+ * lawyertime 受理用户的会话时间
+ */
+
 public class Convr {
     private Integer id;
     private String phone;
@@ -37,15 +48,7 @@ public class Convr {
         this.convr = convr;
     }
 
-    public void setLawyerconvr(String lawyerconvr) {
-        this.lawyerconvr = lawyerconvr;
-    }
-
     public void setTime(String time) {
         this.time = time;
-    }
-
-    public void setLawyertime(String lawyertime) {
-        this.lawyertime = lawyertime;
     }
 }
