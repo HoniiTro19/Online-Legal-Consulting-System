@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
@@ -30,6 +29,8 @@ public class ConsultService {
     String lawPythonPath;
     @Value("#{systemProperties['config.penaltyPython']}")
     String penaltyPythonPath;
+    @Value("#{systemProperties['config.pytorch']}")
+    String pytorchPath;
 
     public Stature getStature(Integer lawid){
         Stature stature = statureDao.getStature(lawid);
@@ -45,12 +46,12 @@ public class ConsultService {
         String[] args;
         String result;
         if (type.equals(0)) {
-            args = new String[]{"python", lawPythonPath, query};
+            args = new String[]{pytorchPath, lawPythonPath, query};
         } else {
-            args = new String[]{"python", penaltyPythonPath, query};
+            args = new String[]{pytorchPath, penaltyPythonPath, query};
         }
         Process pr = Runtime.getRuntime().exec(args);
-        BufferedReader in = new BufferedReader(new InputStreamReader(pr.getInputStream()));
+        InputStreamReader in = new InputStreamReader(pr.getInputStream());
         LineNumberReader input = new LineNumberReader(in);
         result = input.readLine();
         input.close();

@@ -1,7 +1,5 @@
 package com.huidong.legalsys.domain;
 
-import lombok.Data;
-
 /* 用户表单
  * phone 用户联系电话（作为登录系统的id）
  * nickname 用户昵称

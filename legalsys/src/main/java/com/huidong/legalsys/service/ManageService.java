@@ -5,6 +5,7 @@ import com.huidong.legalsys.dao.ConvrDao;
 import com.huidong.legalsys.dao.UserDao;
 import com.huidong.legalsys.domain.Consult;
 import com.huidong.legalsys.domain.Convr;
+import com.huidong.legalsys.domain.User;
 import com.huidong.legalsys.enumeration.ErrorEnum;
 import com.huidong.legalsys.exception.LegalsysException;
 import com.huidong.legalsys.handle.ExceptionHandle;

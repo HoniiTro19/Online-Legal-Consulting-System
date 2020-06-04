@@ -13,9 +13,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.support.SessionStatus;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class SessionService {
@@ -29,14 +31,19 @@ public class SessionService {
     @Autowired
     private UserDao userDao;
 
-    public void newsession(String phone, String title, String content, Integer status){
+    public void newsession(String phone, String title, String content){
         Session session = new Session();
         session.setPhone(phone);
         session.setTitle(title);
         session.setContent(content);
-        session.setStatus(status);
+        session.setStatus(SessionStatusEnum.UNESTABLISHED.getStatus());
         sessionDao.newSession(session);
         logger.info("新的咨询已发布：{}", title);
+    }
+
+    public List<Session> getAllSessions(){
+        List<Session> sessions = sessionDao.getAllSessions();
+        return sessions;
     }
 
     public void estbConvr(String lawyerphone, Integer id){
