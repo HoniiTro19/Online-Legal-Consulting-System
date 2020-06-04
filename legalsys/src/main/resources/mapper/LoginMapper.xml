@@ -25,6 +25,10 @@
         select attempt from loginTable where phone = #{phone}
     </select>
 
+    <update id="resetAttempt">
+        update loginTable set attempt = 0 where phone = #{phone}
+    </update>
+
     <update id="setStatus">
         update loginTable set status = #{status} where phone = #{phone}
     </update>

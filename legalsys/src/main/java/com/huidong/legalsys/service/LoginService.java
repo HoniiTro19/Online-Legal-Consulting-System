@@ -17,6 +17,9 @@ import java.text.ParseException;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 
+/**
+ * @Description 用户登录的业务逻辑层
+ */
 @Service
 public class LoginService {
 
@@ -27,7 +30,14 @@ public class LoginService {
     @Autowired
     private LoginDao loginDao;
 
-    public void register(String phone, String name, String password, String idno) throws LegalsysException{
+    /**
+     * @Description 对未注册的普通用户进行注册
+     * @param phone 手机号
+     * @param name 真实姓名
+     * @param password 密码
+     * @param idno 身份证号
+     */
+    public void register(String phone, String name, String password, String idno){
         String username = userDao.isRegisted(phone);
         if (username != null){
             throw new LegalsysException(ErrorEnum.REGISTER_ERROR);
@@ -38,10 +48,19 @@ public class LoginService {
             user.setPassword(password);
             user.setIdno(idno);
             userDao.register(user);
-            logger.info("注册新的用户: {}", phone);
+            logger.info("注册新的普通用户: {}", user);
         }
     }
 
+    /**
+     * @Description 对未注册的律师用户进行注册
+     * @param phone 手机号
+     * @param name 真实姓名
+     * @param password 密码
+     * @param idno 身份证号
+     * @param licenseurl 律师执照地址
+     * @param firmname 律所信息
+     */
     public void registerLawyer(String phone, String name, String password, String idno, String licenseurl, String firmname){
         String username = userDao.isRegistedLawyer(phone);
         if (username != null){
@@ -55,11 +74,17 @@ public class LoginService {
             user.setLicenseurl(licenseurl);
             user.setFirmname(firmname);
             userDao.register(user);
-            logger.info("注册新的用户: {}", user);
+            logger.info("注册新的律师用户: {}", user);
         }
     }
 
-    public User login(String phone, String password) throws ParseException {
+    /**
+     * @Description 考虑异常处理的用户登录
+     * @param phone 手机号
+     * @param password 密码
+     * @return User 用户个人信息
+     */
+    public User login(String phone, String password){
         String username = userDao.isRegisted(phone);
         if (username == null){
             throw new LegalsysException(ErrorEnum.NOTREGISTER_ERROR);
@@ -72,22 +97,29 @@ public class LoginService {
             newlogin.setStatus(LoginStatusEnum.OFFLINE.getStatus());
             newlogin.setFreezeTime(null);
             loginDao.newLogin(newlogin);
-            logger.info("用户{}首次登录", phone);
+            logger.info("用户{}首次尝试登录", phone);
         }
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String freezetime = loginDao.getFreezetime(phone);
-        if (loginDao.getStatus(phone).equals(1) && freezetime != null &&
-                (new Date().getTime() - format.parse(freezetime).getTime() > 6*60*1000)){
+        Date date = new Date();
+        Long timenow = date.getTime();
+        Long freezetime = 0L;
+        try{
+            freezetime = format.parse(loginDao.getFreezetime(phone)).getTime();
+        }catch (ParseException e){
+            e.printStackTrace();
+        }
+        if (freezetime != null && (timenow - freezetime > 6*60*1000)){
+            loginDao.resetAttempt(phone);
             loginDao.setStatus(phone, LoginStatusEnum.OFFLINE.getStatus());
             loginDao.setFreezetime(phone, null);
-            logger.info("用户{}账号解封", phone);
+            logger.info("用户{}账号登录信息恢复正常", phone);
         }
         User user =userDao.login(phone, password);
         if (user == null){
             loginDao.addAttempt(phone);
-            if (loginDao.getAttempt(phone) > 4){
+            loginDao.setFreezetime(phone, format.format(date));
+            if (loginDao.getAttempt(phone) > 5){
                 loginDao.setStatus(phone, LoginStatusEnum.FREEZE.getStatus());
-                loginDao.setFreezetime(phone, format.format(new Date()));
                 logger.info("用户{}连续5次登录失败，冻结账号10分钟，请稍后再登录", phone);
                 throw new LegalsysException(ErrorEnum.FREEZE_ERROR);
             }
@@ -97,6 +129,5 @@ public class LoginService {
             logger.info("用户信息为{}", user);
             return user;
         }
-
     }
 }

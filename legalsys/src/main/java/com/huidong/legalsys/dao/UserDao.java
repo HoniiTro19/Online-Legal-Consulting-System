@@ -6,34 +6,33 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
- * 用户信息表的数据访问类
+ * @Description 用户信息表的数据访问类
  */
-
 @Repository
 public interface UserDao {
     /**
-     * isRegisted 判断普通用户是否注册
+     * @Description 判断普通用户是否注册
      * @param phone 用户电话号码
      * @return String 用户电话号码
      */
     String isRegisted(String phone);
 
     /**
-     * isRegistedLawyer 判断律师用户是否注册
+     * @Description 判断律师用户是否注册
      * @param phone 用户电话号码
      * @return String 用户电话号码
      */
     String isRegistedLawyer(String phone);
 
     /**
-     * register 用户注册
+     * @Description 用户注册
      * @param user 用户信息
      * @return Boolean 是否成功登记
      */
     Boolean register(User user);
 
     /**
-     * login 手机号登录
+     * @Description 手机号登录
      * @param phone 手机号
      * @param password 密码
      * @return User 用户个人信息
@@ -41,14 +40,14 @@ public interface UserDao {
     User login(String phone, String password);
 
     /**
-     * getPassword 获取用户密码
+     * @Description 获取用户密码
      * @param phone 手机号
      * @return String 密码
      */
     String getPassword(String phone);
 
     /**
-     * setPassword 重置密码
+     * @Description 重置密码
      * @param phone 手机号
      * @param newpassword 新密码
      * @return Boolean 是否设置成功
@@ -56,7 +55,7 @@ public interface UserDao {
     Boolean setPassword(String phone, String newpassword);
 
     /**
-     * setLicenseurl 重置律师执照
+     * @Description 重置律师执照
      * @param phone 手机号
      * @param newlicenseurl 新律师执照
      * @return Boolean 是否设置成功
@@ -64,7 +63,7 @@ public interface UserDao {
     Boolean setLicenseurl(String phone, String newlicenseurl);
 
     /**
-     * setFirmname 重置律所信息
+     * @Description 重置律所信息
      * @param phone 手机号
      * @param newfirmname 新律所信息
      * @return Boolean 是否设置成功
@@ -72,7 +71,7 @@ public interface UserDao {
     Boolean setFirmname(String phone, String newfirmname);
 
     /**
-     * getAllUsers 获得所有注册用户信息
+     * @Description 获得所有注册用户信息
      * @return List<User> 所有注册用户信息
      */
     List<User> getAllUsers();
