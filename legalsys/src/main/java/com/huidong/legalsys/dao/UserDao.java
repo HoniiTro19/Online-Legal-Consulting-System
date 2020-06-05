@@ -11,14 +11,14 @@ import java.util.List;
 @Repository
 public interface UserDao {
     /**
-     * @Description 判断普通用户是否注册
+     * @Description 判断用户是否注册
      * @param phone 用户电话号码
      * @return String 用户电话号码
      */
     String isRegisted(String phone);
 
     /**
-     * @Description 判断律师用户是否注册
+     * @Description 判断该用户是否是律师
      * @param phone 用户电话号码
      * @return String 用户电话号码
      */

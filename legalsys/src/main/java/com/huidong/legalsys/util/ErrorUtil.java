@@ -4,16 +4,11 @@ import com.huidong.legalsys.domain.Error;
 
 public class ErrorUtil {
 
-    public static Error success(Object object){
+    public static Error success(){
         Error error = new Error();
         error.setCode(0);
         error.setMsg("成功");
-        error.setData(object);
         return error;
-    }
-
-    public static Error success(){
-        return success(null);
     }
 
     public static Error error(Integer code, String msg) {

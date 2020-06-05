@@ -66,7 +66,7 @@ public class LoginService {
      * @param firmname 律所信息
      */
     public void registerLawyer(String phone, String name, String password, String idno, String licenseurl, String firmname){
-        String username = userDao.isRegistedLawyer(phone);
+        String username = userDao.isRegisted(phone);
         if (username != null){
             throw new LegalsysException(ErrorEnum.REGISTER_ERROR);
         }else {

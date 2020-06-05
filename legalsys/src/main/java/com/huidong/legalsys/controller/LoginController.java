@@ -5,12 +5,12 @@ import com.huidong.legalsys.enumeration.RegisterTypeEnum;
 import com.huidong.legalsys.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.text.ParseException;
 
 @Controller
 public class LoginController {
@@ -18,7 +18,7 @@ public class LoginController {
     @Autowired
     private LoginService loginService;
 
-    @PostMapping("/login")
+    @GetMapping("/login")
     public String login(@RequestParam("phone") String phone,
                         @RequestParam("password") String password,
                         HttpServletRequest request){
@@ -28,7 +28,7 @@ public class LoginController {
         return "redirect:/";
     }
 
-    @PostMapping("/register")
+    @GetMapping("/register")
     public String register(@RequestParam("type") Integer type){
         if (type.equals(RegisterTypeEnum.NORMAL.getType())){
             return "redirect:/register/normal";
@@ -37,7 +37,7 @@ public class LoginController {
         }
     }
 
-    @PostMapping("/register/normal")
+    @GetMapping("/register/normal")
     public String normal(@RequestParam("phone") String phone,
                          @RequestParam("name") String name,
                          @RequestParam("password") String password,
@@ -51,7 +51,7 @@ public class LoginController {
         return "redirect:/login";
     }
 
-    @PostMapping("/register/lawyer")
+    @GetMapping("/register/lawyer")
     public String normal(@RequestParam("phone") String phone,
                          @RequestParam("name") String name,
                          @RequestParam("password") String password,

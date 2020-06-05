@@ -1,7 +1,6 @@
 package com.huidong.legalsys.enumeration;
 
 public enum ErrorEnum {
-    UNKNOWN_ERROR(-1, "未知错误"),
     SUCCESS(0, "成功"),
     REGISTER_ERROR(100, "该手机号已被注册"),
     NOTREGISTER_ERROR(101,"该手机号还未注册"),
