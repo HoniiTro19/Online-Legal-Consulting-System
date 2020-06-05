@@ -27,7 +27,7 @@ public class LoginService {
 
     private final static Logger logger = LoggerFactory.getLogger(ExceptionHandle.class);
 
-    @Value("#{systemProperties['config.pattern']}")
+    @Value("${config.pattern}")
     private String pattern;
     @Autowired
     private UserDao userDao;
@@ -94,6 +94,7 @@ public class LoginService {
         if (username == null){
             throw new LegalsysException(ErrorEnum.NOTREGISTER_ERROR);
         }
+
         Login login = loginDao.isLogined(phone);
         if (login == null){
             Login newlogin = new Login();
@@ -104,29 +105,39 @@ public class LoginService {
             loginDao.newLogin(newlogin);
             logger.info("用户{}首次尝试登录", phone);
         }
+
         SimpleDateFormat format = new SimpleDateFormat(pattern);
         Date date = new Date();
-        Long timenow = date.getTime();
-        Long freezetime = 0L;
-        try{
-            freezetime = format.parse(loginDao.getFreezetime(phone)).getTime();
-        }catch (ParseException e){
-            e.printStackTrace();
+        String freezetime = loginDao.getFreezetime(phone);
+        if (freezetime != null){
+            Long timenow = date.getTime();
+            Long timeLatest = 0L;
+            try{
+                timeLatest = format.parse(freezetime).getTime();
+            }catch (ParseException e){
+                e.printStackTrace();
+            }
+            if (timenow - timeLatest > 6*60*1000) {
+                loginDao.resetAttempt(phone);
+                loginDao.setStatus(phone, LoginStatusEnum.OFFLINE.getStatus());
+                loginDao.setFreezetime(phone, null);
+                logger.info("用户{}账号登录信息恢复正常", phone);
+            }
         }
-        if (freezetime != null && (timenow - freezetime > 6*60*1000)){
-            loginDao.resetAttempt(phone);
-            loginDao.setStatus(phone, LoginStatusEnum.OFFLINE.getStatus());
-            loginDao.setFreezetime(phone, null);
-            logger.info("用户{}账号登录信息恢复正常", phone);
+
+        Integer status = loginDao.getStatus(phone);
+        if (status.equals(LoginStatusEnum.FREEZE.getStatus())){
+            logger.info("用户{}连续5次登录失败，冻结账号10分钟，请稍后再登录", phone);
+            throw new LegalsysException(ErrorEnum.FREEZE_ERROR);
         }
+
         User user =userDao.login(phone, password);
         if (user == null){
             loginDao.addAttempt(phone);
             loginDao.setFreezetime(phone, format.format(date));
-            if (loginDao.getAttempt(phone) > 5){
+            if (loginDao.getAttempt(phone) > 4){
                 loginDao.setStatus(phone, LoginStatusEnum.FREEZE.getStatus());
-                logger.info("用户{}连续5次登录失败，冻结账号10分钟，请稍后再登录", phone);
-                throw new LegalsysException(ErrorEnum.FREEZE_ERROR);
+                logger.info("用户{}连续5次登录失败，冻结账号10分钟", phone);
             }
             throw new LegalsysException(ErrorEnum.PASSWORD_ERROR);
         }else {

@@ -26,8 +26,9 @@ public class ConvrDaoTest extends TestCase {
         convr.setPhone("15111111111");
         convr.setLawyerphone("11111111111");
         convr.setConvr("你好！");
-        String timenow = " ";
-        convr.setTime(timenow);
+        convr.setLawyerconvr("");
+        convr.setTime("");
+        convr.setLawyertime("");
         Boolean isSuccess = convrDao.newConvr(convr);
         assertTrue("未能成功建立会话", isSuccess);
     }

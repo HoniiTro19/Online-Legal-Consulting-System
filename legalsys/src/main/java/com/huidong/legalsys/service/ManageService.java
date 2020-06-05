@@ -134,6 +134,6 @@ public class ManageService {
             convrDao.setLawyerConvr(newconvr, id);
             convrDao.setLawyerTime(newtime, id);
         }
-        logger.info("用户{}更新了会话消息{}", phone, record);
+        logger.info("用户{}更新了会话消息\n消息内容：{}", phone, record);
     }
 }

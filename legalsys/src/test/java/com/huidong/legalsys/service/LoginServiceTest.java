@@ -1,58 +1,50 @@
 package com.huidong.legalsys.service;
 
-import com.huidong.legalsys.exception.LegalsysException;
-import com.huidong.legalsys.handle.ExceptionHandle;
 import junit.framework.TestCase;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.text.ParseException;
-
-import static org.junit.Assert.*;
-
+/**
+ * @Description junit进行对数据访问层LoginService的单元测试
+ */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
 public class LoginServiceTest extends TestCase {
-
-    private final static Logger logger = LoggerFactory.getLogger(ExceptionHandle.class);
 
     @Autowired
     private LoginService loginService;
 
     @Test
     public void registerTest() {
-        String phone1 = "15190218902";
-        String name1 = "张惠东";
+        String phone1 = "11111111112";
+        String name1 = "张";
         String password1 = "111111";
-        String idno1 = "320283199903064812";
-        String phone2 = "15190218903";
-        String name2 = "张惠西";
-        String password2 = "222222";
-        String idno2 = "320283199903064811";
+        String idno1 = "111111111111111112";
+        String phone2 = "11111111113";
+        String name2 = "惠";
+        String password2 = "111111";
+        String idno2 = "111111111111111113";
 
-
-        loginService.register(phone2, name2, password2, idno2);
         loginService.register(phone1, name1, password1, idno1);
+        loginService.register(phone2, name2, password2, idno2);
     }
 
     @Test
     public void registerLawyerTest(){
-        String phone1 = "15190218901";
-        String name1 = "张惠南";
+        String phone1 = "11111111114";
+        String name1 = "东";
         String password1 = "111111";
-        String idno1 = "320283199903064810";
+        String idno1 = "111111111111111114";
         String licenseurl1 = "url1";
         String firmname1 = "firmname1";
 
-        String phone2 = "15190218904";
-        String name2 = "张惠北";
-        String password2 = "222222";
-        String idno2 = "320283199903064813";
+        String phone2 = "11111111115";
+        String name2 = "西";
+        String password2 = "111111";
+        String idno2 = "111111111111111115";
         String licenseurl2 = "url2";
         String firmname2 = "firmname2";
 
@@ -62,12 +54,12 @@ public class LoginServiceTest extends TestCase {
 
     @Test
     public void loginTest(){
-        String phone1 = "15190218902";
+        String phone1 = "11111111112";
         String password1 = "111111";
-        String phone2 = "15190218901";
+        String phone2 = "11111111113";
         String password2 = "222222";
 
-        //loginService.login(phone1, password1);
+        loginService.login(phone1, password1);
         loginService.login(phone2, password2);
     }
 }

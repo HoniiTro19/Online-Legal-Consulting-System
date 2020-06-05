@@ -27,7 +27,7 @@ public class FileService{
     private final static Logger logger = LoggerFactory.getLogger(ExceptionHandle.class);
     private final Path fileStorageLocation;
 
-    @Value("#{systemProperties['config.pattern']}")
+    @Value("${config.pattern}")
     private String pattern;
     @Autowired
     public FileService(FileConfiguration conf){

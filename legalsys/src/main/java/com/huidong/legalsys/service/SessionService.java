@@ -28,7 +28,7 @@ public class SessionService {
 
     private final static Logger logger = LoggerFactory.getLogger(ExceptionHandle.class);
 
-    @Value("#{systemProperties['config.pattern']}")
+    @Value("${config.pattern}")
     private String pattern;
     @Autowired
     private SessionDao sessionDao;
@@ -85,10 +85,12 @@ public class SessionService {
         convr.setPhone(phone);
         convr.setLawyerphone(lawyerphone);
         convr.setConvr(initConvr);
+        convr.setLawyerconvr("");
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
         Date date = new Date();
         String time = simpleDateFormat.format(date);
         convr.setTime(time);
+        convr.setLawyertime("");
         convrDao.newConvr(convr);
         sessionDao.setStatus(id, SessionStatusEnum.ESTABLISHED.getStatus());
         logger.info("用户{}和用户{}建立会话", phone, lawyerphone);

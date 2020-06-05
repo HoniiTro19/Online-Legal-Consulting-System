@@ -24,11 +24,11 @@ public class ConsultService {
 
     private final static Logger logger = LoggerFactory.getLogger(ExceptionHandle.class);
 
-    @Value("#{systemProperties['config.lawPython']}")
+    @Value("${config.lawPython}")
     String lawPythonPath;
-    @Value("#{systemProperties['config.penaltyPython']}")
+    @Value("${config.penaltyPython}")
     String penaltyPythonPath;
-    @Value("#{systemProperties['config.pytorch']}")
+    @Value("${config.pytorch}")
     String pytorchPath;
     @Autowired
     private ConsultDao consultDao;

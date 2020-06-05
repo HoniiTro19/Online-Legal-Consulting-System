@@ -51,4 +51,12 @@ public class Convr {
     public void setTime(String time) {
         this.time = time;
     }
+
+    public void setLawyerconvr(String lawyerconvr) {
+        this.lawyerconvr = lawyerconvr;
+    }
+
+    public void setLawyertime(String lawyertime) {
+        this.lawyertime = lawyertime;
+    }
 }
