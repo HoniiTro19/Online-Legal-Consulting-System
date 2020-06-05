@@ -13,6 +13,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * @Description 统计可视化的业务逻辑层
+ */
 @Service
 public class StatisticsService {
 
@@ -25,17 +28,29 @@ public class StatisticsService {
     @Autowired
     private ConsultDao consultDao;
 
+    /**
+     * @Description 获得在线人数
+     * @return Integer 在线人数
+     */
     public Integer showConcurrent(){
         Integer usernum = loginDao.getConcurrentUsers();
         logger.info("当前在线人数为：{}", usernum);
         return usernum;
     }
 
+    /**
+     * @Description 获得推荐的法条
+     * @return List<Stature> 推荐的法条
+     */
     public List<Stature> rcmdStatures(){
         List<Stature> statures = statureDao.getTopkStatures();
         return statures;
     }
 
+    /**
+     * @Description 获得推荐的咨询信息
+     * @return List<Consult> 推荐的咨询信息
+     */
     public List<Consult> rcmdConsults(){
         List<Consult> consults = consultDao.getTopkConsults();
         return consults;

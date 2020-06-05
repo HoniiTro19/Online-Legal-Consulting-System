@@ -12,18 +12,24 @@ import com.huidong.legalsys.handle.ExceptionHandle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * @Description 讨论区咨询的业务逻辑层
+ */
 @Service
 public class SessionService {
 
     private final static Logger logger = LoggerFactory.getLogger(ExceptionHandle.class);
 
+    @Value("#{systemProperties['config.pattern']}")
+    private String pattern;
     @Autowired
     private SessionDao sessionDao;
     @Autowired
@@ -31,6 +37,12 @@ public class SessionService {
     @Autowired
     private UserDao userDao;
 
+    /**
+     * @Description 新建讨论区咨询
+     * @param phone 手机号
+     * @param title 咨询标题
+     * @param content 咨询内容
+     */
     public void newsession(String phone, String title, String content){
         Session session = new Session();
         session.setPhone(phone);
@@ -41,11 +53,21 @@ public class SessionService {
         logger.info("新的咨询已发布：{}", title);
     }
 
+    /**
+     * @Description 获得讨论区所有未建立会话的咨询
+     * @return List<Session> 讨论区所有未建立会话的咨询
+     */
     public List<Session> getAllSessions(){
         List<Session> sessions = sessionDao.getAllSessions();
         return sessions;
     }
 
+    /**
+     * @Description 为用户新建立会话
+     * @param lawyerphone 律师手机号
+     * @param id 普通用户手机号
+     */
+    @Transactional
     public void estbConvr(String lawyerphone, Integer id){
         String isLawyer = userDao.isRegistedLawyer(lawyerphone);
         Integer isExist = sessionDao.isExist(id);
@@ -63,7 +85,7 @@ public class SessionService {
         convr.setPhone(phone);
         convr.setLawyerphone(lawyerphone);
         convr.setConvr(initConvr);
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
         Date date = new Date();
         String time = simpleDateFormat.format(date);
         convr.setTime(time);

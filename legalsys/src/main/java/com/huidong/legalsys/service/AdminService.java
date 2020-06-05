@@ -13,6 +13,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * @Description 管理员后台管理的业务逻辑层
+ */
 @Service
 public class AdminService {
 
@@ -25,21 +28,37 @@ public class AdminService {
     @Autowired
     private ConvrDao convrDao;
 
+    /**
+     * @Description 获得所有注册用户信息
+     * @return List<User> 所有注册用户信息
+     */
     public List<User> getAllUsers(){
         List<User> users = userDao.getAllUsers();
         return users;
     }
 
+    /**
+     * @Description 获得所有法条信息
+     * @return List<Stature> 所有法条信息
+     */
     public List<Stature> getAllStatures(){
         List<Stature> statures = statureDao.getAllStatures();
         return statures;
     }
 
+    /**
+     * @Description 获得所有咨询记录
+     * @return List<Consult> 所有咨询记录
+     */
     public List<Consult> getAllConsults(){
         List<Consult> consults = consultDao.getAllConsults();
         return consults;
     }
 
+    /**
+     * @Description 获得所有会话记录
+     * @return List<Convr> 所有会话记录
+     */
     public List<Convr> getAllConvrs(){
         List<Convr> convrs = convrDao.getAllConvrs();
         return convrs;

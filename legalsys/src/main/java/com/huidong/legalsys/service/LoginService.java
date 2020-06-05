@@ -11,6 +11,7 @@ import com.huidong.legalsys.handle.ExceptionHandle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
@@ -25,6 +26,8 @@ public class LoginService {
 
     private final static Logger logger = LoggerFactory.getLogger(ExceptionHandle.class);
 
+    @Value("#{systemProperties['config.pattern']}")
+    private String pattern;
     @Autowired
     private UserDao userDao;
     @Autowired
@@ -99,7 +102,7 @@ public class LoginService {
             loginDao.newLogin(newlogin);
             logger.info("用户{}首次尝试登录", phone);
         }
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat format = new SimpleDateFormat(pattern);
         Date date = new Date();
         Long timenow = date.getTime();
         Long freezetime = 0L;
