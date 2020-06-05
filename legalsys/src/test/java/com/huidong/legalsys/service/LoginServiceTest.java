@@ -67,11 +67,7 @@ public class LoginServiceTest extends TestCase {
         String phone2 = "15190218901";
         String password2 = "222222";
 
-        try {
-            //loginService.login(phone1, password1);
-            loginService.login(phone2, password2);
-        }catch (ParseException e){
-            e.printStackTrace();
-        }
+        //loginService.login(phone1, password1);
+        loginService.login(phone2, password2);
     }
 }

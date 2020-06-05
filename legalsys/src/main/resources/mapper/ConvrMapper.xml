@@ -8,10 +8,6 @@
 
 <mapper namespace="com.huidong.legalsys.dao.ConvrDao">
 
-    <select id="isestablished" resultType="com.huidong.legalsys.domain.Convr">
-        select * from convrTable where phone = #{phone} and lawyerphone = #{lawyerphone}
-    </select>
-
     <insert id="newConvr" parameterType="com.huidong.legalsys.domain.Convr" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
         insert into convrTable(phone, lawyerphone, convr, lawyerconvr, time, lawyertime)
         values(#{phone}, #{lawyerphone}, #{convr}, #{lawyerconvr}, #{time}, #{lawyertime})
@@ -26,7 +22,7 @@
     </update>
 
     <select id="getLawyerConvr" resultType="java.lang.String">
-        select lawyerconvr from convrLogTable where id = #{id}
+        select lawyerconvr from convrTable where id = #{id}
     </select>
 
     <update id="setLawyerConvr">
@@ -46,18 +42,22 @@
     </select>
 
     <update id="setLawyerTime">
-        update convrLogTable set lawyertime = #{lawyertime} where id = #{id}
+        update convrTable set lawyertime = #{lawyertime} where id = #{id}
     </update>
     
-    <select id="getConvrLogsByPhone" resultType="com.huidong.legalsys.domain.Convr">
-        select * from convrLogTable where phone = #{phone}
+    <select id="getConvrsByPhone" resultType="com.huidong.legalsys.domain.Convr">
+        select * from convrTable where phone = #{phone}
     </select>
 
-    <select id="getConvrLogsByLawyerPhone" resultType="com.huidong.legalsys.domain.Convr">
-        select * from convrLogTable where lawyerphone = #{lawyerphone}
+    <select id="getConvrsByLawyerPhone" resultType="com.huidong.legalsys.domain.Convr">
+        select * from convrTable where lawyerphone = #{lawyerphone}
     </select>
 
-    <select id="getAllConvrLogs" resultType="com.huidong.legalsys.domain.Convr">
-        select * from convrLogTable
+    <delete id="deleteConvr">
+        delete from convrTable where id = #{id}
+    </delete>
+
+    <select id="getAllConvrs" resultType="com.huidong.legalsys.domain.Convr">
+        select * from convrTable
     </select>
 </mapper>

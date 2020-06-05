@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.text.ParseException;
 import java.util.Date;
@@ -87,6 +88,7 @@ public class LoginService {
      * @param password 密码
      * @return User 用户个人信息
      */
+    @Transactional(noRollbackForClassName = "LegalsysException")
     public User login(String phone, String password){
         String username = userDao.isRegisted(phone);
         if (username == null){

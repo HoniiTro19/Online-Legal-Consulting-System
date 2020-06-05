@@ -23,12 +23,8 @@ public class LoginController {
                         @RequestParam("password") String password,
                         HttpServletRequest request){
         HttpSession session = request.getSession();
-        try {
-            User user = loginService.login(phone, password);
-            session.setAttribute("user", user);
-        }catch (ParseException e){
-            e.printStackTrace();
-        }
+        User user = loginService.login(phone, password);
+        session.setAttribute("user", user);
         return "redirect:/";
     }
 

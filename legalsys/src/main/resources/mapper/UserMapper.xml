@@ -9,11 +9,11 @@
 <mapper namespace="com.huidong.legalsys.dao.UserDao">
 
     <select id="isRegisted" resultType="java.lang.String">
-        select name from userTable where phone = #{phone}
+        select phone from userTable where phone = #{phone}
     </select>
 
     <select id="isRegistedLawyer" resultType="java.lang.String">
-        select name from userTable where phone = #{phone} and licenseurl is not null and firmname is not null
+        select phone from userTable where phone = #{phone} and licenseurl is not null and firmname is not null
     </select>
 
     <insert id="register" parameterType="com.huidong.legalsys.domain.User">

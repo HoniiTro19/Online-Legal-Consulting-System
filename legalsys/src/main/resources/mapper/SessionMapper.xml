@@ -34,6 +34,6 @@
     </update>
 
     <select id="getAllSessions" resultType="com.huidong.legalsys.domain.Session">
-        select * from consultLogTable where status = 1
+        select * from sessionTable where status = 1
     </select>
 </mapper>

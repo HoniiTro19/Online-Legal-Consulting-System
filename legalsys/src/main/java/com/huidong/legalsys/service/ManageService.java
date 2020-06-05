@@ -54,7 +54,7 @@ public class ManageService {
      * @param licenseurl 律师执照地址
      * @param firmname 律所信息
      */
-    @Transactional
+    @Transactional(rollbackForClassName = "RuntimeException")
     public void lawyerAuth(String phone, String licenseurl, String firmname){
         if (licenseurl != null && firmname != null){
             userDao.setLicenseurl(phone, licenseurl);
@@ -116,7 +116,7 @@ public class ManageService {
      * @param recordtime 消息时间
      * @param id 会话编号
      */
-    @Transactional
+    @Transactional(rollbackForClassName = "RuntimeException")
     public void contConvr(String phone, String record, String recordtime, Integer id){
         String isLawyer = userDao.isRegistedLawyer(phone);
         if (isLawyer == null){

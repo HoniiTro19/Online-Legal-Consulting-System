@@ -1,7 +1,7 @@
 package com.huidong.legalsys.dao;
 
-/*
- * junit进行对数据访问层StatureDao的单元测试
+/**
+ * @Description  junit进行对数据访问层StatureDao的单元测试
  */
 
 import com.huidong.legalsys.domain.Stature;
@@ -24,37 +24,26 @@ public class StatureDaoTest extends TestCase {
     @Test
     public void addClickrateTest(){
         Integer lawid = 100;
-        Integer addNum = 1;
-        statureDao.addClickrate(lawid, addNum);
-        System.out.println("addClickrateTest:\n" + "add num ");
-        System.out.println("-------------------------------------------------------------------------------");
+        Boolean isSuccess = statureDao.addClickrate(lawid);
+        assertTrue("增加点击数失败", isSuccess);
     }
 
     @Test
     public void getStatureTest(){
-        Integer lawid = 99;
+        Integer lawid = 500;
         Stature stature = statureDao.getStature(lawid);
-        System.out.println("getStatureTest:\n" + stature);
-        System.out.println("-------------------------------------------------------------------------------");
+        assertNotNull("查询不到对应法条", stature);
     }
 
     @Test
     public void getAllStaturesTest(){
         List<Stature> statures = statureDao.getAllStatures();
-        System.out.println("getAllStaturesTest:\n");
-        for (Stature stature : statures){
-            System.out.println(stature);
-        }
-        System.out.println("-------------------------------------------------------------------------------");
+        assertNotNull("查询不到法条", statures);
     }
 
     @Test
     public void getTopkStaturesTest(){
         List<Stature> statures = statureDao.getTopkStatures();
-        System.out.println("getTopkStaturesTest:\n");
-        for (Stature stature : statures){
-            System.out.println(stature);
-        }
-        System.out.println("-------------------------------------------------------------------------------");
+        assertNotNull("查询不到法条", statures);
     }
 }

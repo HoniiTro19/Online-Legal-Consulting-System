@@ -67,7 +67,7 @@ public class SessionService {
      * @param lawyerphone 律师手机号
      * @param id 普通用户手机号
      */
-    @Transactional
+    @Transactional(noRollbackForClassName = "LegalsysException")
     public void estbConvr(String lawyerphone, Integer id){
         String isLawyer = userDao.isRegistedLawyer(lawyerphone);
         Integer isExist = sessionDao.isExist(id);

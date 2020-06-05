@@ -8,7 +8,7 @@
 
 <mapper namespace="com.huidong.legalsys.dao.ConsultDao">
 
-    <insert id="newConsultLog" parameterType="com.huidong.legalsys.domain.Consult" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+    <insert id="newConsult" parameterType="com.huidong.legalsys.domain.Consult" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
         insert into consultTable(phone, query, type, result, time)
         values(#{phone}, #{query}, #{type}, #{result}, #{time})
     </insert>
@@ -21,11 +21,11 @@
         delete from consultTable where id = #{id}
     </delete>
 
-    <select id="getTopkConsultLogs" resultType="com.huidong.legalsys.domain.Consult">
+    <select id="getTopkConsults" resultType="com.huidong.legalsys.domain.Consult">
         select * from consultTable order by time desc limit 5
     </select>
 
-    <select id="getAllConsultLogs" resultType="com.huidong.legalsys.domain.Consult">
+    <select id="getAllConsults" resultType="com.huidong.legalsys.domain.Consult">
         select * from consultTable order by time desc
     </select>
 </mapper>

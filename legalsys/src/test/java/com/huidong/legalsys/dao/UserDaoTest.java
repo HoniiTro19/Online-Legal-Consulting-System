@@ -1,7 +1,7 @@
 package com.huidong.legalsys.dao;
 
-/*
- * junit进行对数据访问层UserDao的单元测试
+/**
+ * @Description junit进行对数据访问层UserDao的单元测试
  */
 
 import com.huidong.legalsys.domain.User;
@@ -13,6 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.List;
 
+import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
@@ -23,70 +24,71 @@ public class UserDaoTest {
 
     @Test
     public void isRegistedTest(){
-        String phone = "15190218902";
-        String username = userDao.isRegisted(phone);
-        System.out.println("isRegistedTest:\n" + username);
-        System.out.println("-------------------------------------------------------------------------------");
+        String phone = "11111111111";
+        String userphone = userDao.isRegisted(phone);
+        assertEquals("未注册用户", phone, userphone);
+    }
+
+    @Test
+    public void isRegistedLawyerTest(){
+        String phone = "15111111111";
+        String userphone = userDao.isRegistedLawyer(phone);
+        assertEquals("未注册律师或非律师", phone, userphone);
     }
 
     @Test
     public void registerTest(){
         User newUser = new User();
-        newUser.setPhone("15190218903");
+        newUser.setPhone("15111111111");
         newUser.setName("张惠西");
         newUser.setPassword("222222");
-        newUser.setIdno("320283199903064810");
-        userDao.register(newUser);
-        System.out.println("registerTest:\n" + "welcome new user " + newUser);
-        System.out.println("-------------------------------------------------------------------------------");
+        newUser.setIdno("320283199903060000");
+        Boolean isSuccess = userDao.register(newUser);
+        assertTrue("注册失败", isSuccess);
     }
 
     @Test
     public void loginTest(){
-        String phone = "15190218902";
-        String password = "111111";
-        User admin = userDao.login(phone, password);
-        if (admin != null)
-            System.out.println("loginTest:\n" + "admin " + admin);
-        else
-            System.out.println("loginTest:\n" + "login failuer");
-        System.out.println("-------------------------------------------------------------------------------");
+        String phone = "11111111111";
+        String password = "222222";
+        User user = userDao.login(phone, password);
+        assertNotNull("登录失败", user);
+    }
+
+    @Test
+    public void getPasswordTest(){
+        String phone = "11111111111";
+        String password = userDao.getPassword(phone);
+        assertNotNull("获取密码失败", password);
     }
 
     @Test
     public void setPasswordTest(){
-        String phone = "15190218902";
+        String phone = "11111111111";
         String newpassword = "222222";
-        userDao.setPassword(phone, newpassword);
-        System.out.println("changePasswordTest:\n" + "new password ");
-        System.out.println("-------------------------------------------------------------------------------");
+        Boolean isSuccess = userDao.setPassword(phone, newpassword);
+        assertTrue("设置密码失败", isSuccess);
     }
 
     @Test
     public void setLicenseurlTest(){
-        String phone = "15190218903";
+        String phone = "11111111111";
         String lincenseurl = "url1";
-        userDao.setLicenseurl(phone, lincenseurl);
-        System.out.println("uploadLicenseurlTest:\n" + "new licenseurl ");
-        System.out.println("-------------------------------------------------------------------------------");
+        Boolean isSuccess = userDao.setLicenseurl(phone, lincenseurl);
+        assertTrue("上传律师执照失败", isSuccess);
     }
 
     @Test
     public void setFirmnameTest(){
-        String phone = "15190218903";
+        String phone = "11111111111";
         String firmname = "天津市司法局";
-        userDao.setFirmname(phone, firmname);
-        System.out.println("uploadFirmnameTest:\n" + "new firmname ");
-        System.out.println("-------------------------------------------------------------------------------");
+        Boolean isSuccess = userDao.setFirmname(phone, firmname);
+        assertTrue("上传律所信息失败", isSuccess);
     }
 
     @Test
     public void getAllUsersTest(){
         List<User> allusers = userDao.getAllUsers();
-        System.out.println("getAllUsersTest:\n");
-        for (User user : allusers){
-            System.out.println(user + "\n");
-        }
-        System.out.println("-------------------------------------------------------------------------------");
+        assertNotNull(allusers);
     }
 }
