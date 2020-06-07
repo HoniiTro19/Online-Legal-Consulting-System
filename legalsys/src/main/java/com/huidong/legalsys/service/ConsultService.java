@@ -2,6 +2,7 @@ package com.huidong.legalsys.service;
 
 import com.huidong.legalsys.dao.ConsultDao;
 import com.huidong.legalsys.dao.StatureDao;
+import com.huidong.legalsys.domain.Consult;
 import com.huidong.legalsys.domain.Stature;
 import com.huidong.legalsys.enumeration.ErrorEnum;
 import com.huidong.legalsys.exception.LegalsysException;
@@ -40,7 +41,7 @@ public class ConsultService {
      * @param lawid 法条编号
      * @return Stature 法条信息
      */
-    public Stature getStature(Integer lawid){
+    public Stature getStature(Integer lawid) {
         Stature stature = statureDao.getStature(lawid);
         if (stature == null){
             throw new LegalsysException(ErrorEnum.LAWNOTFOUND_ERROOR);
@@ -52,6 +53,16 @@ public class ConsultService {
     }
 
     /**
+     * @Description 获得咨询信息
+     * @param id 咨询编号
+     * @return Consult 咨询信息
+     */
+    public Consult getConsult(Integer id) {
+        Consult consult = consultDao.getConsult(id);
+        return consult;
+    }
+
+    /**
      * @Description 新建用户咨询
      * @param phone 手机号
      * @param query 咨询内容
@@ -60,7 +71,7 @@ public class ConsultService {
      * @return String 智能预测结果
      * @throws IOException
      */
-    public String newconsult(String phone, String query, Integer type) throws IOException {
+    public String newconsult(String phone, String title, String query, Integer type) throws IOException {
         String[] args;
         String result;
         if (type.equals(0)) {

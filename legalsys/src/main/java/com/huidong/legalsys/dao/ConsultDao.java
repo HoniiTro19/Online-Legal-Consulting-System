@@ -19,6 +19,12 @@ public interface ConsultDao {
     Boolean newConsult(Consult consult);
 
     /**
+     * @Description 获得咨询信息
+     * @param id 咨询编号
+     * @return 咨询信息
+     */
+    Consult getConsult(Integer id);
+    /**
      * @Description 获得用户所有咨询记录
      * @param phone 手机号
      * @return List<Consult> 用户所有咨询记录

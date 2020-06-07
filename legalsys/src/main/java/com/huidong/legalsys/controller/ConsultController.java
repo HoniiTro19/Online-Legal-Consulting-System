@@ -19,8 +19,10 @@ public class ConsultController {
     @Autowired
     private ConsultService consultService;
 
+
     @GetMapping("/consult")
     public String consult(@RequestParam("type") Integer type,
+                          @RequestParam("type") String title,
                           @RequestParam("query") String query,
                           HttpServletRequest request,
                           Map<String, Object> map){
@@ -29,7 +31,7 @@ public class ConsultController {
         String phone = user.getPhone();
         String result = "";
         try {
-            result = consultService.newconsult(phone, query, type);
+            result = consultService.newconsult(phone, title, query, type);
         }catch (IOException e){
             e.printStackTrace();
         }
@@ -39,6 +41,6 @@ public class ConsultController {
             String penalty = result;
             map.put("penalty", penalty);
         }
-        return "/consult";
+        return "consult";
     }
 }

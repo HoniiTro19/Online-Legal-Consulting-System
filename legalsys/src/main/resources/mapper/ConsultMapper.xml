@@ -9,9 +9,13 @@
 <mapper namespace="com.huidong.legalsys.dao.ConsultDao">
 
     <insert id="newConsult" parameterType="com.huidong.legalsys.domain.Consult" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
-        insert into consultTable(phone, query, type, result, time)
-        values(#{phone}, #{query}, #{type}, #{result}, #{time})
+        insert into consultTable(phone, title, query, type, result, time)
+        values(#{phone}, #{title}, #{query}, #{type}, #{result}, #{time})
     </insert>
+
+    <select id="getConsult" resultType="com.huidong.legalsys.domain.Consult">
+        select * from consultTable where id = #{id}
+    </select>
 
     <select id="getConsultsByPhone" resultType="com.huidong.legalsys.domain.Consult">
         select * from consultTable where phone = #{phone}

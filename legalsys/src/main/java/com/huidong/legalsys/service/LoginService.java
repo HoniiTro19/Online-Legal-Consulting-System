@@ -141,9 +141,20 @@ public class LoginService {
             }
             throw new LegalsysException(ErrorEnum.PASSWORD_ERROR);
         }else {
+            loginDao.setStatus(phone, LoginStatusEnum.ONLINE.getStatus());
+            loginDao.setFreezetime(phone, null);
+            loginDao.resetAttempt(phone);
             logger.info("用户{}登录成功", phone);
             logger.info("用户信息为{}", user);
             return user;
         }
+    }
+
+    /**
+     * @Description 用户登出
+     * @param phone 手机号
+     */
+    public void logout(String phone) {
+        loginDao.setStatus(phone, LoginStatusEnum.OFFLINE.getStatus());
     }
 }

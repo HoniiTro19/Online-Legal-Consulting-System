@@ -14,6 +14,7 @@ package com.huidong.legalsys.domain;
 public class Consult {
     private Integer id;
     private String phone;
+    private String title;
     private String query;
     private Integer type;
     private String result;
@@ -21,9 +22,10 @@ public class Consult {
 
     @Override
     public String toString(){
-        return "ConsultLog{" +
+        return "Consult{" +
                 "id=" + id +
                 ",phone=" + phone +
+                ",title=" + title +
                 ",query=" + query +
                 ",type=" + type +
                 ",result=" + result +
@@ -33,21 +35,39 @@ public class Consult {
         this.id = id;
     }
 
+    public Integer getId() {return id;}
+
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
+    public String getPhone() {return phone;}
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getTitle() {return title;}
 
     public void setQuery(String query) {
         this.query = query;
     }
 
+    public String getQuery() {return query;}
+
     public void setType(Integer type) {
         this.type = type;
     }
 
+    public Integer getType() {return type;}
+
+    public String getResult() {return result;}
+
     public void setResult(String result) {
         this.result = result;
     }
+
+    public String getTime() {return time;}
 
     public void setTime(String time) {
         this.time = time;

@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.sql.SQLException;
-
 @ControllerAdvice
 public class ExceptionHandle {
 
@@ -22,6 +20,8 @@ public class ExceptionHandle {
         if (exception instanceof LegalsysException) {
             LegalsysException legalsysException = (LegalsysException) exception;
             return ErrorUtil.error(legalsysException.getCode(), legalsysException.getMessage());
+        }else if (exception instanceof RuntimeException){
+            return ErrorUtil.error(-1, "未知错误");
         }else {
             return ErrorUtil.success();
         }

@@ -55,6 +55,7 @@ DROP TABLE IF EXISTS consultTable;
 CREATE TABLE consultTable  (
   id int(11) NOT NULL AUTO_INCREMENT,
   phone varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  title varchar(1023) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   query varchar(1023) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   type int(11) NOT NULL,
   result varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,

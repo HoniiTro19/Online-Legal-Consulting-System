@@ -1,47 +1,100 @@
 package com.huidong.legalsys.controller;
 
 import com.huidong.legalsys.domain.User;
-import com.huidong.legalsys.enumeration.RegisterTypeEnum;
+import com.huidong.legalsys.enumeration.ErrorEnum;
+import com.huidong.legalsys.exception.LegalsysException;
 import com.huidong.legalsys.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+/**
+ * @Description 用户注册登录的控制层
+ */
 @Controller
 public class LoginController {
 
     @Autowired
     private LoginService loginService;
 
+    /**
+     * @Description 转入用户登录界面或主页
+     * @param request Http请求
+     * @return 系统登录界面
+     */
     @GetMapping("/login")
-    public String login(@RequestParam("phone") String phone,
-                        @RequestParam("password") String password,
-                        HttpServletRequest request){
+    public String login(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        if (session.getAttribute("user") != null){
+            return "redirect:/logined";
+        }
+        return "login";
+    }
+
+    /**
+     * @Description
+     * @param phone 手机号
+     * @param password 密码
+     * @param request Http请求
+     * @return 系统登录界面
+     */
+    @PostMapping("/login/verification")
+    public String verification(@RequestParam("phone") String phone,
+                               @RequestParam("password") String password,
+                               HttpServletRequest request) {
         HttpSession session = request.getSession();
         User user = loginService.login(phone, password);
         session.setAttribute("user", user);
+        return "redirect:/logined";
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+        String phone = user.getPhone();
+        session.setAttribute("user", null);
+        loginService.logout(phone);
         return "redirect:/";
     }
-
+    /**
+     * @Description 提供普通用户注册以及律师用户注册两种不同的通道
+     * @return 相应的用户注册界面
+     */
     @GetMapping("/register")
-    public String register(@RequestParam("type") Integer type){
-        if (type.equals(RegisterTypeEnum.NORMAL.getType())){
-            return "redirect:/register/normal";
-        }else {
-            return "redirect:/register/lawyer";
-        }
+    public String register(){
+        return "register/index";
     }
 
+    /**
+     * @Description 普通用户注册信息收集
+     * @return 信息收集界面
+     */
     @GetMapping("/register/normal")
-    public String normal(@RequestParam("phone") String phone,
+    public String normal(){
+        return "register/registerNormal";
+    }
+
+    /**
+     * @Description 普通用户注册信息收集
+     * @param phone 手机号
+     * @param name 真实姓名
+     * @param password 密码
+     * @param idno 身份证号
+     * @return 信息收集界面
+     */
+    @PostMapping("/register/normal/input")
+    public String normalInput(@RequestParam("phone") String phone,
                          @RequestParam("name") String name,
                          @RequestParam("password") String password,
+                         @RequestParam("verify") String verify,
                          @RequestParam("idno") String idno){
+        if (!password.equals(verify)) {
+            throw new LegalsysException(ErrorEnum.VERIFYNOTMATCH);
+        }
         User user = new User();
         user.setPhone(phone);
         user.setName(name);
@@ -51,13 +104,36 @@ public class LoginController {
         return "redirect:/login";
     }
 
+    /**
+     * @Description 律师用户的信息收集
+     * @return 信息收集界面
+     */
     @GetMapping("/register/lawyer")
+    public String lawyer(){
+        return "register/registerLawyer";
+    }
+
+    /**
+     * @Description 律师用户的信息收集
+     * @param phone 手机号
+     * @param name 真实姓名
+     * @param password 密码
+     * @param idno 身份证号
+     * @param lincenseurl 律师执照地址
+     * @param firmname 律所信息
+     * @return 信息收集界面
+     */
+    @PostMapping("/register/lawyer/input")
     public String normal(@RequestParam("phone") String phone,
                          @RequestParam("name") String name,
                          @RequestParam("password") String password,
+                         @RequestParam("verify") String verify,
                          @RequestParam("idno") String idno,
                          @RequestParam("licenseurl") String lincenseurl,
                          @RequestParam("firmname") String firmname){
+        if (!password.equals(verify)) {
+            throw new LegalsysException(ErrorEnum.VERIFYNOTMATCH);
+        }
         User user = new User();
         user.setPhone(phone);
         user.setName(name);

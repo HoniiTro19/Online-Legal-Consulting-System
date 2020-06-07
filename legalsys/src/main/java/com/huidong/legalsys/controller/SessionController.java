@@ -14,17 +14,25 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 讨论区会话的控制层
+ */
 @Controller
 public class SessionController {
 
     @Autowired
     private SessionService sessionService;
 
-    @GetMapping("session")
+    /**
+     *
+     * @param map
+     * @return
+     */
+    @GetMapping("/session")
     public String sessions(Map<String, Object> map){
         List<Session> session = sessionService.getAllSessions();
         map.put("session", session);
-        return "/session";
+        return "session/index";
     }
 
     @PostMapping("/session/newsession")
@@ -35,7 +43,7 @@ public class SessionController {
         User user = (User) session.getAttribute("user");
         String phone = user.getPhone();
         sessionService.newsession(phone, title, content);
-        return "redirect:/session";
+        return "session/newsession";
     }
 
     @PostMapping("/session/estbconvr")
@@ -45,6 +53,6 @@ public class SessionController {
         User user = (User) session.getAttribute("user");
         String lawyerphone = user.getPhone();
         sessionService.estbConvr(lawyerphone, sessionid);
-        return "redirect:/session";
+        return "redirect:/session/index";
     }
 }
