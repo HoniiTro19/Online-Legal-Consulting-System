@@ -53,12 +53,24 @@ public class User {
         this.password = password;
     }
 
+    public String getIdno() {
+        return idno;
+    }
+
     public void setIdno(String idno) {
         this.idno = idno;
     }
 
+    public String getLicenseurl() {
+        return licenseurl;
+    }
+
     public void setLicenseurl(String licenseurl) {
         this.licenseurl = licenseurl;
+    }
+
+    public String getFirmname() {
+        return firmname;
     }
 
     public void setFirmname(String firmname) {

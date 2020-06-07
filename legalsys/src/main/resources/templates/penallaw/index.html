@@ -1,10 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="compoment/static::static"></head>
 
+<body>
+<div id="page">
+    <div id="wrap">
+        <div id="header">
+            <h1 id="logo"><a href="/">法律咨询系统</a></h1>
+            <div class="availability">
+                <a href="https://github.com/HoniiTro19/Online-Legal-Consulting-System" class="available" target="_blank"></a>
+            </div>
+            <h1 id="download"><a href="../penalLaw.txt" download="../penalLaw.txt"></a></h1>
+            <div th:replace="compoment/navigatior::commonMenu(0)"></div>
+        </div>
+
+        <div id="main_content">
+            <div class="column_2">
+                <div class="first services">
+                    <h2>功能说明</h2>
+                    <span class="intro_text">用户可以点击法条的标题来查看法律条文的具体内容：包括法条编，章，条，标题，内容，查阅数量。此外，用户用户点击“下载全文”，即可下载2015修订版《中华人民共和国刑法》所有法条内容，文件格式为txt。</span>
+                    <h2>使用案例</h2>
+                    <span class="intro_text">用户可以按照如下方式进行操作</span>
+                    <span class="intro_text">点击“第1条 立法宗旨”</span>
+                    <span class="intro_text">编（Part）：1</span>
+                    <span class="intro_text">节（Chapter）：1</span>
+                    <span class="intro_text">条（Article）：1</span>
+                    <span class="intro_text">标题（Title）：立法宗旨</span>
+                    <span class="intro_text">内容（Content）：为了惩罚犯罪，保护人民，根据宪法，结合我国同犯罪作斗争的具体 经验及实际情况，制定本法。</span>
+                    <span class="intro_text">查阅次数（Clickrate）：7</span>
+                </div>
+
+                <div class="services">
+                    <h2>中华人民共和国刑法（2015）修订</h2>
+                    <ul>
+                        <li th:each="stature:${statures}"><a th:href="@{'/penallaw/detail?lawid='+${stature.lawid}}">第[[${stature.lawid}]]条 [[${stature.title}]]</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

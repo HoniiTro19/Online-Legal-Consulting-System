@@ -38,15 +38,6 @@ public class AdminService {
     }
 
     /**
-     * @Description 获得所有法条信息
-     * @return List<Stature> 所有法条信息
-     */
-    public List<Stature> getAllStatures(){
-        List<Stature> statures = statureDao.getAllStatures();
-        return statures;
-    }
-
-    /**
      * @Description 获得所有咨询记录
      * @return List<Consult> 所有咨询记录
      */

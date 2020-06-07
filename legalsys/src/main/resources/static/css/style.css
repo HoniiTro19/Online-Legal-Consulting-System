@@ -51,6 +51,43 @@ a:hover{
 	background:url(../images/logo.png) no-repeat;
 }
 
+/*download*/
+#header #download,
+#header #download a{
+	width:138px;
+	height:52px;
+	cursor:pointer;
+}
+#header #download{
+	text-indent:-999999px;
+	float:right;
+	padding:0px;
+	margin-right:5px;
+}
+#header #download a{
+	display:block;
+	background:url(../images/download.png) no-repeat;
+}
+
+/*newsession*/
+#header #newsession,
+#header #newsession a{
+	width:124px;
+	height:37px;
+	cursor:pointer;
+}
+#header #newsession{
+	text-indent:-999999px;
+	float:right;
+	padding:0px;
+	margin-top: 10px;
+}
+#header #newsession a{
+	display:block;
+	background:url(../images/newsession.png) no-repeat;
+}
+
+
 /*availability*/
 .availability,
 .availability a{
@@ -263,47 +300,6 @@ a:hover{
 	color:#bdb8ab;
 }
 
-
-/*view project button*/
-.view_project{
-	width:156px;
-	height:35px;
-	text-indent:-999999px;
-	margin-top: 25px;
-}
-.view_project a{
-	background:url(../images/view_project.gif) no-repeat;
-	width:156px;
-	height:35px;
-	display:block;
-	cursor:pointer;
-}
-.view_project a:hover{
-	background-position:0 100%;
-}
-
-
-
-/*view livesite button*/
-.view_livesite{
-	width:156px;
-	height:35px;
-	margin-top: 10px;
-	text-indent:-999999px;
-}
-.view_livesite a{
-	background:url(../images/view_livesite.gif) no-repeat;
-	width:156px;
-	height:35px;
-	display:block;
-	cursor:pointer;
-}
-.view_livesite a:hover{
-	background-position:0 100%;
-}
-
-
-
 /*main content*/
 #main_content{
 	padding-top:60px;
@@ -351,6 +347,81 @@ a:hover{
 	float:left;
 	width: 100%;
 }
+
+/*changePassword*/
+#main_content #changePassword,
+#main_content #changePassword a{
+	width:145px;
+	height:44px;
+	cursor:pointer;
+}
+#main_content #changePassword{
+	text-indent:-999999px;
+	float:right;
+	padding:0px;
+	margin-top:5px;
+}
+#main_content #changePassword a{
+	display:block;
+	background:url(../images/changePassword.png) no-repeat;
+}
+
+/*lawyerAuth*/
+#main_content #lawyerAuth,
+#main_content #lawyerAuth a{
+	width:145px;
+	height:44px;
+	cursor:pointer;
+}
+#main_content #lawyerAuth{
+	text-indent:-999999px;
+	float:right;
+	padding:0px;
+	margin-top:5px;
+}
+#main_content #lawyerAuth a{
+	display:block;
+	background:url(../images/lawyerAuth.png) no-repeat;
+}
+
+/*userConsults*/
+#main_content #userConsults,
+#main_content #userConsults a{
+	width:145px;
+	height:44px;
+	cursor:pointer;
+}
+#main_content #userConsults{
+	text-indent:-999999px;
+	float:right;
+	padding:0px;
+	margin-top:5px;
+}
+#main_content #userConsults a{
+	display:block;
+	background:url(../images/userConsults.png) no-repeat;
+}
+
+/*userConvrs*/
+#main_content #userConvrs,
+#main_content #userConvrs a{
+	width:145px;
+	height:44px;
+	cursor:pointer;
+}
+#main_content #userConvrs{
+	text-indent:-999999px;
+	float:right;
+	padding:0px;
+	margin-top:5px;
+}
+#main_content #userConvrs a{
+	display:block;
+	background:url(../images/userConvrs.png) no-repeat;
+}
+
+
+
 .services ul li, .side_links li{
 	float:left;
 	width: 100%;
@@ -417,6 +488,7 @@ a:hover{
 	padding-bottom:10px;
 }
 
+
 #main_content .column_2 .services ul{
 	position:relative;
 	padding:0 0 20px 0;
@@ -453,7 +525,7 @@ a:hover{
 /*upload*/
 .form-control{
 	display: block;
-	width: 100%;
+	width: 20%;
 	height: 34px;
 	padding: 6px 12px;
 	font-size: 14px;
@@ -468,6 +540,7 @@ a:hover{
 	-webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
 	-o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
 	transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+	text-align: center;
 }
 
 .btn{
@@ -501,25 +574,6 @@ a:hover{
 	margin-right: 12px;
 }
 
-
-
-/*blockquote*/
-blockquote{
-	background:url(../images/quote.gif) no-repeat;
-	padding-bottom:0px;
-}
-blockquote p{
-	color:#91908b;
-	font:16px/22px Georgia, "Times New Roman", Times, serif;
-	font-style:italic;
-}
-blockquote p cite{
-	font-style:normal;
-	font-size:13px;
-	color:#55524a;
-	font-family:Arial, Helvetica, sans-serif;
-}
-
 /*content*/
 #content{
 	width: 68%;
@@ -529,54 +583,6 @@ blockquote p cite{
 }
 
 
-/*Sidebar*/
-#sidebar{
-	float:right;
-	width: 28%;
-}
-.map{
-	padding-bottom:30px;
-}
-#sidebar .block{
-	clear:both;
-	float:left;
-	position:relative;
-	width: 100%;
-	padding-bottom:40px;
-}
-
-#sidebar .block blockquote{
-	width: 100%;
-}
-
-
-
-/*lets_connect*/
-.lets_connect{
-	float:left;
-}
-.lets_connect li{
-	list-style:none;
-	margin:0;
-	font-size:14px;
-}
-.lets_connect li a img{
-	float:left;
-	margin:4px 10px 0 0;
-}
-.myphoto{
-	padding-bottom:30px;
-}
-
-
-/*contact_form*/
-#contact_form p label{
-	font-size:16px;
-	font-weight:bold;
-	float:left;
-	width:160px;
-	margin:8px 0 0 0;
-}
 
 #name, #email, #subject{
 	border:0;
@@ -587,20 +593,6 @@ blockquote p cite{
 	font-weight:bold;
 	font-size:14px;
 	font-family:Arial, Helvetica, sans-serif;
-}
-#message{
-	background:url(../images/textarea_bg.gif) no-repeat;
-	border:0;
-	padding:14px 20px;
-	width:278px;
-	height:117px;
-	color:#fff;
-	font-weight:bold;
-	font-size:14px;
-	font-family:Arial, Helvetica, sans-serif;
-}
-* html #message{
-	background:url(../images/textarea_bg.gif) no-repeat fixed;
 }
 
 .send_btn{
@@ -615,104 +607,6 @@ blockquote p cite{
 }
 
 
-
-
-
-
-/*footer*/
-#footer, .push {
-	clear:both;
-	height:167px; /* .push must be the same height as .footer */
-}
-#footer{
-	margin-top:100px;
-	background:url(../images/footer_bg.gif) no-repeat;
-	background-size: cover;
-	background-position: center center;
-	height: 80px;
-}
-#footer .copyright{
-	padding-top: 20px;
-	padding-right: 20px;
-	background:url(../images/grunge_line.gif) repeat-x top left;
-	color:#4b4a47;
-	text-align:right;
-	font-size: 18px;
-}
-#footer .copyright small{
-	font-size:11px;
-}
-#footer a{
-	color:#55524a;
-	text-decoration:none;
-	font-weight:bold;
-}
-#footer a:hover{
-	color:#fff;
-}
-
-
-
-/* Easy Slider */
-#slider{
-	margin: 0 0 0 24px;
-	padding:0;
-}
-#slider ul, #slider li{
-	margin:0;
-	list-style:none;
-	padding-bottom:0px;
-	margin-bottom:0;
-}
-#slider li{
-	/*
-	define width and height of list item (slide)
-	entire slider area will adjust according to the parameters provided here
-	*/
-	width: 1280px;
-	display: inline-block;
-	/* height:510px; */
-	overflow:hidden;
-	padding-bottom:0px;
-	margin-bottom:0;
-}
-p#controls{
-	margin:0;
-	position:relative;
-}
-#prevBtn, #nextBtn{
-	display:block;
-	margin:0;
-	overflow:hidden;
-	text-indent:-8000px;
-	width:54px;
-	height:44px;
-	position:absolute;
-	left:-60px;
-	top:-160px;
-	cursor:pointer;
-}
-* html #nextBtn{
-	top:-200px;
-}
-*:first-child+html #nextBtn{
-	top:-200px;
-}
-#nextBtn{
-	left: 100%;
-}
-#prevBtn a, #nextBtn a{
-	display:block;
-	width:54px;
-	height:44px;
-	background:url(../images/btn_prev.gif) no-repeat 0 0;
-}
-#nextBtn a{
-	background:url(../images/btn_next.gif) no-repeat 0 0;
-}
-
-
-
 /*error message*/
 #main_content #content .errorMsg h3{
 	color:red;
@@ -720,9 +614,6 @@ p#controls{
 #main_content #content .infoMsg h3{
 	color:green;
 }
-
-
-
 
 
 /*common styles*/
@@ -739,12 +630,7 @@ ul.styledlist{
 	margin:0;
 	padding:0 0 20px 0;
 }
-ul.styledlist li{
-	background:url(../images/arrow_right.gif) no-repeat left 0.4em;
-	padding-left:17px;
-	list-style:none;
-	margin-left:5px;
-}
+
 ol li{
 	list-style:decimal;
 	margin-left:20px;

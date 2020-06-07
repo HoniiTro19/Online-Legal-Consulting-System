@@ -23,11 +23,6 @@ public class AdminServiceTest extends TestCase {
     }
 
     @Test
-    public void getAllStaturesTest() {
-        adminService.getAllStatures();
-    }
-
-    @Test
     public void getAllConsultsTest() {
         adminService.getAllConsults();
     }

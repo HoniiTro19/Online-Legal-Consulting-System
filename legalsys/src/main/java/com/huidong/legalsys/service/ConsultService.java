@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
+import java.util.List;
 
 /**
  * @Description 用户咨询的业务逻辑层
@@ -50,6 +51,15 @@ public class ConsultService {
             logger.info("法条{}点击数增加", lawid);
             return stature;
         }
+    }
+
+    /**
+     * @Description 获得所有法条信息
+     * @return List<Stature> 所有法条信息
+     */
+    public List<Stature> getAllStatures(){
+        List<Stature> statures = statureDao.getAllStatures();
+        return statures;
     }
 
     /**

@@ -48,8 +48,8 @@ public class LoginServiceTest extends TestCase {
         String licenseurl2 = "url2";
         String firmname2 = "firmname2";
 
-        loginService.registerLawyer(phone1, name1, password1, idno1, licenseurl1, firmname1);
-        loginService.registerLawyer(phone2, name2, password2, idno2, licenseurl2, firmname2);
+//        loginService.registerLawyer(phone1, name1, password1, idno1, licenseurl1, firmname1);
+//        loginService.registerLawyer(phone2, name2, password2, idno2, licenseurl2, firmname2);
     }
 
     @Test

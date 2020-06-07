@@ -1,5 +1,12 @@
+'''
+将penalLaw.txt中的法条信息结构化处理，形成penalLaw.xml中的信息
+penalLaw.xml用在init.sql中初始化statureTable
+'''
+
 import re
 import os
+from xml.dom.minidom import Document
+
 srcPath = os.path.dirname(os.getcwd())
 penalPath = os.path.join(srcPath, 'penalLaw.txt')
 
@@ -75,8 +82,6 @@ for key in lawDict:
 print(lawDict)
 
 
-
-from xml.dom.minidom import Document
 
 doc = Document()
 #DOCUMENT = doc.createElement('penalLaw')

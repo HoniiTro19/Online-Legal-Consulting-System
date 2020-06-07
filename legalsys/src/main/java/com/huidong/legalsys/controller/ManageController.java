@@ -45,12 +45,21 @@ public class ManageController {
 
     /**
      * @Description 用户修改登录密码
+     * @return 返回用户管理界面
+     */
+    @GetMapping("/manage/changePassword")
+    public String changePassword() {
+        return "manage/changePassword";
+    }
+
+    /**
+     * @Description 用户修改登录密码
      * @param oldpassword 旧密码
      * @param newpassword 新密码
      * @param request Http请求
      * @return 返回用户管理界面
      */
-    @PostMapping("/manage/changePassword")
+    @PostMapping("/manage/changePassword/upload")
     public String changePassword(@RequestParam("oldpassword") String oldpassword,
                                  @RequestParam("newpassword") String newpassword,
                                  HttpServletRequest request){
@@ -58,7 +67,16 @@ public class ManageController {
         User user = (User) session.getAttribute("user");
         String phone = user.getPhone();
         manageService.changePassword(phone, oldpassword, newpassword);
-        return "manage/changePassword";
+        return "redirect:/manage";
+    }
+
+    /**
+     * @Description 用户修改律师认证信息
+     * @return 返回用户管理界面
+     */
+    @GetMapping("/manage/lawyerAuth")
+    public String lawyerAuth() {
+        return "manage/lawyerAuth";
     }
 
     /**
@@ -68,7 +86,7 @@ public class ManageController {
      * @param request Http请求
      * @return 返回用户管理界面
      */
-    @PostMapping("/manage/lawyerAuth")
+    @PostMapping("/manage/lawyerAuth/upload")
     public String lawyerAuth(@RequestParam("licenseurl") String licenseurl,
                              @RequestParam("firmname") String firmname,
                              HttpServletRequest request){
@@ -76,7 +94,7 @@ public class ManageController {
         User user = (User) session.getAttribute("user");
         String phone = user.getPhone();
         manageService.lawyerAuth(phone, licenseurl, firmname);
-        return "manage/lawyerAuth";
+        return "redirect:/manage";
     }
 
 
