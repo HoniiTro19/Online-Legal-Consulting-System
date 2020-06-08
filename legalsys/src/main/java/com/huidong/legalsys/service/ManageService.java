@@ -5,6 +5,7 @@ import com.huidong.legalsys.dao.ConvrDao;
 import com.huidong.legalsys.dao.UserDao;
 import com.huidong.legalsys.domain.Consult;
 import com.huidong.legalsys.domain.Convr;
+import com.huidong.legalsys.domain.User;
 import com.huidong.legalsys.enumeration.ErrorEnum;
 import com.huidong.legalsys.exception.LegalsysException;
 import com.huidong.legalsys.handle.ExceptionHandle;
@@ -15,7 +16,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.ArrayList;
+import java.util.ArrayList;
 
 /**
  * @Description 用户管理的业务逻辑层
@@ -68,10 +70,10 @@ public class ManageService {
     /**
      * @Description 用户查询自己的咨询记录
      * @param phone 手机号
-     * @return List<Consult> 用户的咨询记录
+     * @return ArrayList<Consult> 用户的咨询记录
      */
-    public List<Consult> getConsultsByPhone(String phone){
-        List<Consult> consults = consultDao.getConsultsByPhone(phone);
+    public ArrayList<Consult> getConsultsByPhone(String phone){
+        ArrayList<Consult> consults = consultDao.getConsultsByPhone(phone);
         return consults;
     }
 
@@ -87,11 +89,11 @@ public class ManageService {
     /**
      * @Description 用户查询自己的会话记录
      * @param phone 手机号
-     * @return List<Convr> 用户的会话记录
+     * @return ArrayList<Convr> 用户的会话记录
      */
-    public List<Convr> getConvrs(String phone){
+    public ArrayList<Convr> getConvrs(String phone){
         String isLawyer = userDao.isRegistedLawyer(phone);
-        List<Convr> convrs = new ArrayList<>();
+        ArrayList<Convr> convrs = new ArrayList<>();
         if (isLawyer == null){
             convrs = convrDao.getConvrsByPhone(phone);
         }else {
@@ -135,5 +137,32 @@ public class ManageService {
             convrDao.setLawyerTime(newtime, id);
         }
         logger.info("用户{}更新了会话消息\n消息内容：{}", phone, record);
+    }
+
+    /**
+     * @Description 获得所有注册用户信息
+     * @return ArrayList<User> 所有注册用户信息
+     */
+    public ArrayList<User> getAllUsers(){
+        ArrayList<User> users = userDao.getAllUsers();
+        return users;
+    }
+
+    /**
+     * @Description 获得所有咨询记录
+     * @return ArrayList<Consult> 所有咨询记录
+     */
+    public ArrayList<Consult> getAllConsults(){
+        ArrayList<Consult> consults = consultDao.getAllConsults();
+        return consults;
+    }
+
+    /**
+     * @Description 获得所有会话记录
+     * @return ArrayList<Convr> 所有会话记录
+     */
+    public ArrayList<Convr> getAllConvrs(){
+        ArrayList<Convr> convrs = convrDao.getAllConvrs();
+        return convrs;
     }
 }

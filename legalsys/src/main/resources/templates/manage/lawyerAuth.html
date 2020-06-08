@@ -1,10 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="compoment/static::static"></head>
 
+<body>
+<div id="page">
+    <div id="wrap">
+        <div id="header">
+            <h1 id="logo"><a href="/">法律咨询系统</a></h1>
+            <div class="availability">
+                <a href="https://github.com/HoniiTro19/Online-Legal-Consulting-System" class="available" target="_blank"></a>
+            </div>
+            <div th:replace="compoment/navigatior::commonMenu(0)"></div>
+        </div>
+
+        <div id="main_content">
+            <div class="column_3">
+                <div class="first services">
+                    <h2>功能说明</h2>
+                    <span class="intro_text">用户在表单中一次输入“咨询的标题”，“咨询的具体内容”，并点击“提交表单”，讨论区就会出现该案件咨询。<b>Tips：</b>“咨询的标题”应该尽可能简练地概括“咨询的具体内容”；不要在问题中泄露个人隐私，本平台不对用户主动泄露的隐私负责。</span>
+                    <h2>使用案例</h2>
+                </div>
+                <div class="services">
+                    <h2>用户基本信息</h2>
+                    <p>手机号（Phone）：[[${userInfo.phone}]]</p>
+                    <p>真实姓名（Name）：[[${userInfo.name}]]<p>
+                    <p>密码（Password）：[[${userInfo.password}]]<p>
+                    <p>身份证号（Idno）：[[${userInfo.idno}]]<p>
+                    <p>律所信息（Firm）：[[${userInfo.firmname}]]<p>
+                </div>
+                <div class="services">
+                    <h2>修改律师认证</h2>
+                    <form action="/register/lawyer/input" method="post">
+                        <p class="sheet">律所信息：<input type="text" name="firmname" required="required"></p>
+                        <p class="sheet">律师执照：<input type="file" name="file" class="form-control" required="required"></p>
+                        <input type="submit" value="确认">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

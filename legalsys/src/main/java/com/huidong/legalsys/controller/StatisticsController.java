@@ -2,11 +2,14 @@ package com.huidong.legalsys.controller;
 
 import com.huidong.legalsys.domain.Consult;
 import com.huidong.legalsys.domain.Stature;
+import com.huidong.legalsys.domain.User;
 import com.huidong.legalsys.service.StatisticsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -24,32 +27,23 @@ public class StatisticsController {
      * @return 系统的主界面
      */
     @GetMapping("/")
-    public String statisticsGuest(Map<String, Object> map){
-        ArrayList<Stature> rcmdStatures = (ArrayList<Stature>) statisticsService.rcmdStatures();
+    public String statisticsGuest(Map<String, Object> map,
+                                  HttpServletRequest request){
+        ArrayList<Stature> rcmdStatures = statisticsService.rcmdStatures();
         map.put("rcmdStatures", rcmdStatures);
 
-        ArrayList<Consult> rcmdConsults = (ArrayList<Consult>) statisticsService.rcmdConsults();
+        ArrayList<Consult> rcmdConsults = statisticsService.rcmdConsults();
         map.put("rcmdConsults", rcmdConsults);
 
         Integer concurrentNum = statisticsService.showConcurrent();
         map.put("concurrentNum", concurrentNum);
-        return "statisticsGuest";
-    }
 
-    /**
-     * @Description 展示系统推荐的法条和案件，统计在线人数
-     * @return 系统的主界面
-     */
-    @GetMapping("/logined")
-    public String statisticsUser(Map<String, Object> map){
-        ArrayList<Stature> rcmdStatures = (ArrayList<Stature>) statisticsService.rcmdStatures();
-        map.put("rcmdStatures", rcmdStatures);
-
-        ArrayList<Consult> rcmdConsults = (ArrayList<Consult>) statisticsService.rcmdConsults();
-        map.put("rcmdConsults", rcmdConsults);
-
-        Integer concurrentNum = statisticsService.showConcurrent();
-        map.put("concurrentNum", concurrentNum);
-        return "statisticsUser";
+        HttpSession session =  request.getSession();
+        User user = (User) session.getAttribute("user");
+        if (user == null){
+            return "statisticsGuest";
+        }else {
+            return "statisticsUser";
+        }
     }
 }

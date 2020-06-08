@@ -3,6 +3,7 @@ package com.huidong.legalsys.dao;
 import com.huidong.legalsys.domain.Session;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,7 +26,12 @@ public interface SessionDao {
      */
     Integer isExist(Integer id);
 
-    Session getSession(Integer id);
+    /**
+     * @Description 获得咨询的信息
+     * @param id 咨询的编号
+     * @return 讨论区咨询的信息
+     */
+    Session getSessionInfo(Integer id);
 
     /**
      * @Description 获得咨询者的手机号
@@ -60,5 +66,5 @@ public interface SessionDao {
      * @Description 获得所有未被答复的咨询信息
      * @return List<Session> 所有未被答复的咨询信息
      */
-    List<Session> getAllSessions();
+    ArrayList<Session> getAllSessions();
 }

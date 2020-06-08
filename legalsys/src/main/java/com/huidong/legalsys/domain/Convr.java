@@ -32,29 +32,43 @@ public class Convr {
                 ",lawyertime=" + lawyertime + "}";
     }
 
+    public Integer getId() {return id;}
+
     public void setId(Integer id) {
         this.id = id;
     }
+
+    public String getPhone() {return phone;}
 
     public void setPhone(String phone) {
         this.phone = phone;
     }
 
+    public String getLawyerphone() {return lawyerphone;}
+
     public void setLawyerphone(String lawyerphone) {
         this.lawyerphone = lawyerphone;
     }
+
+    public String getConvr() {return convr;}
 
     public void setConvr(String convr) {
         this.convr = convr;
     }
 
+    public String getTime() {return time;}
+
     public void setTime(String time) {
         this.time = time;
     }
 
+    public String getLawyerconvr() {return lawyerconvr;}
+
     public void setLawyerconvr(String lawyerconvr) {
         this.lawyerconvr = lawyerconvr;
     }
+
+    public String getLawyertime() {return lawyertime;}
 
     public void setLawyertime(String lawyertime) {
         this.lawyertime = lawyertime;

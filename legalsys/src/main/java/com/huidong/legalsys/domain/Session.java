@@ -33,12 +33,14 @@ public class Session {
     public String getPhone() {
         return phone;
     }
+
     public String getTitle() {
         return title;
     }
     public String getContent() {
         return content;
     }
+
     public Integer getStatus() {
         return status;
     }

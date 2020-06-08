@@ -31,7 +31,7 @@ public class StatureDaoTest extends TestCase {
     @Test
     public void getStatureTest(){
         Integer lawid = 500;
-        Stature stature = statureDao.getStature(lawid);
+        Stature stature = statureDao.getStatureInfo(lawid);
         assertNotNull("查询不到对应法条", stature);
     }
 

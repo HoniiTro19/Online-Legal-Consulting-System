@@ -35,20 +35,37 @@ public class SessionController {
         return "session/index";
     }
 
+    /**
+     * @Description 查看讨论区咨询的详细内容
+     * @param id 咨询的编号
+     * @param map 前后端传递数据
+     * @return 展示讨论区咨询的详细内容的界面
+     */
     @GetMapping("/session/detail")
     public String sessionDetail(@RequestParam("id") Integer id,
                            Map<String, Object> map){
-        Session session = sessionService.getSession(id);
-        map.put("session", session);
+        Session sessionInfo = sessionService.getSession(id);
+        map.put("sessionInfo", sessionInfo);
         return "session/detail";
     }
 
+    /**
+     * @Description 创建新的咨询
+     * @return 创建新咨询的表单
+     */
     @GetMapping("/session/newsession")
     public String newsession(){
         return "session/newsession";
     }
 
-    @PostMapping("/session/newsession/add")
+    /**
+     * @Description 提交新的咨询
+     * @param title 咨询的标题
+     * @param content 咨询的内容
+     * @param request http请求
+     * @return 讨论区界面
+     */
+    @PostMapping("/session/newsession/upload")
     public String addsession(@RequestParam("title") String title,
                              @RequestParam("content") String content,
                              HttpServletRequest request){

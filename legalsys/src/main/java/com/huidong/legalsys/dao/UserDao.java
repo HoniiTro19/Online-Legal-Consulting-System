@@ -3,7 +3,7 @@ package com.huidong.legalsys.dao;
 import com.huidong.legalsys.domain.User;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * @Description 用户信息表的数据访问类
@@ -55,7 +55,7 @@ public interface UserDao {
     Boolean setPassword(String phone, String newpassword);
 
     /**
-     * @Description 重置律师执照
+     * @Description 修改律师执照
      * @param phone 手机号
      * @param newlicenseurl 新律师执照
      * @return Boolean 是否设置成功
@@ -63,7 +63,7 @@ public interface UserDao {
     Boolean setLicenseurl(String phone, String newlicenseurl);
 
     /**
-     * @Description 重置律所信息
+     * @Description 修改律所信息
      * @param phone 手机号
      * @param newfirmname 新律所信息
      * @return Boolean 是否设置成功
@@ -74,5 +74,5 @@ public interface UserDao {
      * @Description 获得所有注册用户信息
      * @return List<User> 所有注册用户信息
      */
-    List<User> getAllUsers();
+    ArrayList<User> getAllUsers();
 }

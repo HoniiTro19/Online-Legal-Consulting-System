@@ -34,7 +34,7 @@ public class LoginController {
     public String login(HttpServletRequest request){
         HttpSession session = request.getSession();
         if (session.getAttribute("user") != null){
-            return "redirect:/logined";
+            return "redirect:/";
         }
         return "login";
     }
@@ -53,7 +53,7 @@ public class LoginController {
         HttpSession session = request.getSession();
         User user = loginService.login(phone, password);
         session.setAttribute("user", user);
-        return "redirect:/logined";
+        return "redirect:/";
     }
 
     @GetMapping("/logout")

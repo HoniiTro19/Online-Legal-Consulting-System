@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * @Description 讨论区咨询的业务逻辑层
@@ -54,16 +54,16 @@ public class SessionService {
     }
 
     public Session getSession(Integer id) {
-        Session session = sessionDao.getSession(id);
+        Session session = sessionDao.getSessionInfo(id);
         return session;
     }
 
     /**
      * @Description 获得讨论区所有未建立会话的咨询
-     * @return List<Session> 讨论区所有未建立会话的咨询
+     * @return ArrayList<Session> 讨论区所有未建立会话的咨询
      */
-    public List<Session> getAllSessions() {
-        List<Session> sessions = sessionDao.getAllSessions();
+    public ArrayList<Session> getAllSessions() {
+        ArrayList<Session> sessions = sessionDao.getAllSessions();
         return sessions;
     }
 

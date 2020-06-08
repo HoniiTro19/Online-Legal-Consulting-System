@@ -32,6 +32,10 @@ public class Login {
         this.phone = phone;
     }
 
+    public Integer getAttempt() {
+        return attempt;
+    }
+
     public void setAttempt(Integer attempt) {
         this.attempt = attempt;
     }
@@ -42,6 +46,10 @@ public class Login {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public String getFreezetime() {
+        return freezetime;
     }
 
     public void setFreezeTime(String freezeTime) {

@@ -3,6 +3,7 @@ package com.huidong.legalsys.dao;
 import com.huidong.legalsys.domain.Convr;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -90,14 +91,14 @@ public interface ConvrDao {
      * @param phone 普通用户手机号
      * @return List<Convr> 普通用户的所有会话内容
      */
-    List<Convr> getConvrsByPhone(String phone);
+    ArrayList<Convr> getConvrsByPhone(String phone);
 
     /**
      * @Description 获得律师用户的所有会话内容
      * @param lawyerphone 律师用户手机号
      * @return List<Convr> 律师用户的所有会话内容
      */
-    List<Convr> getConvrsByLawyerPhone(String lawyerphone);
+    ArrayList<Convr> getConvrsByLawyerPhone(String lawyerphone);
 
     /**
      * @Description 删除会话内容
@@ -110,5 +111,5 @@ public interface ConvrDao {
      * @Description 获得所有会话内容
      * @return 所有会话内容
      */
-    List<Convr> getAllConvrs();
+    ArrayList<Convr> getAllConvrs();
 }

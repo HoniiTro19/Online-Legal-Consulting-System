@@ -2,6 +2,8 @@ package com.huidong.legalsys.dao;
 
 import com.huidong.legalsys.domain.Login;
 import org.springframework.stereotype.Repository;
+
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -25,7 +27,7 @@ public interface LoginDao {
     Login isLogined(String phone);
 
     /**
-     * @Description 增加用户尝试登录次数
+     * @Description 增加用户登录失败次数
      * @param phone 手机号
      * @return Boolean 是否增加成功
      */
@@ -39,7 +41,7 @@ public interface LoginDao {
     Integer getAttempt(String phone);
 
     /**
-     * @Description 重置用户的失败次数
+     * @Description 重置用户的失败次数为0
      * @param phone 手机号
      * @return Boolean 是否重置成功
      */
@@ -79,7 +81,7 @@ public interface LoginDao {
      * @Description 获得所有登录信息
      * @return List<Login> 所有登录信息
      */
-    List<Login> getAllLogins();
+    ArrayList<Login> getAllLogins();
 
     /**
      * @Description 获得当前在线人数

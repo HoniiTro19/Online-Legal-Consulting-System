@@ -3,7 +3,7 @@ package com.huidong.legalsys.dao;
 import com.huidong.legalsys.domain.Stature;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * @Description 法条信息表的数据访问类
@@ -22,17 +22,17 @@ public interface StatureDao {
      * @param lawid 法条编号
      * @return Stature 法条信息
      */
-    Stature getStature(Integer lawid);
+    Stature getStatureInfo(Integer lawid);
 
     /**
      * @Description 获得所有法条信息
      * @return List<Stature> 所有法条信息
      */
-    List<Stature> getAllStatures();
+    ArrayList<Stature> getAllStatures();
 
     /**
      * @Description 获得点击数前k的法条信息
      * @return List<Stature> 所有法条信息
      */
-    List<Stature> getTopkStatures();
+    ArrayList<Stature> getTopkStatures();
 }
