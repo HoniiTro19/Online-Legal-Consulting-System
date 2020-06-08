@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -40,7 +39,7 @@ public class LoginController {
     }
 
     /**
-     * @Description
+     * @Description 用户登录验证
      * @param phone 手机号
      * @param password 密码
      * @param request Http请求
@@ -56,6 +55,11 @@ public class LoginController {
         return "redirect:/";
     }
 
+    /**
+     * @Description 用户登出法律咨询系统
+     * @param request http请求
+     * @return 主页
+     */
     @GetMapping("/logout")
     public String logout(HttpServletRequest request) {
         HttpSession session = request.getSession();
@@ -65,8 +69,9 @@ public class LoginController {
         loginService.logout(phone);
         return "redirect:/";
     }
+
     /**
-     * @Description 提供普通用户注册以及律师用户注册两种不同的通道
+     * @Description 提供普通用户以及律师用户两种不同的注册通道
      * @return 相应的用户注册界面
      */
     @GetMapping("/register")
@@ -91,7 +96,7 @@ public class LoginController {
      * @param idno 身份证号
      * @return 信息收集界面
      */
-    @PostMapping("/register/normal/input")
+    @PostMapping("/register/normal/upload")
     public String normalInput(@RequestParam("phone") String phone,
                          @RequestParam("name") String name,
                          @RequestParam("password") String password,
@@ -128,7 +133,7 @@ public class LoginController {
      * @param firmname 律所信息
      * @return 信息收集界面
      */
-    @PostMapping("/register/lawyer/input")
+    @PostMapping("/register/lawyer/upload")
     public String normal(@RequestParam("phone") String phone,
                          @RequestParam("name") String name,
                          @RequestParam("password") String password,

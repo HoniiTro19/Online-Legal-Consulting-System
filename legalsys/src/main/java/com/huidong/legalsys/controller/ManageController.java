@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.ArrayList;
 import java.util.Map;
 
 /**
@@ -44,9 +44,9 @@ public class ManageController {
     public String manage(HttpServletRequest request,
                        Map<String, Object> map){
         HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
-        map.put("user", user);
-        if (user.getPhone().equals(adminPhone)) {
+        User userInfo = (User) session.getAttribute("user");
+        map.put("userInfo", userInfo);
+        if (userInfo.getPhone().equals(adminPhone)) {
             return "manage/indexAdmin";
         }else {
             return "manage/index";
@@ -146,8 +146,8 @@ public class ManageController {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         String phone = user.getPhone();
-        List<Consult> consults = manageService.getConsultsByPhone(phone);
-        map.put("consults", consults);
+        ArrayList<Consult> userConsults = manageService.getConsultsByPhone(phone);
+        map.put("userConsults", userConsults);
         return "manage/userConsults";
     }
 
@@ -182,8 +182,8 @@ public class ManageController {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         String phone = user.getPhone();
-        List<Convr> convrs = manageService.getConvrs(phone);
-        map.put("convrs", convrs);
+        ArrayList<Convr> userConvrs = manageService.getConvrs(phone);
+        map.put("userConvrs", userConvrs);
         return "manage/userConvrs";
     }
 
@@ -248,9 +248,23 @@ public class ManageController {
      */
     @GetMapping("/manage/allUsers")
     public String allUsers(Map<String, Object> map) {
-        ArrayList<User> allusers = manageService.getAllUsers();
-        map.put("allusers", allusers);
+        ArrayList<User> allUsers = manageService.getAllUsers();
+        map.put("allUsers", allUsers);
         return "manage/allUsers";
+    }
+
+    /**
+     * @Description 获得用户的详细信息
+     * @param phone 手机号
+     * @param map 前后端传递参数
+     * @return 显示用户详细信息的界面
+     */
+    @GetMapping("/manage/allUsers/detail")
+    public String userDetail(@RequestParam("phone") String phone,
+                             Map<String, Object> map) {
+        User userInfo = manageService.getUserInfo(phone);
+        map.put("userInfo", userInfo);
+        return "manage/userDetail";
     }
 
     /**
@@ -271,7 +285,7 @@ public class ManageController {
     public String allConsults(Map<String, Object> map) {
         ArrayList<Consult> allConsults = manageService.getAllConsults();
         map.put("userConsults", allConsults);
-        return "manage/uesrConsults";
+        return "manage/userConsults";
     }
 
     /**

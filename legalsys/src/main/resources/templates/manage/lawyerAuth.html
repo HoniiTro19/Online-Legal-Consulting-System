@@ -17,8 +17,12 @@
             <div class="column_3">
                 <div class="first services">
                     <h2>功能说明</h2>
-                    <span class="intro_text">用户在表单中一次输入“咨询的标题”，“咨询的具体内容”，并点击“提交表单”，讨论区就会出现该案件咨询。<b>Tips：</b>“咨询的标题”应该尽可能简练地概括“咨询的具体内容”；不要在问题中泄露个人隐私，本平台不对用户主动泄露的隐私负责。</span>
+                    <p>用户修改律师认证信息的界面，用户按要求输入“律所信息”，上传“律师执照”，系统将修改用户的律师认证信息，修改完成后不需要重新登陆。</p>
                     <h2>使用案例</h2>
+                    <p>用户可以按照下述方式进行操作：</p>
+                    <p>修改律所信息：××省××市××区××律所</p>
+                    <p>上传律师执照：license.jpg</p>
+                    <p>提交，成功修改律师认证信息。</p>
                 </div>
                 <div class="services">
                     <h2>用户基本信息</h2>
@@ -30,7 +34,7 @@
                 </div>
                 <div class="services">
                     <h2>修改律师认证</h2>
-                    <form action="/register/lawyer/input" method="post">
+                    <form action="/manage/lawyerAuth/upload" method="post">
                         <p class="sheet">律所信息：<input type="text" name="firmname" required="required"></p>
                         <p class="sheet">律师执照：<input type="file" name="file" class="form-control" required="required"></p>
                         <input type="submit" value="确认">

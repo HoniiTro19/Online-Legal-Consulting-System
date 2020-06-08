@@ -71,6 +71,12 @@ public interface UserDao {
     Boolean setFirmname(String phone, String newfirmname);
 
     /**
+     * @Description 获得用户的信息
+     * @return User 用户的信息
+     */
+    User getUserInfo(String phone);
+
+    /**
      * @Description 获得所有注册用户信息
      * @return List<User> 所有注册用户信息
      */

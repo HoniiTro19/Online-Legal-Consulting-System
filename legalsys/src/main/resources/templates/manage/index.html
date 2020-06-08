@@ -17,24 +17,28 @@
             <div class="column_3">
                 <div class="first services">
                     <h2>功能说明</h2>
-                    <span class="intro_text"></span>
+                    <p>用户个人信息管理界面，用户可以在“用户基本信息”看到自己的注册信息。在”个人信息管理“中用户可以选择“修改密码”，“修改律师信息”，“查询咨询记录”,“查看会话记录”这四种信息管理功能。</p>
                     <h2>使用案例</h2>
-                    <span class="intro_text"></span>
+                    <p>用户需要注意的地方：</p>
+                    <p><b>修改密码后不需要重新登陆。</b></p>
+                    <p><b>修改律师认证后不需要重新登陆。</b></p>
+                    <p><b>咨询记录及会话记录只能查询自己的。</b></p>
+                    <p><b>点击查询的记录可以查看详情。</b></p>
                 </div>
                 <div class="services">
                     <h2>用户基本信息</h2>
-                    <p>手机号（Phone）：[[${user.phone}]]</p>
-                    <p>真实姓名（Name）：[[${user.name}]]<p>
-                    <p>密码（Password）：[[${user.password}]]<p>
-                    <p>身份证号（Idno）：[[${user.idno}]]<p>
-                    <p>律所信息（Firm）：[[${user.firmname}]]<p>
+                    <p>手机号（Phone）：[[${userInfo.phone}]]</p>
+                    <p>真实姓名（Name）：[[${userInfo.name}]]<p>
+                    <p>密码（Password）：[[${userInfo.password}]]<p>
+                    <p>身份证号（Idno）：[[${userInfo.idno}]]<p>
+                    <p>律所信息（Firm）：[[${userInfo.firmname}]]<p>
                 </div>
                 <div class="services">
-                    <h2>个人资料管理</h2>
+                    <h2>个人信息管理</h2>
                     <h1 id="changePassword"><a href="/manage/changePassword">修改密码</a></h1>
                     <h1 id="lawyerAuth"><a href="/manage/lawyerAuth">修改律师信息</a></h1>
-                    <h1 id="userConsults"><a href="/manage">查询咨询记录</a></h1>
-                    <h1 id="userConvrs"><a href="/manage">查询会话记录</a></h1>
+                    <h1 id="userConsults"><a href="/manage/userConsults">查询咨询记录</a></h1>
+                    <h1 id="userConvrs"><a href="/manage/userConvrs">查询会话记录</a></h1>
                 </div>
             </div>
         </div>

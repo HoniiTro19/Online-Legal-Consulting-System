@@ -139,11 +139,21 @@ public class ManageService {
         logger.info("用户{}更新了会话消息\n消息内容：{}", phone, record);
     }
 
+
+    /**
+     * @Description 获得用户的基本信息
+     * @param phone 手机号
+     * @return User 用户的基本信息
+     */
+    public User getUserInfo(String phone) {
+        User userInfo = userDao.getUserInfo(phone);
+        return userInfo;
+    }
     /**
      * @Description 获得所有注册用户信息
      * @return ArrayList<User> 所有注册用户信息
      */
-    public ArrayList<User> getAllUsers(){
+    public ArrayList<User> getAllUsers() {
         ArrayList<User> users = userDao.getAllUsers();
         return users;
     }

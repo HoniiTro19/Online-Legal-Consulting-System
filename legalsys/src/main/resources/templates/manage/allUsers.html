@@ -18,16 +18,16 @@
             <div class="column_2">
                 <div class="first services">
                     <h2>功能说明</h2>
-                    <p>查询咨询记录的界面，用户可以在”您的咨询记录“中看到自己的咨询记录，点击咨询记录的标题就能查看详细情况。</p>
+                    <p>注册用户信息的界面，管理员可以在”注册用户信息“中看到所有注册用户的信息，点击注册用户的手机号标题就能查看用户的详细情况。</p>
                     <h2>使用案例</h2>
                     <p>用户可以按照下述方式进行操作：</p>
-                    <p>您的咨询记录：”殴打致轻伤二级“</p>
-                    <p>点击”殴打致轻伤二级“查看咨询记录的详细情况。</p>
+                    <p>注册用户信息：”11111111111 admin“，”12345678912 张三“</p>
+                    <p>点击”12345678912 张三“查看张三的详细情况。</p>
                 </div>
                 <div class="services">
-                    <h2>您的咨询记录</h2>
+                    <h2>注册用户信息</h2>
                     <ul>
-                        <li th:each="userConsult:${userConsults}"><a th:href="@{'/consult/detail?id='+${userConsult.id}}">[[${userConsult.title}]]</a></li>
+                        <li th:each="allUser:${allUsers}"><a th:href="@{'/manage/allUsers/detail?phone='+${allUser.phone}}">[[${allUser.phone}]] [[${allUser.name}]] </a></li>
                     </ul>
                 </div>
             </div>

@@ -41,6 +41,10 @@
         update userTable set firmname = #{newfirmname} where phone = #{phone}
     </update>
 
+    <select id="getUserInfo" resultType="com.huidong.legalsys.domain.User">
+        select * from userTable where phone = #{phone}
+    </select>
+
     <select id="getAllUsers" resultType="com.huidong.legalsys.domain.User">
         select * from userTable
     </select>
