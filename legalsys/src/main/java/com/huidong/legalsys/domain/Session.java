@@ -26,6 +26,23 @@ public class Session {
                 ",status=" + status + "}";
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+    public String getTitle() {
+        return title;
+    }
+    public String getContent() {
+        return content;
+    }
+    public Integer getStatus() {
+        return status;
+    }
+
     public void setId(Integer id) {
         this.id = id;
     }
@@ -45,5 +62,6 @@ public class Session {
     public void setStatus(Integer status) {
         this.status = status;
     }
+
 
 }

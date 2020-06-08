@@ -1,5 +1,7 @@
 package com.huidong.legalsys.controller;
 
+import com.huidong.legalsys.domain.Consult;
+import com.huidong.legalsys.domain.Session;
 import com.huidong.legalsys.domain.User;
 import com.huidong.legalsys.enumeration.ConsultTypeEnum;
 import com.huidong.legalsys.service.ConsultService;
@@ -19,6 +21,13 @@ public class ConsultController {
     @Autowired
     private ConsultService consultService;
 
+    @GetMapping("/consult/detail")
+    public String consultDetail(@RequestParam("id") Integer id,
+                                Map<String, Object> map) {
+        Consult consult = consultService.getConsult(id);
+        map.put("consult", consult);
+        return "consult/detail";
+    }
 
     @GetMapping("/consult")
     public String consult(@RequestParam("type") Integer type,

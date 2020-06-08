@@ -2,7 +2,6 @@ package com.huidong.legalsys.controller;
 
 import com.huidong.legalsys.domain.Consult;
 import com.huidong.legalsys.domain.Convr;
-import com.huidong.legalsys.domain.Stature;
 import com.huidong.legalsys.domain.User;
 import com.huidong.legalsys.service.ManageService;
 import com.huidong.legalsys.service.ConsultService;
@@ -98,32 +97,24 @@ public class ManageController {
     }
 
 
-    @GetMapping("/manage/consult")
-    public String consult(HttpServletRequest request,
+    @GetMapping("/manage/userConsults")
+    public String userConsults(HttpServletRequest request,
                               Map<String, Object> map){
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         String phone = user.getPhone();
         List<Consult> consults = manageService.getConsultsByPhone(phone);
         map.put("consults", consults);
-        return "manage/consult";
+        return "manage/userConsults";
     }
 
-    @GetMapping("/manage/consult/detail")
-    public String consultDetail(@RequestParam("id") Integer id,
-                                Map<String, Object> map) {
-        Consult consult = consultService.getConsult(id);
-        map.put("consult", consult);
-        return "consult/detail";
-    }
-
-    @PostMapping("/manage/deleteConsult")
+    @GetMapping("/manage/deleteConsult")
     public String deleteConsult(@RequestParam("consultid") Integer consultid){
         manageService.deleteConsult(consultid);
-        return "redirect:/manage/consult";
+        return "redirect:/manage/userConsults";
     }
 
-    @GetMapping("/manage/convr")
+    @GetMapping("/manage/userConvrs")
     public String convrUser(HttpServletRequest request,
                               Map<String, Object> map){
         HttpSession session = request.getSession();
@@ -131,13 +122,21 @@ public class ManageController {
         String phone = user.getPhone();
         List<Convr> convrs = manageService.getConvrs(phone);
         map.put("convrs", convrs);
-        return "manage/convr";
+        return "manage/userConvrs";
     }
 
-    @PostMapping("/manage/deleteConvr")
+    @GetMapping("/manage/userConvrs/detail")
+    public String consultDetail(@RequestParam("id") Integer id,
+                                Map<String, Object> map) {
+        Convr convr = consultService.getConvr(id);
+        map.put("convr", convr);
+        return "manage/convrDetail";
+    }
+
+    @GetMapping("/manage/deleteConvr")
     public String deleteConvr(@RequestParam("convrid") Integer convrid){
         manageService.deleteConvr(convrid);
-        return "redirect:/manage/convr";
+        return "redirect:/manage/userConvrs";
     }
 
     @PostMapping("/manage/contConvr")

@@ -25,6 +25,8 @@ public interface SessionDao {
      */
     Integer isExist(Integer id);
 
+    Session getSession(Integer id);
+
     /**
      * @Description 获得咨询者的手机号
      * @param id 咨询编号

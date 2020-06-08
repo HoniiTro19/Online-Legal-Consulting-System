@@ -10,6 +10,7 @@
             <div class="availability">
                 <a href="https://github.com/HoniiTro19/Online-Legal-Consulting-System" class="available" target="_blank"></a>
             </div>
+            <h1 id="newsession"><a href="/session/newsession">新建咨询</a></h1>
             <div th:replace="compoment/navigatior::commonMenu(0)"></div>
         </div>
 
@@ -17,16 +18,15 @@
             <div class="column_2">
                 <div class="first services">
                     <h2>功能说明</h2>
-                    <span class="intro_text">用户在表单中一次输入“咨询的标题”，“咨询的具体内容”，并点击“提交表单”，讨论区就会出现该案件咨询。<b>Tips：</b>“咨询的标题”应该尽可能简练地概括“咨询的具体内容”；不要在问题中泄露个人隐私，本平台不对用户主动泄露的隐私负责。</span>
+                    <span class="intro_text">系统的讨论区功能，目的是为有法律诉求的用户提供一个征求律师人工答复的机会。用户将自己的问题发布至讨论区，律师用户可以在其中找出与自己擅长领域相关的案件，进行人工答复。</span>
                     <h2>使用案例</h2>
+                    <span class="intro_text">用户点击“新建咨询”，按要求输入对案件的描述，讨论区就会出现该案件咨询。所有用户都可以查看讨论区案件的详情，律师用户点击“建立会话”就可以与提问用户进行深入沟通。</span>
                 </div>
                 <div class="services">
-                    <h2>修改密码</h2>
-                    <form action="/session/newsession/add" method="post">
-                        <p>咨询的标题：<input type="text" name="title" required="required"></p>
-                        <p>咨询地具体内容：<input type="text" name="content" required="required"></p>
-                        <input type="submit" value="提交表单">
-                    </form>
+                    <h2>您的会话记录</h2>
+                    <ul>
+                        <li th:each="convr:${convrs}"><a th:href="@{'/manage/convr/detail?id='+${convr.id}}">用户[[${convr.phone}]]与用户[[${convr.lawyer}]]的会话</a></li>
+                    </ul>
                 </div>
             </div>
         </div>

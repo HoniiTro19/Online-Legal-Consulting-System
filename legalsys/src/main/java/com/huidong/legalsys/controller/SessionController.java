@@ -35,7 +35,15 @@ public class SessionController {
         return "session/index";
     }
 
-    @PostMapping("/session/newsession")
+    @GetMapping("/session/detail")
+    public String sessionDetail(@RequestParam("id") Integer id,
+                           Map<String, Object> map){
+        Session session = sessionService.getSession(id);
+        map.put("session", session);
+        return "session/detail";
+    }
+
+    @GetMapping("/session/newsession")
     public String newsession(){
         return "session/newsession";
     }

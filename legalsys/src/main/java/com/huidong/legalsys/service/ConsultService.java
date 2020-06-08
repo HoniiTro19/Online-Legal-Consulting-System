@@ -1,8 +1,10 @@
 package com.huidong.legalsys.service;
 
 import com.huidong.legalsys.dao.ConsultDao;
+import com.huidong.legalsys.dao.ConvrDao;
 import com.huidong.legalsys.dao.StatureDao;
 import com.huidong.legalsys.domain.Consult;
+import com.huidong.legalsys.domain.Convr;
 import com.huidong.legalsys.domain.Stature;
 import com.huidong.legalsys.enumeration.ErrorEnum;
 import com.huidong.legalsys.exception.LegalsysException;
@@ -36,6 +38,8 @@ public class ConsultService {
     private ConsultDao consultDao;
     @Autowired
     private StatureDao statureDao;
+    @Autowired
+    private ConvrDao convrDao;
 
     /**
      * @Description 获得法律条文信息
@@ -70,6 +74,16 @@ public class ConsultService {
     public Consult getConsult(Integer id) {
         Consult consult = consultDao.getConsult(id);
         return consult;
+    }
+
+    /**
+     * @Description 获得会话信息
+     * @param id 会话编号
+     * @return Consult 会话信息
+     */
+    public Convr getConvr(Integer id) {
+        Convr convr = convrDao.getConvrInfo(id);
+        return convr;
     }
 
     /**

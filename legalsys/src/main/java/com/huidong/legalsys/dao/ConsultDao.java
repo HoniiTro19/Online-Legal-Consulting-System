@@ -1,6 +1,7 @@
 package com.huidong.legalsys.dao;
 
 import com.huidong.legalsys.domain.Consult;
+import com.huidong.legalsys.domain.Convr;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -24,6 +25,7 @@ public interface ConsultDao {
      * @return 咨询信息
      */
     Consult getConsult(Integer id);
+
     /**
      * @Description 获得用户所有咨询记录
      * @param phone 手机号

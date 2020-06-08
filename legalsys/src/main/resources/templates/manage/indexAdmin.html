@@ -19,21 +19,24 @@
             <div class="column_3">
                 <div class="first services">
                     <h2>功能说明</h2>
-                    <span class="intro_text">法律咨询系统legal的主页，提供用户注册登录链接，并且根据点击率统计出5条热门法条，根据咨询时间统计出最近5条咨询记录，根据用户在线情况统计出在线人数。</span>
+                    <span class="intro_text"></span>
                     <h2>使用说明</h2>
-                    <span class="intro_text">点击“用户登录”进入登录界面；点击“用户注册"进入注册界面；点击”管理员登录“进入管理员登录界面。</span>
+                    <span class="intro_text"></span>
                 </div>
                 <div class="services">
-                    <h2>热门法条</h2>
-                    <ul>
-                        <li th:each="stature:${rcmdStatures}"><a th:href="@{'/penallaw/detail?lawid='+${stature.lawid}}">[[${stature.title}]]</a></li>
-                    </ul>
+                    <h2>用户基本信息</h2>
+                    <p>手机号（Phone）：[[${user.phone}]]</p>
+                    <p>真实姓名（Name）：[[${user.name}]]<p>
+                    <p>密码（Password）：[[${user.password}]]<p>
+                    <p>身份证号（Idno）：[[${user.idno}]]<p>
+                    <p>律所信息（Firm）：[[${user.firmname}]]<p>
                 </div>
                 <div class="services">
-                    <h2>热门案件</h2>
-                    <ul>
-                        <li th:each="consult:${rcmdConsults}"><a th:href="@{'/manage/consult/detail?id='+${consult.id}}">[[${consult.title}]]</a></li>
-                    </ul>
+                    <h2>个人资料管理</h2>
+                    <h1 id="allUsers"><a href="/manage/">注册用户信息</a></h1>
+                    <h1 id="allStatures"><a href="/manage/lawyerAuth">法律条文信息</a></h1>
+                    <h1 id="allConsults"><a href="/manage">用户咨询信息</a></h1>
+                    <h1 id="allConvrs"><a href="/manage">用户会话信息</a></h1>
                 </div>
             </div>
         </div>

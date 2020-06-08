@@ -25,9 +25,8 @@
                 <div class="services">
                     <h2>讨论区案件</h2>
                     <ul>
-                        <li th:each="session:${sessions}"><a th:href="@{'/penallaw/detail?lawid='+${session.id}}">[[${session.title}]]</a></li>
+                        <li th:each="session:${sessions}"><a th:href="@{'/session/detail?id='+${session.id}}">[[${session.title}]]</a></li>
                     </ul>
-
                 </div>
             </div>
         </div>

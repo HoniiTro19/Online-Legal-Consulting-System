@@ -13,6 +13,10 @@
         values(#{phone}, #{lawyerphone}, #{convr}, #{lawyerconvr}, #{time}, #{lawyertime})
     </insert>
 
+    <select id="getConvrInfo" resultType="com.huidong.legalsys.domain.Convr">
+        select * from convrTable where id = #{id}
+    </select>
+
     <select id="getConvr" resultType="java.lang.String">
         select convr from convrTable where id = #{id}
     </select>

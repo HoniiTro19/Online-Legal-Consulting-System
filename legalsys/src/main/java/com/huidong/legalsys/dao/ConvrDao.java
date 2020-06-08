@@ -19,6 +19,13 @@ public interface ConvrDao {
     Boolean newConvr(Convr convr);
 
     /**
+     * @Description 获得会话信息
+     * @param id 会话编号
+     * @return String 会话信息
+     */
+    Convr getConvrInfo(Integer id);
+
+    /**
      * @Description 获得普通用户在会话中的内容
      * @param id 会话编号
      * @return String 普通用户在会话中的内容

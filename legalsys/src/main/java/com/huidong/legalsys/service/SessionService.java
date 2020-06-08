@@ -53,11 +53,16 @@ public class SessionService {
         logger.info("新的咨询已发布：{}", title);
     }
 
+    public Session getSession(Integer id) {
+        Session session = sessionDao.getSession(id);
+        return session;
+    }
+
     /**
      * @Description 获得讨论区所有未建立会话的咨询
      * @return List<Session> 讨论区所有未建立会话的咨询
      */
-    public List<Session> getAllSessions(){
+    public List<Session> getAllSessions() {
         List<Session> sessions = sessionDao.getAllSessions();
         return sessions;
     }
