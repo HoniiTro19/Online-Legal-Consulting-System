@@ -8,7 +8,7 @@
 - 项目管理：Maven
 - IDE：JetBrains Intelij IDEA 2020
 - 开发系统：Windows10
-- 网络服务器：Tomcat
+- 网络服务器：Tomcat(9.0)
 
 ## 文件目录
 
