@@ -3,15 +3,22 @@ package com.huidong.legalsys.controller;
 import com.huidong.legalsys.domain.User;
 import com.huidong.legalsys.enumeration.ErrorEnum;
 import com.huidong.legalsys.exception.LegalsysException;
+import com.huidong.legalsys.handle.ExceptionHandle;
 import com.huidong.legalsys.service.LoginService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
+import javax.validation.Valid;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * @Description 用户注册登录的控制层
@@ -21,8 +28,10 @@ public class LoginController {
 
     @Autowired
     private LoginService loginService;
-    @Value("${file.upload-dir}")
+    @Value("${spring.servlet.multipart.location}")
     private String fileLocation;
+
+    private final static Logger logger = LoggerFactory.getLogger(ExceptionHandle.class);
 
     /**
      * @Description 转入用户登录界面或主页
@@ -97,11 +106,11 @@ public class LoginController {
      * @return 信息收集界面
      */
     @PostMapping("/register/normal/upload")
-    public String normalInput(@RequestParam("phone") String phone,
-                         @RequestParam("name") String name,
-                         @RequestParam("password") String password,
-                         @RequestParam("verify") String verify,
-                         @RequestParam("idno") String idno){
+    public String normalUpload(@Valid @RequestParam("phone") String phone,
+                               @RequestParam("name") String name,
+                               @RequestParam("password") String password,
+                               @RequestParam("verify") String verify,
+                               @Valid @RequestParam("idno") String idno){
         if (!password.equals(verify)) {
             throw new LegalsysException(ErrorEnum.VERIFYNOTMATCH);
         }
@@ -134,32 +143,43 @@ public class LoginController {
      * @return 信息收集界面
      */
     @PostMapping("/register/lawyer/upload")
-    public String normal(@RequestParam("phone") String phone,
-                         @RequestParam("name") String name,
-                         @RequestParam("password") String password,
-                         @RequestParam("verify") String verify,
-                         @RequestParam("idno") String idno,
-                         @RequestParam("firmname") String firmname,
-                         @RequestParam("licensefile") Part licensefile,
-                         HttpServletRequest request){
-        if (!password.equals(verify)) {
-            throw new LegalsysException(ErrorEnum.VERIFYNOTMATCH);
-        }
-        try {
-            String filename = licensefile.getSubmittedFileName();
-            String path = request.getSession().getServletContext().getRealPath(fileLocation);
-            String lincenseurl = request.getScheme() + "://" + request.getServerName() + fileLocation + filename;
-
-            User user = new User();
-            user.setPhone(phone);
-            user.setName(name);
-            user.setPassword(password);
-            user.setIdno(idno);
-            user.setLicenseurl(lincenseurl);
-            user.setFirmname(firmname);
-            loginService.registerLawyer(phone, name, password, idno, lincenseurl, firmname);
-        }catch (RuntimeException e) {
-            e.printStackTrace();
+    public String lawyerUpload(@Valid @RequestParam("phone") String phone,
+                               @RequestParam("name") String name,
+                               @RequestParam("password") String password,
+                               @RequestParam("verify") String verify,
+                               @Valid @RequestParam("idno") String idno,
+                               @RequestParam("firmname") String firmname,
+                               @RequestParam("licensefile") MultipartFile licensefile,
+                         MultipartHttpServletRequest request){
+        if (!licensefile.isEmpty()){
+            if (!password.equals(verify)) {
+                throw new LegalsysException(ErrorEnum.VERIFYNOTMATCH);
+            }
+            try {
+                String filename = licensefile.getOriginalFilename();
+                String suffixname = filename.substring(filename.lastIndexOf("."));
+                System.out.println(suffixname);
+                String lincenseurl = fileLocation + request.getServerName() + suffixname;
+                File dest = new File(lincenseurl);
+                if (!dest.getParentFile().exists()){
+                    dest.getParentFile().mkdirs();
+                }
+                licensefile.transferTo(dest);
+                User user = new User();
+                user.setPhone(phone);
+                user.setName(name);
+                user.setPassword(password);
+                user.setIdno(idno);
+                user.setLicenseurl(lincenseurl);
+                user.setFirmname(firmname);
+                loginService.registerLawyer(phone, name, password, idno, lincenseurl, firmname);
+            }catch (RuntimeException e) {
+                e.printStackTrace();
+            }catch (IOException e){
+                e.printStackTrace();
+            }
+        }else {
+            logger.error("file upload fail!");
         }
         return "redirect:/login";
     }

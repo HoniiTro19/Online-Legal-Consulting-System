@@ -12,7 +12,7 @@
         update statureTable set clickrate = clickrate + 1 where lawid = #{lawid}
     </update>
 
-    <select id="getStature" resultType="com.huidong.legalsys.domain.Stature">
+    <select id="getStatureInfo" resultType="com.huidong.legalsys.domain.Stature">
         select * from statureTable where lawid = #{lawid}
     </select>
 

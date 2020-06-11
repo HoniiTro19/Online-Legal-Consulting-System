@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!--mybatis实现UserDao定义的接口-->
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.huidong.legalsys.dao.UserDao">
+
+    <select id="isRegisted" resultType="java.lang.String">
+        select phone from userTable where phone = #{phone}
+    </select>
+
+    <select id="isRegistedLawyer" resultType="java.lang.String">
+        select phone from userTable where phone = #{phone} and licenseurl is not null and firmname is not null
+    </select>
+
+    <insert id="register" parameterType="com.huidong.legalsys.domain.User">
+        insert into userTable(phone, name, password, idno, licenseurl, firmname)
+        values (#{phone}, #{name}, #{password}, #{idno}, #{licenseurl}, #{firmname})
+    </insert>
+
+    <select id="login" resultType="com.huidong.legalsys.domain.User">
+        select * from userTable where phone = #{phone} and password = #{password};
+    </select>
+
+    <select id="getPassword" resultType="java.lang.String">
+        select password from userTable where phone = #{phone}
+    </select>
+
+    <update id="setPassword">
+        update userTable set password = #{newpassword} where phone = #{phone}
+    </update>
+
+    <update id="setLicenseurl">
+        update userTable set licenseurl = #{newlicenseurl} where phone = #{phone}
+    </update>
+
+    <update id="setFirmname">
+        update userTable set firmname = #{newfirmname} where phone = #{phone}
+    </update>
+
+    <select id="getUserInfo" resultType="com.huidong.legalsys.domain.User">
+        select * from userTable where phone = #{phone}
+    </select>
+
+    <select id="getAllUsers" resultType="com.huidong.legalsys.domain.User">
+        select * from userTable
+    </select>
+
+</mapper>

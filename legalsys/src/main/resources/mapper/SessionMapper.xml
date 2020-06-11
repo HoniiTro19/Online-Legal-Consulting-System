@@ -17,7 +17,7 @@
         select id from sessionTable where id = #{id}
     </select>
 
-    <select id="getSession" resultType="com.huidong.legalsys.domain.Session">
+    <select id="getSessionInfo" resultType="com.huidong.legalsys.domain.Session">
         select * from sessionTable where id = #{id}
     </select>
 

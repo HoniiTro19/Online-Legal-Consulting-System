@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="compoment/static::static"></head>
+
+<body>
+<div id="page">
+    <div id="wrap">
+        <div id="header">
+            <h1 id="logo"><a href="/">法律咨询系统</a></h1>
+            <div class="availability">
+                <a href="https://github.com/HoniiTro19/Online-Legal-Consulting-System" class="available" target="_blank"></a>
+            </div>
+            <div th:replace="compoment/navigatior::commonMenu(0)"></div>
+        </div>
+
+        <div id="main_content">
+            <div class="column_3">
+                <div class="first services">
+                    <h2>功能说明</h2>
+                    <p>用户修改律师认证信息的界面，用户按要求输入“律所信息”，上传“律师执照”，系统将修改用户的律师认证信息，修改完成后不需要重新登陆。</p>
+                    <h2>使用案例</h2>
+                    <p>用户可以按照下述方式进行操作：</p>
+                    <p>修改律所信息：××省××市××区××律所</p>
+                    <p>上传律师执照：license.jpg</p>
+                    <p>提交，成功修改律师认证信息。</p>
+                </div>
+                <div class="services">
+                    <h2>用户基本信息</h2>
+                    <p>手机号（Phone）：[[${userInfo.phone}]]</p>
+                    <p>真实姓名（Name）：[[${userInfo.name}]]<p>
+                    <p>密码（Password）：[[${userInfo.password}]]<p>
+                    <p>身份证号（Idno）：[[${userInfo.idno}]]<p>
+                    <p>律所信息（Firm）：[[${userInfo.firmname}]]<p>
+                </div>
+                <div class="services">
+                    <h2>修改律师认证</h2>
+                    <form action="/manage/lawyerAuth/upload" method="post" enctype="multipart/form-data">
+                        <p class="sheet">律所信息：<input type="text" name="firmname" required></p>
+                        <p class="sheet">律师执照：<input type="file" name="file" required></p>
+                        <input type="submit" value="确认">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

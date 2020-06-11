@@ -13,7 +13,7 @@
         values(#{phone}, #{title}, #{query}, #{type}, #{result}, #{time})
     </insert>
 
-    <select id="getConsult" resultType="com.huidong.legalsys.domain.Consult">
+    <select id="getConsultInfo" resultType="com.huidong.legalsys.domain.Consult">
         select * from consultTable where id = #{id}
     </select>
 

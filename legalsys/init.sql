@@ -2,9 +2,9 @@
  * MySQL创建数据库表单
  * userTable 记录用户的个人信息 com.huidong.legalsys.domain.User
  * statureTable 记录法条信息 com.huidong.legalsys.domain.Stature
- * loginTable 记录用户的登录日志 com.huidong.legalsys.domain.Login
- * consultTable 记录用户的咨询日志 com.huidong.legalsys.domain.Consult
- * convrTable 记录用户的会话日志 com.huidong.legalsys.domain.Convr
+ * loginTable 记录用户的登录 com.huidong.legalsys.domain.Login
+ * consultTable 记录用户的咨询 com.huidong.legalsys.domain.Consult
+ * convrTable 记录用户的会话 com.huidong.legalsys.domain.Convr
  * 运行init.sql时，所有数据库信息都会被初始化
  */
 

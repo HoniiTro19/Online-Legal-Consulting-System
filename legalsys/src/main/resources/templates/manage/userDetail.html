@@ -21,6 +21,7 @@
                 <p>密码（Password）：[[${userInfo.password}]]<p>
                 <p>身份证号（Idno）：[[${userInfo.idno}]]<p>
                 <p>律所信息（Firm）：[[${userInfo.firmname}]]<p>
+                <p>律师执照（License）：<img th:src="@{'/manage/allUsers/getLicense?licenseurl='+${userInfo.licenseurl}}"></p>
             </div>
         </div>
     </div>

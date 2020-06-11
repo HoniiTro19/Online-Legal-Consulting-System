@@ -1,19 +1,20 @@
 package com.huidong.legalsys.configuration;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+/**
+ * 文件上传配置类
+ */
 
-@Configuration
-    public class UploadFileConfiguration implements WebMvcConfigurer {
-    @Value("${file.staticAccessPath}")
-    private String staticAccessPath;
-    @Value("${file.upload-dir}")
-    private String uploadDir;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler(staticAccessPath).addResourceLocations("file:"+uploadDir);
+public class UploadFileConfiguration {
+
+    @Bean(name = "multipartResolver")
+    public MultipartResolver multipartResolver() {
+        CommonsMultipartResolver resolver = new CommonsMultipartResolver();
+        resolver.setDefaultEncoding("UTF-8");
+        return resolver;
     }
 }
+

@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @ControllerAdvice
 public class ExceptionHandle {
 
-    private final static Logger logger = LoggerFactory.getLogger(ExceptionHandle.class);
-
     @ExceptionHandler(value = Exception.class)
     @ResponseBody
     public Error handle(Exception exception) {
@@ -21,6 +19,7 @@ public class ExceptionHandle {
             LegalsysException legalsysException = (LegalsysException) exception;
             return ErrorUtil.error(legalsysException.getCode(), legalsysException.getMessage());
         }else if (exception instanceof RuntimeException){
+            exception.printStackTrace();
             return ErrorUtil.error(-1, "未知错误");
         }else {
             return ErrorUtil.success();

@@ -1,5 +1,7 @@
 package com.huidong.legalsys.domain;
 
+import org.hibernate.validator.constraints.Length;
+
 /**
  * 用户表单
  * phone 用户联系电话（作为登录系统的id）
@@ -11,9 +13,11 @@ package com.huidong.legalsys.domain;
  */
 
 public class User {
+    @Length(min=11,max=11,message = "手机号为11位数字字符串")
     private String phone;
     private String name;
     private String password;
+    @Length(min=28,max=28,message = "身份证号为28为数字字符串")
     private String idno;
     private String licenseurl;
     private String firmname;

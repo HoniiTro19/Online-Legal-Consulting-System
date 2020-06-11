@@ -2,24 +2,35 @@ package com.huidong.legalsys.controller;
 
 import com.huidong.legalsys.domain.Consult;
 import com.huidong.legalsys.domain.Convr;
-import com.huidong.legalsys.domain.Stature;
 import com.huidong.legalsys.domain.User;
 import com.huidong.legalsys.enumeration.ErrorEnum;
 import com.huidong.legalsys.exception.LegalsysException;
 import com.huidong.legalsys.service.ManageService;
 import com.huidong.legalsys.service.ConsultService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
+import java.awt.image.BufferedImage;
+import java.io.*;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Map;
+
+import static java.lang.Byte.SIZE;
 
 /**
  * @Description 用户管理的控制层
@@ -124,9 +135,6 @@ public class ManageController {
         manageService.lawyerAuth(phone, licenseurl, firmname);
         return "redirect:/manage";
     }
-
-
-
 
 
 
@@ -266,6 +274,32 @@ public class ManageController {
         map.put("userInfo", userInfo);
         return "manage/userDetail";
     }
+
+    @GetMapping("/manage/allUsers/getLicense")
+    public ResponseEntity<byte[]> getLicense(@RequestParam("licenseurl") String licenseurl) throws Exception{
+        byte[] licensebyte;
+        licensebyte = fileToByte(new File(licenseurl));
+        final HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.IMAGE_PNG);
+        return new ResponseEntity<>(licensebyte, headers, HttpStatus.OK);
+    }
+
+    public static byte[] fileToByte(File img) throws Exception {
+        byte[] bytes = null;
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        try {
+            BufferedImage bi;
+            bi = ImageIO.read(img);
+            ImageIO.write(bi, "png", baos);
+            bytes = baos.toByteArray();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            baos.close();
+        }
+        return bytes;
+    }
+
 
     /**
      * @Description 获得所有法律条文信息
