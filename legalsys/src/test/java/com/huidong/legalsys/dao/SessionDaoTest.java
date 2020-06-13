@@ -39,17 +39,17 @@ public class SessionDaoTest extends TestCase {
     }
 
     @Test
+    public void getSessionInfoTest() {
+        Integer id = 1;
+        Session session = sessionDao.getSessionInfo(id);
+        assertNotNull("未能成功获取咨询者的手机号", session);
+    }
+
+    @Test
     public void getPhoneTest() {
         Integer id = 1;
         String phone = sessionDao.getPhone(id);
         assertNotNull("未能成功获取咨询者的手机号", phone);
-    }
-
-    @Test
-    public void getTitleTest() {
-        Integer id = 1;
-        String title = sessionDao.getTitle(id);
-        assertNotNull("未能成功获取咨询的标题", title);
     }
 
     @Test

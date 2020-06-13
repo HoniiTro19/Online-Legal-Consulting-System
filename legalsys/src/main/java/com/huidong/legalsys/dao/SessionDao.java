@@ -41,13 +41,6 @@ public interface SessionDao {
     String getPhone(Integer id);
 
     /**
-     * @Description 获得咨询标题
-     * @param id 咨询编号
-     * @return String 咨询标题
-     */
-    String getTitle(Integer id);
-
-    /**
      * @Description 获得咨询内容
      * @param id 咨询编号
      * @return String 咨询内容

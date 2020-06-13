@@ -10,24 +10,25 @@
             <div class="availability">
                 <a href="https://github.com/HoniiTro19/Online-Legal-Consulting-System" class="available" target="_blank"></a>
             </div>
-            <h1 id="newsession"><a href="/session/newsession">新建咨询</a></h1>
-            <div th:replace="compoment/navigatior::commonMenu(0)"></div>
+            <div th:replace="compoment/navigatior::commonMenu(4)"></div>
         </div>
 
         <div id="main_content">
             <div class="column_2">
                 <div class="first services">
                     <h2>功能说明</h2>
-                    <p>查询会话记录的界面，用户可以在”会话记录“中看到自己的会话记录，管理员可以在“会话记录”中看到所有用户的会话记录，点击咨询记录的标题就能查看详细情况。</p>
+                    <p>用户聊天界面，用户在建立会话以后，可以与对方进行一对一交流。</p>
+                    <p>普通用户就自己想咨询的问题追加更加详细的描述，律师用户根据普通用户的描述，凭借自己的专业知识进行答复。</p>
                     <h2>使用案例</h2>
-                    <p>用户可以按照下述方式进行操作：</p>
-                    <p>咨询记录：”殴打致轻伤二级“</p>
-                    <p>点击”殴打致轻伤二级“查看咨询记录的详细情况。</p>
+                    <p>用户需要注意以下几个方面：</p>
+                    <p><b>用户在建立会话之后，系统会自动将普通用户的咨询内容作为第一条信息再复述一遍。</b></p>
+                    <p><b>每条会话内容上都会标注时间。</b></p>
+                    <p><b>在框内输入内容，再点击发送，页面就会刷新，显示最新的会话情况。</b></p>
                 </div>
                 <div class="services">
                     <h2>会话记录</h2>
                     <ul>
-                        <li th:each="convr:${convrs}"><a th:href="@{'/manage/convr/detail?id='+${convr.id}}">用户[[${convr.phone}]]与用户[[${convr.lawyer}]]的会话</a></li>
+                        <li th:each="userConvr:${userConvrs}"><a th:href="@{'/manage/userConvrs/detail?id='+${userConvr.id}}">用户[[${userConvr.phone}]]与用户[[${userConvr.lawyerphone}]]的会话</a></li>
                     </ul>
                 </div>
             </div>

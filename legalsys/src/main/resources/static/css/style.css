@@ -83,7 +83,7 @@ a:hover{
 	text-indent:-999999px;
 	float:right;
 	padding:0px;
-	margin-top: 10px;
+	margin-right: 5px;
 }
 #header #newsession a{
 	display:block;
@@ -125,6 +125,24 @@ a:hover{
 #header #login a{
 	display:block;
 	background:url(../images/login.png) no-repeat;
+}
+
+/*estbConvr*/
+#header #estbConvr,
+#header #estbConvr a{
+	width:107px;
+	height:36px;
+	cursor:pointer;
+}
+#header #estbConvr{
+	text-indent:-999999px;
+	float:right;
+	padding:0px;
+	margin-right:50px;
+}
+#header #estbConvr a{
+	display:block;
+	background:url(../images/estbConvr.png) no-repeat;
 }
 
 /*register*/
@@ -214,6 +232,17 @@ a:hover{
 	color: #2B2B36;
 }
 
+#main_content h1{
+	margin-top: 10px;
+	margin-right: 10px;
+}
+
+#main_content ul li{
+	list-style: none;
+}
+
+
+/*column_3*/
 #main_content .column_3 div h2{
 	font:28px/26px Georgia, "Times New Roman", Times, serif;
 	background:url(../images/grunge_line.gif) repeat-x bottom center;
@@ -436,6 +465,7 @@ a:hover{
 	background:url(../images/arrow_2_hover.gif) no-repeat left .5em;
 }
 
+/*column_2*/
 #main_content .column_2 div h2{
 	font:28px/26px Georgia, "Times New Roman", Times, serif;
 	background:url(../images/grunge_line.gif) repeat-x bottom center;
@@ -451,9 +481,6 @@ a:hover{
 	text-align: center;
 }
 
-#main_content div p .sheet{
-	margin-top: 10px;
-}
 
 #main_content .column_2 div classify{
 	font:28px/26px Georgia, "Times New Roman", Times, serif;
@@ -487,18 +514,9 @@ a:hover{
 }
 
 
-#main_content h1{
-	margin-top: 10px;
-	margin-right: 10px;
-}
 
-#main_content .detail p{
-	font: 15px/22px Georgia, "Times New Roman", Times, serif;
-	color: #2B2B36;
-	display: block;
-	padding-bottom: 30px;
-}
 
+/*detail*/
 #main_content .detail h2{
 	width:80%;
 	margin-top: 250px;
@@ -507,25 +525,72 @@ a:hover{
 	color: #2B2B36;
 }
 
+/*column_1*/
+#main_content .column_1 div h2{
+	font:28px/26px Georgia, "Times New Roman", Times, serif;
+	background:url(../images/grunge_line.gif) repeat-x bottom center;
+	margin-top: 25px;
+	padding-bottom:10px;
+	color: #2B2B36;
+}
+
+#main_content .column_1 div form{
+	font:28px/26px Georgia, "Times New Roman", Times, serif;
+	margin-top: 25px;
+	color: #2B2B36;
+	text-align: center;
+}
 
 
-.putIn{width:100%;height:50px;padding:6px 12px;position:fixed;bottom:0;}
-.putIn input{width:74%;float:left;background:#fff;}
-.putIn button{width:24%;float:right;}
-.mui-btn-danger{background:#ff0000;height:38px;border:1px solid #ff0000;}
+#main_content .column_1 div classify{
+	font:28px/26px Georgia, "Times New Roman", Times, serif;
+	margin-top: 25px;
+	color: #2B2B36;
+}
+
+#main_content .column_1 .first{
+	width: 80%;
+	float:left;
+	padding-left:0;
+}
+#main_content .column_1 div{
+	float:left;
+	width: 60%;
+	padding-left:56px;
+}
+#main_content .column_1 div h2{
+	text-align: center;
+	margin-bottom:0px;
+	padding-bottom:10px;
+}
+
+
+#main_content .column_1 .services ul{
+	position:relative;
+	padding:0 0 20px 0;
+	margin:0;
+	float:left;
+	width: 100%;
+}
+
+
+
+/*conversation*/
+#main_content .putIn{width:80%;height:50px;padding:6px 12px;position:fixed;bottom:0;}
+#main_content .putIn input{width:70%;float:left;background:#fff;}
 input[type=text]{border:0;height:38px;margin:0;}
-/*对话框*/
-.chatlist{margin-top:44px;padding:12px;}
-.chatlist p.time{margin:0;text-align: center;}
-.chatlist p.time span{padding:0 18px;display:inline-block;font-size:9pt;color: #fff;border-radius: 2px;background-color: #dcdcdc;}
-.chatlist .chatout,.chatlist .chatin{margin:10px 0;}
-.chatlist .chatout{text-align:right;}
-.chatlist .chatout img{float:right;width:40px;height:40px;border-radius:50%;margin: 0 0 0 10px;}
-.chatlist .chatout span{display: inline-block;position:relative;padding:10px;max-width: calc(100% - 90px);min-height: 40px;line-height:20px;font-size: 13px;word-break: break-all;border-radius: 4px;background-color: #ff0000;color:#fff;}
-.chatlist .chatout span:before{content: " ";position: absolute;top: 9px;left: 100%;border: 6px solid transparent;border-left-color: #ff0000;}
-.chatlist .chatin img{float:left;width:40px;height:40px;border-radius:50%;margin: 0 10px 0 0;}
-.chatlist .chatin span{display: inline-block;position:relative;padding:10px;max-width: calc(100% - 90px);min-height: 40px;line-height:20px;font-size: 13px;word-break: break-all;border-radius: 4px;text-align: left;background-color: #fafafa;}
-.chatlist .chatin span:before{content: " ";position: absolute;top: 9px;right: 100%;border: 6px solid transparent;border-right-color: #fafafa;}
+
+#main_content .chatlist{margin-top:44px;padding:12px;}
+#main_content .chatlist p.time{margin:0;text-align: center;}
+#main_content .chatlist p.time span{padding:0 18px;display:inline-block;font-size:9pt;color: darkgoldenrod;border-radius: 2px;background-color: #dcdcdc;}
+#main_content .chatlist .chatout,.chatlist .chatin{margin:10px 0;}
+#main_content .chatlist .chatout{text-align:right;}
+#main_content .chatlist .chatout img{float:right;width:40px;height:40px;border-radius:50%;margin: 0 0 0 10px;}
+#main_content .chatlist .chatout span{display: inline-block;position:relative;padding:10px;max-width: calc(100% - 90px);min-height: 40px;line-height:20px;font-size: 13px;word-break: break-all;border-radius: 4px;background-color: #ff0000;color:#fff;}
+#main_content .chatlist .chatout span:before{content: " ";position: absolute;top: 9px;left: 100%;border: 6px solid transparent;border-left-color: #ff0000;}
+#main_content .chatlist .chatin img{float:left;width:40px;height:40px;border-radius:50%;margin: 0 10px 0 0;}
+#main_content .chatlist .chatin span{display: inline-block;position:relative;padding:10px;max-width: calc(100% - 90px);min-height: 40px;line-height:20px;font-size: 13px;word-break: break-all;border-radius: 4px;text-align: left;background-color: #ffda74;}
+#main_content .chatlist .chatin span:before{content: " ";position: absolute;top: 9px;right: 100%;border: 6px solid transparent;border-right-color: #ffda74;}
 
 /*common styles*/
 

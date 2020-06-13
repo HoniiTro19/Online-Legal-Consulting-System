@@ -21,6 +21,7 @@ public class ConsultController {
     @Autowired
     private ConsultService consultService;
 
+
     @GetMapping("/consult/detail")
     public String consultDetail(@RequestParam("id") Integer id,
                                 Map<String, Object> map) {

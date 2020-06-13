@@ -85,16 +85,4 @@ public class LoginDaoTest extends TestCase {
         String freezetime = loginDao.getFreezetime(phone);
         assertNotNull("未能获取用户上次失败登录的时间", freezetime);
     }
-
-    @Test
-    public void getAllLoginsTest(){
-        List<Login> logins = loginDao.getAllLogins();
-        assertNotNull(logins);
-    }
-
-    @Test
-    public void getConcurrentUsersTest(){
-        Integer userNum = loginDao.getConcurrentUsers();
-        assertNotNull(userNum);
-    }
 }

@@ -27,16 +27,13 @@ public class StatisticsController {
      * @return 系统的主界面
      */
     @GetMapping("/")
-    public String statisticsGuest(Map<String, Object> map,
+    public String statistics(Map<String, Object> map,
                                   HttpServletRequest request){
         ArrayList<Stature> rcmdStatures = statisticsService.rcmdStatures();
         map.put("rcmdStatures", rcmdStatures);
 
         ArrayList<Consult> rcmdConsults = statisticsService.rcmdConsults();
         map.put("rcmdConsults", rcmdConsults);
-
-        Integer concurrentNum = statisticsService.showConcurrent();
-        map.put("concurrentNum", concurrentNum);
 
         HttpSession session =  request.getSession();
         User user = (User) session.getAttribute("user");

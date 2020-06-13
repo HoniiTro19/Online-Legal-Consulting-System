@@ -2,8 +2,7 @@ package com.huidong.legalsys.enumeration;
 
 public enum LoginStatusEnum {
     FREEZE(-1),
-    ONLINE(0),
-    OFFLINE(1);
+    NOTFREEZE(0);
 
     private Integer status;
 

@@ -10,13 +10,15 @@
             <div class="availability">
                 <a href="https://github.com/HoniiTro19/Online-Legal-Consulting-System" class="available" target="_blank"></a>
             </div>
-            <div th:replace="compoment/navigatior::commonMenu(0)"></div>
+            <h1 id="estbConvr"><a th:href="@{'/session/estbConvr?sessionid='+${sessionInfo.id}}"></a></h1>
+            <div th:replace="compoment/navigatior::commonMenu(2)"></div>
         </div>
 
         <div id="main_content">
             <div class="detail">
                 <h2>讨论区会话详情</h2>
                 <p>咨询编号（Id）：[[${sessionInfo.id}]]</p>
+                <p>咨询用户手机号（Phone）：[[${sessionInfo.phone}]]</p>
                 <p>咨询标题（Title）：[[${sessionInfo.title}]]<p>
                 <p>咨询内容（Content）：[[${sessionInfo.content}]]<p>
             </div>

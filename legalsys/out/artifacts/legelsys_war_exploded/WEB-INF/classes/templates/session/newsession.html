@@ -10,14 +10,16 @@
             <div class="availability">
                 <a href="https://github.com/HoniiTro19/Online-Legal-Consulting-System" class="available" target="_blank"></a>
             </div>
-            <div th:replace="compoment/navigatior::commonMenu(0)"></div>
+            <div th:replace="compoment/navigatior::commonMenu(2)"></div>
         </div>
 
         <div id="main_content">
             <div class="column_2">
                 <div class="first services">
                     <h2>功能说明</h2>
-                    <p>用户在表单中一次输入“咨询的标题”，“咨询的具体内容”，并点击“提交表单”，讨论区就会出现该案件咨询。<b>Tips：</b>“咨询的标题”应该尽可能简练地概括“咨询的具体内容”；不要在问题中泄露个人隐私，本平台不对用户主动泄露的隐私负责。</p>
+                    <p>用户在表单中一次输入“咨询的标题”，“咨询的具体内容”，并点击“提交表单”，讨论区就会出现该案件咨询。</p>
+                    <p><b>“咨询的标题”应该尽可能简练地概括“咨询的具体内容”。</b></p>
+                    <p><b>不要在问题中泄露个人隐私，本平台不对用户主动泄露的隐私负责。</b></p>
                     <h2>使用案例</h2>
                     <p>用户可以按照下述方式进行操作：</p>
                     <p>咨询的标题：殴打至轻伤二级</p>
@@ -26,8 +28,8 @@
                 <div class="services">
                     <h2>用户咨询表单</h2>
                     <form action="/session/newsession/upload" method="post">
-                        <p>咨询的标题：<input type="text" name="title" required="required"></p>
-                        <p>咨询地具体内容：<input type="text" name="content" required="required"></p>
+                        <p>咨询的标题：<input type="text" name="title" required></p>
+                        <p>咨询地具体内容：<input type="text" name="content" required></p>
                         <input type="submit" value="提交表单">
                     </form>
                 </div>

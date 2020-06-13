@@ -4,7 +4,7 @@ package com.huidong.legalsys.domain;
  * 用户登录表单
  * phone 用户的手机号
  * attempt 用户尝试登录的次数
- * status 用户登录状态
+ * status 用户账号冻结状态
  *  @see com.huidong.legalsys.enumeration.LoginStatusEnum
  * freezetime 用户账号冻结的时间
  */

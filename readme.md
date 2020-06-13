@@ -1,5 +1,9 @@
 # 网上法律咨询系统
 
+### Latest News
+
+- 网上法律咨询系统的开发项目，从需求分析，软件开发，系统测试，大部分内容都完成了，但是由于算法模型的代码还没有整理好，“智能预测”模板的功能还没有实现。
+
 ### 开发环境
 
 - 开发语言： 后端 - Java(jdk1.8)，Python(3.7)，前端 - Html，JavaScript     
@@ -10,28 +14,112 @@
 - 开发系统：Windows10
 - 网络服务器：Tomcat(9.0)
 
-## 文件目录
+### 代码结构
 
 ```
-中期报告
-├── 课设要求
-│   ├── 课程设计题目2020.doc（推荐选择的题目）
-│   ├── 软件工程课程设计应交的文档.doc
-├── 系统的简要说明
-│   ├── 系统说明.doc
-├── 需求文档
-│   ├── 功能思维导图.xmind（使用环境为XMind)
-│   ├── 角色用例描述.doc
-│   ├── 分析确定类.doc
-│   ├── 网上法律咨询系统.mdj（其中包括分层USE CASE建模，类的描述，使用环境为StarUML）
-├── 设计文档
-│   ├── 网上法律咨询系统.mdj（其中包括设计类图，包图，活动图，使用环境为StarUML）
-├── legalsys（代码，数据）
-│   ├── .idea（IDEA配置）
-│   ├── src 源代码
-│   ├── target
-│   ├── .gitignore
-│   ├── .legalsys.iml
-│   ├── LICENSE.txt
-│   ├── pom.xml
+legalsys
+├─src 
+│	├─main
+│		├─java
+│			├─com.huidong.legalsys
+│				├─aspect（权限管理）
+│					├─LoginAspect.java
+│				├─configuration
+│					├─DataSourceConfiguration.java
+│					├─UploadFileConfiguration.java
+│				├─controller（业务表现层）
+│					├─ConsultController.java
+│					├─LoginController.java
+│					├─ManageController.java
+│					├─PenallawController.java
+│					├─SessionController.java
+│					├─StatisticsController.java
+│				├─dao（数据访问层）
+│					├─ConsultDao.java
+│					├─ConvrDao.java
+│					├─LoginDao.java
+│					├─SessionDao.java
+│					├─StatureDao.java
+│					├─UserDao.java
+│				├─domain（实体层）
+│					├─Consult.java
+│					├─Convr.java
+│					├─ConvrContent.java
+│					├─Error.java
+│					├─Login.java
+│					├─Session.java
+│					├─Stature.java
+│					├─User.java
+│				├─enumeration
+│					├─ConsultTypeEnum.java
+│					├─ErrorEnum.java
+│					├─LoginStatusEnum.java
+│					├─RegisterTypeEnum.java
+│					├─SessionStatusEnum.java
+│				├─exception
+│					├─LegalsysException.java
+│				├─handle
+│					├─ExceptionHandle.java
+│				├─listener（在线人数监听）
+│					├─HttpSessionListener.java
+│					├─RequestContextListener.java
+│					├─ServletContextListener.java
+│				├─service（业务逻辑层）
+│					├─ConsultService.java
+│					├─LoginService.java
+│					├─ManageService.java
+│					├─PenallawService.java
+│					├─SessionService.java
+│					├─StatisticsService.java
+│					├─UploadService.java
+│				├─util
+│					├─ErrorUtil.java
+│				├─LegalsysApplication.java（项目启动类）
+│		├─resources
+│			├─mapper（Mybatis映射）
+│				├─ConsultMapper.xml
+│				├─ConvrMapper.xml
+│				├─LoginMapper.xml
+│				├─SessionMapper.xml
+│				├─StatureMapper.xml
+│				├─UserMapper.xml
+│			├─python
+│				├─preprocess.py
+│			├─static
+│				├─css
+│					├─fonts
+│					├─style.css（html配置文件）
+│				├─images（存放图片文件）
+│				├─stature（存放刑法数据）
+│			├─templates（html文件）
+│			├─application.yml（配置文件）
+│			├─application.properties（配置文件）
+│		├─resourcesupload（律师执照上传路径）
+│	├─test
+├─init.sql（mysql新建数据库及表单）
+├─pom.xml（Maven项目配置文件）
 ```
+
+### 项目部署
+
+1. - 安装MySQL Community Server，https://dev.mysql.com/downloads/mysql/
+
+2. - cd legalsys目录
+   - 运行mysql -u root -p，输入密码
+   - 运行source init.sql建立数据库，初始化表单
+
+3. - 安装JetBrains IntelliJ IDEA Ultimate，https://www.jetbrains.com/idea/download/#section=windows
+   - 高校在读学生的话可以申请教育版，https://www.jetbrains.com/community/education/#students
+
+4. - 下载安装Maven，http://maven.apache.org/index.html
+   - 配置镜像，本地仓库
+
+5. - IDEA中打开legalsys项目文件
+   - 右键点击pom.xml，点击Maven，点击Reimport
+6. 
+
+### Acknowledgement
+
+- 开发之前没有相关经验，所有东西都是现学现卖，所以对spring boot的底层逻辑不清楚，前端开发的方法也不了解。虽然项目简单，但是代码中肯定有诸多不正确的地方，恳请大家能够包容，欢迎批评指正。
+
+- 整个开发过程借鉴了[qianqianjun](https://github.com/qianqianjun)，[IT技术博客项目](https://github.com/qianqianjun/spring-boot-blog)的很多方面，该项目质量比较高，如果是想要学习spring boot开发，熟悉整个开发流程的话，可以参考该项目。

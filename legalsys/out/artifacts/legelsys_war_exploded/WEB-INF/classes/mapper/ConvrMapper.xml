@@ -9,8 +9,8 @@
 <mapper namespace="com.huidong.legalsys.dao.ConvrDao">
 
     <insert id="newConvr" parameterType="com.huidong.legalsys.domain.Convr" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
-        insert into convrTable(phone, lawyerphone, convr, lawyerconvr, time, lawyertime)
-        values(#{phone}, #{lawyerphone}, #{convr}, #{lawyerconvr}, #{time}, #{lawyertime})
+        insert into convrTable(phone, lawyerphone, convr, time)
+        values(#{phone}, #{lawyerphone}, #{convr}, #{time})
     </insert>
 
     <select id="getConvrInfo" resultType="com.huidong.legalsys.domain.Convr">
@@ -25,14 +25,6 @@
         update convrTable set convr = #{convr} where id = #{id}
     </update>
 
-    <select id="getLawyerConvr" resultType="java.lang.String">
-        select lawyerconvr from convrTable where id = #{id}
-    </select>
-
-    <update id="setLawyerConvr">
-        update convrTable set lawyerconvr = #{lawyerconvr} where id = #{id}
-    </update>
-
     <select id="getTime" resultType="java.lang.String">
         select time from convrTable where id = #{id}
     </select>
@@ -40,21 +32,9 @@
     <update id="setTime">
         update convrTable set time = #{time} where id = #{id}
     </update>
-
-    <select id="getLawyerTime" resultType="java.lang.String">
-        select lawyertime from convrTable where id = #{id}
-    </select>
-
-    <update id="setLawyerTime">
-        update convrTable set lawyertime = #{lawyertime} where id = #{id}
-    </update>
     
-    <select id="getConvrsByPhone" resultType="com.huidong.legalsys.domain.Convr">
-        select * from convrTable where phone = #{phone}
-    </select>
-
-    <select id="getConvrsByLawyerPhone" resultType="com.huidong.legalsys.domain.Convr">
-        select * from convrTable where lawyerphone = #{lawyerphone}
+    <select id="getConvrs" resultType="com.huidong.legalsys.domain.Convr">
+        select * from convrTable where phone = #{phone} or lawyerphone = #{phone}
     </select>
 
     <delete id="deleteConvr">

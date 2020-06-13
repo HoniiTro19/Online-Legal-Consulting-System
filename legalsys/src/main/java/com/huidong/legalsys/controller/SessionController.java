@@ -76,13 +76,19 @@ public class SessionController {
         return "redirect:/session";
     }
 
-    @PostMapping("/session/estbconvr")
+    /**
+     * @Description 删除讨论区咨询，建立相应的会话
+     * @param sessionid 咨询编号
+     * @param request http请求
+     * @return 讨论区界面
+     */
+    @GetMapping("/session/estbConvr")
     public String estbconvr(@RequestParam("sessionid") Integer sessionid,
                             HttpServletRequest request){
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         String lawyerphone = user.getPhone();
         sessionService.estbConvr(lawyerphone, sessionid);
-        return "redirect:/session/index";
+        return "redirect:/session";
     }
 }

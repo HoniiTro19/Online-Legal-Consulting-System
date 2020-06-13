@@ -92,13 +92,7 @@ public class ManageService {
      * @return ArrayList<Convr> 用户的会话记录
      */
     public ArrayList<Convr> getConvrs(String phone){
-        String isLawyer = userDao.isRegistedLawyer(phone);
-        ArrayList<Convr> convrs = new ArrayList<>();
-        if (isLawyer == null){
-            convrs = convrDao.getConvrsByPhone(phone);
-        }else {
-            convrs = convrDao.getConvrsByLawyerPhone(phone);
-        }
+        ArrayList<Convr> convrs = convrDao.getConvrs(phone);
         return convrs;
     }
 
@@ -120,22 +114,13 @@ public class ManageService {
      */
     @Transactional(rollbackForClassName = "RuntimeException")
     public void contConvr(String phone, String record, String recordtime, Integer id){
-        String isLawyer = userDao.isRegistedLawyer(phone);
-        if (isLawyer == null){
-            String convr = convrDao.getConvr(id);
-            String time = convrDao.getTime(id);
-            String newconvr = convr + "\n" + record;
-            String newtime = time + "\n" + recordtime;
-            convrDao.setConvr(newconvr, id);
-            convrDao.setTime(newtime, id);
-        }else {
-            String convr = convrDao.getLawyerConvr(id);
-            String time = convrDao.getLawyerTime(id);
-            String newconvr = convr + "\n" + record;
-            String newtime = time + "\n" + recordtime;
-            convrDao.setLawyerConvr(newconvr, id);
-            convrDao.setLawyerTime(newtime, id);
-        }
+        String convr = convrDao.getConvr(id);
+        String time = convrDao.getTime(id);
+        String newconvr = convr + "\n" + phone + "\t" + record;
+        String newtime = time + "\n" + recordtime;
+        convrDao.setConvr(newconvr, id);
+        convrDao.setTime(newtime, id);
+
         logger.info("用户{}更新了会话消息\n消息内容：{}", phone, record);
     }
 

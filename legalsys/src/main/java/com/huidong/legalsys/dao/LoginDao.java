@@ -48,7 +48,7 @@ public interface LoginDao {
     Boolean resetAttempt(String phone);
 
     /**
-     * @Description 设置用户登录状态
+     * @Description 设置用户账号冻结状态
      * @param phone 手机号
      * @param status 状态
      * @return Boolean 是否设置成功
@@ -56,7 +56,7 @@ public interface LoginDao {
     Boolean setStatus(String phone, Integer status);
 
     /**
-     * @Description 获取用户登录状态
+     * @Description 获取用户账号冻结状态
      * @param phone 手机号
      * @return Integer 用户登录状态
      */
@@ -76,16 +76,4 @@ public interface LoginDao {
      * @return String 最近一次用户登录失败时的时间
      */
     String getFreezetime(String phone);
-
-    /**
-     * @Description 获得所有登录信息
-     * @return List<Login> 所有登录信息
-     */
-    ArrayList<Login> getAllLogins();
-
-    /**
-     * @Description 获得当前在线人数
-     * @return Integer 当前在线人数
-     */
-    Integer getConcurrentUsers();
 }

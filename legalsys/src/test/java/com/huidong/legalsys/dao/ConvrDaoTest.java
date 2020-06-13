@@ -26,11 +26,16 @@ public class ConvrDaoTest extends TestCase {
         convr.setPhone("15111111111");
         convr.setLawyerphone("11111111111");
         convr.setConvr("你好！");
-        convr.setLawyerconvr("");
         convr.setTime("");
-        convr.setLawyertime("");
         Boolean isSuccess = convrDao.newConvr(convr);
         assertTrue("未能成功建立会话", isSuccess);
+    }
+
+    @Test
+    public void getConvrInfoTest() {
+        Integer id = 1;
+        Convr convr = convrDao.getConvrInfo(id);
+        assertNotNull("未能成功得到普通用户的聊天内容", convr);
     }
 
     @Test
@@ -49,21 +54,6 @@ public class ConvrDaoTest extends TestCase {
     }
 
     @Test
-    public void getLawyerConvrTest() {
-        Integer id = 1;
-        String lawyerconvr = convrDao.getLawyerConvr(id);
-        assertNotNull("未能成功得到律师用户的聊天内容", lawyerconvr);
-    }
-
-    @Test
-    public void setLawyerConvrTest() {
-        String record = "请问有什么可以帮到您的吗";
-        Integer id = 1;
-        Boolean isSuccess = convrDao.setLawyerConvr(record, id);
-        assertTrue("未能成功设置律师用户的聊天内容", isSuccess);
-    }
-
-    @Test
     public void getTimeTest() {
         Integer id = 1;
         String time = convrDao.getTime(id);
@@ -79,30 +69,9 @@ public class ConvrDaoTest extends TestCase {
     }
 
     @Test
-    public void getLawyerTimeTest() {
-        Integer id = 1;
-        String time = convrDao.getLawyerTime(id);
-        assertNotNull("未能成功得到律师用户的聊天时间", time);
-    }
-
-    @Test
-    public void setLawyerTimeTest() {
-        Integer id = 1;
-        String timenow = " ";
-        Boolean isSuccess = convrDao.setLawyerTime(timenow, id);
-        assertTrue("未能成功设置律师用户的聊天时间", isSuccess);
-    }
-
-    @Test
-    public void getConvrsByPhoneTest() {
-        List<Convr> convrs = convrDao.getConvrsByPhone("15111111111");
+    public void getConvrsTest() {
+        List<Convr> convrs = convrDao.getConvrs("15111111111");
         assertNotNull("未能成功得到普通用户的会话信息", convrs);
-    }
-
-    @Test
-    public void getConvrsByLawyerPhoneTest() {
-        List<Convr> convrs = convrDao.getConvrsByLawyerPhone("11111111111");
-        assertNotNull("未能成功得到律师用户的会话信息", convrs);
     }
 
     @Test

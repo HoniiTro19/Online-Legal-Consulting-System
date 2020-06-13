@@ -18,11 +18,6 @@ public class StatisticsServiceTest extends TestCase {
     private StatisticsService statisticsService;
 
     @Test
-    public void showConcurrentTest() {
-        statisticsService.showConcurrent();
-    }
-
-    @Test
     public void rcmdStaturesTest() {
         statisticsService.rcmdStatures();
     }

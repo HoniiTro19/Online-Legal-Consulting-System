@@ -10,14 +10,15 @@
             <div class="availability">
                 <a href="https://github.com/HoniiTro19/Online-Legal-Consulting-System" class="available" target="_blank"></a>
             </div>
-            <div th:replace="compoment/navigatior::commonMenu(0)"></div>
+            <div th:replace="compoment/navigatior::commonMenu(4)"></div>
         </div>
 
         <div id="main_content">
             <div class="column_3">
                 <div class="first services">
                     <h2>功能说明</h2>
-                    <p>用户个人信息管理界面，用户可以在“用户基本信息”看到自己的注册信息。在”个人信息管理“中用户可以选择“修改密码”，“修改律师信息”，“查询咨询记录”,“查看会话记录”这四种信息管理功能。</p>
+                    <p>用户个人信息管理界面，用户可以在“用户基本信息”看到自己的注册信息。</p>
+                    <p>在”个人信息管理“中用户可以选择“修改密码”，“修改律师信息”，“查询咨询记录”,“查看会话记录”这四种信息管理功能。</p>
                     <h2>使用案例</h2>
                     <p>用户需要注意的地方：</p>
                     <p><b>修改密码后不需要重新登陆。</b></p>
@@ -32,6 +33,7 @@
                     <p>密码（Password）：[[${userInfo.password}]]<p>
                     <p>身份证号（Idno）：[[${userInfo.idno}]]<p>
                     <p>律所信息（Firm）：[[${userInfo.firmname}]]<p>
+                    <p>律师执照（License）：<img th:src="@{'/manage/allUsers/getLicense?licenseurl='+${userInfo.licenseurl}}" width="378" height="284"></p>
                 </div>
                 <div class="services">
                     <h2>个人信息管理</h2>

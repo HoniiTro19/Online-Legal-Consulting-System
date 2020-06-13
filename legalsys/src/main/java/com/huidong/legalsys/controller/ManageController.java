@@ -2,12 +2,14 @@ package com.huidong.legalsys.controller;
 
 import com.huidong.legalsys.domain.Consult;
 import com.huidong.legalsys.domain.Convr;
+import com.huidong.legalsys.domain.ConvrContent;
 import com.huidong.legalsys.domain.User;
 import com.huidong.legalsys.enumeration.ErrorEnum;
 import com.huidong.legalsys.exception.LegalsysException;
 import com.huidong.legalsys.service.ManageService;
 import com.huidong.legalsys.service.ConsultService;
 
+import com.huidong.legalsys.service.UploadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
@@ -18,19 +20,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.awt.image.BufferedImage;
 import java.io.*;
-import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Map;
 
-import static java.lang.Byte.SIZE;
 
 /**
  * @Description 用户管理的控制层
@@ -42,8 +44,12 @@ public class ManageController {
     private ManageService manageService;
     @Autowired
     private ConsultService consultService;
+    @Autowired
+    private UploadService uploadService;
     @Value("${config.adminphone}")
     private String adminPhone;
+    @Value("${config.pattern}")
+    private String pattern;
 
     /**
      * @Description 展示注册用户个人信息
@@ -120,18 +126,20 @@ public class ManageController {
 
     /**
      * @Description 用户修改律师认证信息
-     * @param licenseurl 律师执照地址
+     * @param licensefile 律师执照
      * @param firmname 律所信息
      * @param request Http请求
      * @return 用户个人信息界面
      */
     @PostMapping("/manage/lawyerAuth/upload")
-    public String lawyerAuthUpload(@RequestParam("licenseurl") String licenseurl,
-                             @RequestParam("firmname") String firmname,
-                             HttpServletRequest request){
+    public String lawyerAuthUpload(@RequestParam("firmname") String firmname,
+                                   @RequestParam("licensefile") MultipartFile licensefile,
+                                   MultipartHttpServletRequest request){
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         String phone = user.getPhone();
+        String licenseurl = uploadService.LicenseUpload(licensefile, request, phone);
+        user.setLicenseurl(licenseurl);
         manageService.lawyerAuth(phone, licenseurl, firmname);
         return "redirect:/manage";
     }
@@ -214,34 +222,58 @@ public class ManageController {
      */
     @GetMapping("/manage/userConvrs/detail")
     public String convrDetail(@RequestParam("id") Integer id,
-                              Map<String, Object> map) {
-        Convr convr = consultService.getConvr(id);
-        map.put("convr", convr);
+                              Map<String, Object> map,
+                              HttpServletRequest request) {
+        Convr convrInfo = consultService.getConvr(id);
+        ArrayList<ConvrContent> recordconvrs = new ArrayList<>();
+        String time = convrInfo.getTime();
+        String convr = convrInfo.getConvr();
+        String[] times = time.split("\\\n");
+        String[] convrs = convr.split("\\\n");
+        for (int i=0; i<convrs.length; ++i) {
+            String singleTime = times[i];
+            String singleContent = convrs[i];
+            String[] singleContents = singleContent.split("\\\t");
+            ConvrContent convrContent = new ConvrContent();
+            convrContent.setPhone(singleContents[0]);
+            convrContent.setContent(singleContents[1]);
+            convrContent.setTime(singleTime);
+            recordconvrs.add(convrContent);
+        }
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+        session.setAttribute("convrid", convrInfo.getId());
+        String myphone = user.getPhone();
+        if (myphone.equals(convrInfo.getPhone())) {
+            map.put("hisphone", convrInfo.getLawyerphone());
+        }else {
+            map.put("hisphone", convrInfo.getPhone());
+        }
+        map.put("myphone", myphone);
+        map.put("recordconvrs", recordconvrs);
         return "manage/convrDetail";
     }
 
     /**
      * @Description 用户继续在自己的会话中聊天
      * @param record 新增聊天内容
-     * @param recordtime 新增聊天内容的时间
-     * @param convrid 会话的编号
      * @param request http请求
-     * @return 本界面
+     * @return 更新后的会话记录详情界面
      */
-    @PostMapping("/manage/userConvrs/detail/upload")
+    @GetMapping("/manage/userConvrs/detail/upload")
     public String contConvr(@RequestParam("record") String record,
-                            @RequestParam("recordtime") String recordtime,
-                            @RequestParam("convrid") Integer convrid,
                             HttpServletRequest request) {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
+        Integer convrid = (Integer) session.getAttribute("convrid");
+        session.removeAttribute("convrid");
         String phone = user.getPhone();
+        SimpleDateFormat format = new SimpleDateFormat(pattern);
+        Date date = new Date();
+        String recordtime = format.format(date);
         manageService.contConvr(phone, record, recordtime, convrid);
-        String location = "/manage/userConvrs/detail?convrid=" + convrid + "/upload";
-        return "redirect:" + location;
+        return "redirect:/manage/userConvrs/detail?id=" + convrid;
     }
-
-
 
 
 

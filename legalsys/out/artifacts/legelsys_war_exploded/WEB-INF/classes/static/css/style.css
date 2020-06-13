@@ -1,3 +1,7 @@
+/*
+	css配置Html格式
+ */
+
 html, body{
 	height:100%;
 }
@@ -79,7 +83,7 @@ a:hover{
 	text-indent:-999999px;
 	float:right;
 	padding:0px;
-	margin-top: 10px;
+	margin-right: 5px;
 }
 #header #newsession a{
 	display:block;
@@ -121,6 +125,24 @@ a:hover{
 #header #login a{
 	display:block;
 	background:url(../images/login.png) no-repeat;
+}
+
+/*estbConvr*/
+#header #estbConvr,
+#header #estbConvr a{
+	width:107px;
+	height:36px;
+	cursor:pointer;
+}
+#header #estbConvr{
+	text-indent:-999999px;
+	float:right;
+	padding:0px;
+	margin-right:50px;
+}
+#header #estbConvr a{
+	display:block;
+	background:url(../images/estbConvr.png) no-repeat;
 }
 
 /*register*/
@@ -198,99 +220,6 @@ a:hover{
 	color:#696657;
 }
 
-
-/*work*/
-#work .row{
-	padding-bottom:30px;
-	margin-bottom:30px;
-	width:100%;
-	float:left;
-	background:url(../images/grunge_line.gif) repeat-x bottom left;
-}
-* html #work .row{
-	float:none;
-}
-#work .last_row{
-	float:left;
-	width:100%;
-	background:none;
-	padding-bottom:0px;
-	margin-bottom:0px;
-}
-#work .work_categ_wrap{
-	padding-bottom:80px;
-	float:left;
-	width:100%;
-}
-#work .last{
-	padding-bottom:0px;
-}
-
-#work .row .work_desc{
-	float:right;
-	width: 550px;
-	margin-top: 15px;
-}
-#work .row .work_desc h3{
-	font-size:28px;
-}
-#work .row .work_desc .role{
-	color:#766f51;
-	margin-top: 30px;
-}
-#work .row .work_desc .role span{
-	color:#aa9b59;
-}
-
-#work .row .work_desc h3{
-	padding-bottom: 20px;
-}
-
-
-
-
-/*featured project*/
-
-* html #feature_project .featured_image,
-.work_image{
-	margin-left:16px;
-	position:relative;
-}
-#feature_project .featured_image img,
-.work_image img{
-	border:0;
-	padding:10px 0 0 12px;
-	width: 600px;
-	height: 300px;
-}
-.work_image img{
-	padding:10px 0 0 0px;
-	float:left;
-}
-#feature_project .featured_desc{
-	padding:40px 20px 0 0;
-	float:right;
-	width: 570px;
-	margin-top: 20px;
-}
-#feature_project .featured_desc span.section_title{
-	color:#56554f;
-	font-size:16px;
-	font-weight:bold;
-}
-#feature_project .featured_desc h2, #title_page h2{
-	padding-bottom:20px;
-	font:38px/30px Georgia, "Times New Roman", Times, serif;
-	color:#fdfdfd;
-}
-#title_page h2{
-	padding-top:70px;
-	padding-left:40px;
-}
-#feature_project .featured_desc p{
-	color:#bdb8ab;
-}
-
 /*main content*/
 #main_content{
 	padding-top:60px;
@@ -303,6 +232,17 @@ a:hover{
 	color: #2B2B36;
 }
 
+#main_content h1{
+	margin-top: 10px;
+	margin-right: 10px;
+}
+
+#main_content ul li{
+	list-style: none;
+}
+
+
+/*column_3*/
 #main_content .column_3 div h2{
 	font:28px/26px Georgia, "Times New Roman", Times, serif;
 	background:url(../images/grunge_line.gif) repeat-x bottom center;
@@ -525,12 +465,15 @@ a:hover{
 	background:url(../images/arrow_2_hover.gif) no-repeat left .5em;
 }
 
+/*column_2*/
 #main_content .column_2 div h2{
 	font:28px/26px Georgia, "Times New Roman", Times, serif;
 	background:url(../images/grunge_line.gif) repeat-x bottom center;
 	margin-top: 25px;
 	padding-bottom:10px;
 	color: #2B2B36;
+	text-align: center;
+	margin-bottom:0px;
 }
 
 #main_content .column_2 div form{
@@ -540,15 +483,6 @@ a:hover{
 	text-align: center;
 }
 
-#main_content div p .sheet{
-	margin-top: 10px;
-}
-
-#main_content .column_2 div classify{
-	font:28px/26px Georgia, "Times New Roman", Times, serif;
-	margin-top: 25px;
-	color: #2B2B36;
-}
 
 #main_content .column_2 .first{
 	width: 30%;
@@ -556,14 +490,9 @@ a:hover{
 	padding-left:0;
 }
 #main_content .column_2 div{
-	float:left;
+	float: left;
 	width: 60%;
 	padding-left:56px;
-}
-#main_content .column_2 div h2{
-	text-align: center;
-	margin-bottom:0px;
-	padding-bottom:10px;
 }
 
 
@@ -576,18 +505,9 @@ a:hover{
 }
 
 
-#main_content h1{
-	margin-top: 10px;
-	margin-right: 10px;
-}
 
-#main_content .detail p{
-	font: 15px/22px Georgia, "Times New Roman", Times, serif;
-	color: #2B2B36;
-	display: block;
-	padding-bottom: 30px;
-}
 
+/*detail*/
 #main_content .detail h2{
 	width:80%;
 	margin-top: 250px;
@@ -596,69 +516,78 @@ a:hover{
 	color: #2B2B36;
 }
 
-/*upload*/
-.form-control{
-	display: block;
-	width: 20%;
-	height: 34px;
-	padding: 6px 12px;
-	font-size: 14px;
-	line-height: 1.42857143;
-	color: #555;
-	background-color: #fff;
-	background-image: none;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-	box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-	-webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
-	-o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-	transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+
+/*conversation*/
+
+#main_content .column_convr div h2{
+	font:28px/26px Georgia, "Times New Roman", Times, serif;
+	background:url(../images/grunge_line.gif) repeat-x bottom center;
+	margin-top: 25px;
+	padding-bottom:10px;
+	color: #2B2B36;
 	text-align: center;
+	margin-bottom:0px;
 }
 
-.btn{
+
+#main_content .column_convr .first{
+	width: 30%;
+	float:left;
+	padding-left:0;
+}
+#main_content .column_convr div{
+	float: left;
+	width: 60%;
+	padding-left:80px;
+}
+#main_content .column_convr .services .chatlist .chatout {
+	text-align: right;
+	padding-right: 0px;
+}
+
+#main_content .column_convr .services .chatlist .chatin {
+	text-align: left;
+	padding-left: 0px;
+}
+
+#main_content .column_convr .services .chatlist .time {
+	text-align: center;
+	padding-top: 0;
+	padding-bottom: 10px;
+}
+
+#main_content .column_convr .services .chatlist .time p {
+	padding:6px;
+	font-size:9pt;
+	color: darkgoldenrod;
+	border-radius: 2px;
+	background-color: #dcdcdc;
+}
+
+#main_content .column_convr .services .chatlist .chatout p {
+	padding:12px;
+	max-width: 100%;
 	display: inline-block;
-	padding: 6px 12px;
-	margin-bottom: 0;
-	font-size: 14px;
-	font-weight: 400;
-	line-height: 1.42857143;
-	text-align: center;
-	white-space: nowrap;
-	vertical-align: middle;
-	-ms-touch-action: manipulation;
-	touch-action: manipulation;
-	cursor: pointer;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-	background-image: none;
-	border: 1px solid transparent;
+	font-size: 13px;
+	word-break: break-all;
 	border-radius: 4px;
+	background-color: #ff0000;
+	color:#fff;
 }
 
-.btn-info{
-	color: #fff;
-	background-color: #5bc0de;
-	border-color: #46b8da;
-	float: right;
-	margin-top: 10px;
-	margin-right: 12px;
-}
 
-/*error message*/
-#main_content #content .errorMsg h3{
-	color:red;
-}
-#main_content #content .infoMsg h3{
-	color:green;
+#main_content .column_convr .services .chatlist .chatin p {
+	padding:12px;
+	max-width: 100%;
+	display: inline-block;
+	font-size: 13px;
+	word-break: break-all;
+	border-radius: 4px;
+	background-color: #ffda74;
 }
 
 
 /*common styles*/
-
 p,pre,ol,ul,dl{
 	padding-bottom: 0px;
 	font-size: 16px;
@@ -747,125 +676,4 @@ img.alignleft {
 }
 .alignleft {
 	float: left;
-}
-
-
-/*clear fix*/
-.clear{
-	clear:both;
-}
-
-.btn{
-	display: inline-block;
-	padding: 6px 12px;
-	margin-bottom: 0;
-	font-size: 14px;
-	font-weight: 400;
-	line-height: 1.42857143;
-	text-align: center;
-	white-space: nowrap;
-	vertical-align: middle;
-	-ms-touch-action: manipulation;
-	touch-action: manipulation;
-	cursor: pointer;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-	background-image: none;
-	border: 1px solid transparent;
-	border-radius: 4px;
-}
-
-.btn-info{
-	color: #fff;
-	background-color: #5bc0de;
-	border-color: #46b8da;
-	float: right;
-	margin-top: 10px;
-	margin-right: 12px;
-}
-
-.publish-date{
-	font-size: 14px;
-	float: right;
-	margin-right: 12px;
-	margin-top: 8px;
-}
-.visitor-num{
-	display: block;
-	margin-top: 10px;
-}
-
-/*下面复制的是bootstrap 的一些的样式*/
-
-.form-group{
-	margin-bottom: 15px;
-}
-.form-control{
-	display: block;
-	width: 100%;
-	height: 34px;
-	padding: 6px 12px;
-	font-size: 14px;
-	line-height: 1.42857143;
-	color: #555;
-	background-color: #fff;
-	background-image: none;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-	box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-	-webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
-	-o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-	transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-}
-.form-group label{
-	display: inline-block;
-	max-width: 100%;
-	margin-bottom: 5px;
-	font-weight: 700;
-}
-
-.form-group h3{
-	margin-top: 10px;
-	margin-bottom: 10px;
-	padding-bottom: 0px;
-	font-size: 24px;
-}
-
-#mess{
-	width: 700px;
-	height: 200px;
-	display: block;
-	padding: 6px 12px;
-	font-size: 20px;
-	line-height: 1.42857143;
-	color: #555;
-	background-color: #fff;
-	background-image: none;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-}
-
-.comment-li{
-	border-bottom: 1px solid red;
-	padding-bottom: 10px;
-	width: 700px;
-	padding-right: 20px;
-}
-
-.date-span{
-	margin-left: 100px;
-	color: #efb9b9;
-}
-
-.message-p{
-	padding-left: 24px;
-	color: white;
-}
-
-.reply-p{
-	padding-left: 24px;
-	color: #00feff;
 }

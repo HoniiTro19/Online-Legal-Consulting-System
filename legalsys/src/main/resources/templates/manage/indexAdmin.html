@@ -10,14 +10,15 @@
             <div class="availability">
                 <a href="https://github.com/HoniiTro19/Online-Legal-Consulting-System" class="available" target="_blank"></a>
             </div>
-            <div th:replace="compoment/navigatior::commonMenu(0)"></div>
+            <div th:replace="compoment/navigatior::commonMenu(4)"></div>
         </div>
 
         <div id="main_content">
             <div class="column_3">
                 <div class="first services">
                     <h2>功能说明</h2>
-                    <p>管理员的管理界面，管理员可以在“管理员基本信息”看到自己的注册信息。在”系统信息管理“中用户可以选择“注册用户信息”，“法律条文信息”，“用户咨询信息”,“用户会话信息”来查看系统的信息。</p>
+                    <p>管理员的管理界面，管理员可以在“管理员基本信息”看到自己的注册信息。</p>
+                    <p>在”系统信息管理“中用户可以选择“注册用户信息”，“法律条文信息”，“用户咨询信息”,“用户会话信息”来查看系统的信息。</p>
                     <h2>使用案例</h2>
                     <p>用户需要注意的地方：</p>
                     <p><b>管理员的信息为系统初始值，无法修改。</b></p>
@@ -29,7 +30,6 @@
                     <p>真实姓名（Name）：[[${userInfo.name}]]<p>
                     <p>密码（Password）：[[${userInfo.password}]]<p>
                     <p>身份证号（Idno）：[[${userInfo.idno}]]<p>
-                    <p>律所信息（Firm）：[[${userInfo.firmname}]]<p>
                 </div>
                 <div class="services">
                     <h2>系统信息管理</h2>

@@ -87,8 +87,14 @@ public class UserDaoTest {
     }
 
     @Test
+    public void getUserInfoTest(){
+        User user = userDao.getUserInfo("11111111111");
+        assertNotNull("获得用户详细信息失败", user);
+    }
+
+    @Test
     public void getAllUsersTest(){
         List<User> allusers = userDao.getAllUsers();
-        assertNotNull(allusers);
+        assertNotNull("获得所有用户信息失败", allusers);
     }
 }

@@ -13,6 +13,7 @@
             <h1 id="register"><a href="/register">用户注册</a></h1>
             <h1 id="logout"><a href="/logout">用户登出</a></h1>
             <div th:replace="compoment/navigatior::commonMenu(0)"></div>
+            <p>当前在线人数为：<span th:text="${application.userMap.size()}"></span></p>
         </div>
 
         <div id="main_content" class="iefix">

@@ -2,12 +2,8 @@ package com.huidong.legalsys.service;
 
 import com.huidong.legalsys.dao.ConsultDao;
 import com.huidong.legalsys.dao.ConvrDao;
-import com.huidong.legalsys.dao.StatureDao;
 import com.huidong.legalsys.domain.Consult;
 import com.huidong.legalsys.domain.Convr;
-import com.huidong.legalsys.domain.Stature;
-import com.huidong.legalsys.enumeration.ErrorEnum;
-import com.huidong.legalsys.exception.LegalsysException;
 import com.huidong.legalsys.handle.ExceptionHandle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +14,6 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
-import java.util.ArrayList;
 
 /**
  * @Description 用户咨询的业务逻辑层

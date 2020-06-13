@@ -35,17 +35,17 @@ public class LoginService {
     private LoginDao loginDao;
 
     /**
-     * @Description 对未注册的普通用户进行注册
-     * @param phone 手机号
-     * @param name 真实姓名
+     * @param phone    手机号
+     * @param name     真实姓名
      * @param password 密码
-     * @param idno 身份证号
+     * @param idno     身份证号
+     * @Description 对未注册的普通用户进行注册
      */
-    public void register(String phone, String name, String password, String idno){
+    public void register(String phone, String name, String password, String idno) {
         String username = userDao.isRegisted(phone);
-        if (username != null){
+        if (username != null) {
             throw new LegalsysException(ErrorEnum.REGISTER_ERROR);
-        }else {
+        } else {
             User user = new User();
             user.setPhone(phone);
             user.setName(name);
@@ -57,19 +57,19 @@ public class LoginService {
     }
 
     /**
-     * @Description 对未注册的律师用户进行注册
-     * @param phone 手机号
-     * @param name 真实姓名
-     * @param password 密码
-     * @param idno 身份证号
+     * @param phone      手机号
+     * @param name       真实姓名
+     * @param password   密码
+     * @param idno       身份证号
      * @param licenseurl 律师执照地址
-     * @param firmname 律所信息
+     * @param firmname   律所信息
+     * @Description 对未注册的律师用户进行注册
      */
-    public void registerLawyer(String phone, String name, String password, String idno, String licenseurl, String firmname){
+    public void registerLawyer(String phone, String name, String password, String idno, String licenseurl, String firmname) {
         String username = userDao.isRegisted(phone);
-        if (username != null){
+        if (username != null) {
             throw new LegalsysException(ErrorEnum.REGISTER_ERROR);
-        }else {
+        } else {
             User user = new User();
             user.setPhone(phone);
             user.setName(name);
@@ -83,24 +83,24 @@ public class LoginService {
     }
 
     /**
-     * @Description 考虑异常处理的用户登录
-     * @param phone 手机号
+     * @param phone    手机号
      * @param password 密码
      * @return User 用户个人信息
+     * @Description 考虑异常处理的用户登录
      */
     @Transactional(noRollbackForClassName = "LegalsysException")
-    public User login(String phone, String password){
+    public User login(String phone, String password) {
         String username = userDao.isRegisted(phone);
-        if (username == null){
+        if (username == null) {
             throw new LegalsysException(ErrorEnum.NOTREGISTER_ERROR);
         }
 
         Login login = loginDao.isLogined(phone);
-        if (login == null){
+        if (login == null) {
             Login newlogin = new Login();
             newlogin.setPhone(phone);
             newlogin.setAttempt(0);
-            newlogin.setStatus(LoginStatusEnum.OFFLINE.getStatus());
+            newlogin.setStatus(LoginStatusEnum.NOTFREEZE.getStatus());
             newlogin.setFreezeTime(null);
             loginDao.newLogin(newlogin);
             logger.info("用户{}首次尝试登录", phone);
@@ -109,52 +109,44 @@ public class LoginService {
         SimpleDateFormat format = new SimpleDateFormat(pattern);
         Date date = new Date();
         String freezetime = loginDao.getFreezetime(phone);
-        if (freezetime != null){
+        if (freezetime != null) {
             Long timenow = date.getTime();
             Long timeLatest = 0L;
-            try{
+            try {
                 timeLatest = format.parse(freezetime).getTime();
-            }catch (ParseException e){
+            } catch (ParseException e) {
                 e.printStackTrace();
             }
-            if (timenow - timeLatest > 6*60*1000) {
+            if (timenow - timeLatest > 6 * 60 * 1000) {
                 loginDao.resetAttempt(phone);
-                loginDao.setStatus(phone, LoginStatusEnum.OFFLINE.getStatus());
+                loginDao.setStatus(phone, LoginStatusEnum.NOTFREEZE.getStatus());
                 loginDao.setFreezetime(phone, null);
                 logger.info("用户{}账号登录信息恢复正常", phone);
             }
         }
 
         Integer status = loginDao.getStatus(phone);
-        if (status.equals(LoginStatusEnum.FREEZE.getStatus())){
+        if (status.equals(LoginStatusEnum.FREEZE.getStatus())) {
             logger.info("用户{}连续5次登录失败，冻结账号10分钟，请稍后再登录", phone);
             throw new LegalsysException(ErrorEnum.FREEZE_ERROR);
         }
 
-        User user =userDao.login(phone, password);
-        if (user == null){
+        User user = userDao.login(phone, password);
+        if (user == null) {
             loginDao.addAttempt(phone);
             loginDao.setFreezetime(phone, format.format(date));
-            if (loginDao.getAttempt(phone) > 4){
+            if (loginDao.getAttempt(phone) > 4) {
                 loginDao.setStatus(phone, LoginStatusEnum.FREEZE.getStatus());
                 logger.info("用户{}连续5次登录失败，冻结账号10分钟", phone);
             }
             throw new LegalsysException(ErrorEnum.PASSWORD_ERROR);
-        }else {
-            loginDao.setStatus(phone, LoginStatusEnum.ONLINE.getStatus());
+        } else {
+            loginDao.setStatus(phone, LoginStatusEnum.NOTFREEZE.getStatus());
             loginDao.setFreezetime(phone, null);
             loginDao.resetAttempt(phone);
             logger.info("用户{}登录成功", phone);
             logger.info("用户信息为{}", user);
             return user;
         }
-    }
-
-    /**
-     * @Description 用户登出
-     * @param phone 手机号
-     */
-    public void logout(String phone) {
-        loginDao.setStatus(phone, LoginStatusEnum.OFFLINE.getStatus());
     }
 }

@@ -16,9 +16,7 @@ public class Convr {
     private String phone;
     private String lawyerphone;
     private String convr;
-    private String lawyerconvr;
     private String time;
-    private String lawyertime;
 
     @Override
     public String toString(){
@@ -27,9 +25,7 @@ public class Convr {
                 ",phone=" + phone +
                 ",lawyerphone=" + lawyerphone +
                 ",convr=" + convr +
-                ",lawyerconvvr=" + lawyerconvr +
-                ",time=" + time +
-                ",lawyertime=" + lawyertime + "}";
+                ",time=" + time + "}";
     }
 
     public Integer getId() {return id;}
@@ -60,17 +56,5 @@ public class Convr {
 
     public void setTime(String time) {
         this.time = time;
-    }
-
-    public String getLawyerconvr() {return lawyerconvr;}
-
-    public void setLawyerconvr(String lawyerconvr) {
-        this.lawyerconvr = lawyerconvr;
-    }
-
-    public String getLawyertime() {return lawyertime;}
-
-    public void setLawyertime(String lawyertime) {
-        this.lawyertime = lawyertime;
     }
 }

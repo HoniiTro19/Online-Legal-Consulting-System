@@ -3,12 +3,9 @@ package com.huidong.legalsys.controller;
 import com.huidong.legalsys.domain.User;
 import com.huidong.legalsys.enumeration.ErrorEnum;
 import com.huidong.legalsys.exception.LegalsysException;
-import com.huidong.legalsys.handle.ExceptionHandle;
 import com.huidong.legalsys.service.LoginService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.huidong.legalsys.service.UploadService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,8 +14,6 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.io.File;
-import java.io.IOException;
 
 /**
  * @Description 用户注册登录的控制层
@@ -28,10 +23,8 @@ public class LoginController {
 
     @Autowired
     private LoginService loginService;
-    @Value("${spring.servlet.multipart.location}")
-    private String fileLocation;
-
-    private final static Logger logger = LoggerFactory.getLogger(ExceptionHandle.class);
+    @Autowired
+    private UploadService uploadService;
 
     /**
      * @Description 转入用户登录界面或主页
@@ -73,9 +66,7 @@ public class LoginController {
     public String logout(HttpServletRequest request) {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
-        String phone = user.getPhone();
         session.setAttribute("user", null);
-        loginService.logout(phone);
         return "redirect:/";
     }
 
@@ -150,37 +141,19 @@ public class LoginController {
                                @Valid @RequestParam("idno") String idno,
                                @RequestParam("firmname") String firmname,
                                @RequestParam("licensefile") MultipartFile licensefile,
-                         MultipartHttpServletRequest request){
-        if (!licensefile.isEmpty()){
-            if (!password.equals(verify)) {
-                throw new LegalsysException(ErrorEnum.VERIFYNOTMATCH);
-            }
-            try {
-                String filename = licensefile.getOriginalFilename();
-                String suffixname = filename.substring(filename.lastIndexOf("."));
-                System.out.println(suffixname);
-                String lincenseurl = fileLocation + request.getServerName() + suffixname;
-                File dest = new File(lincenseurl);
-                if (!dest.getParentFile().exists()){
-                    dest.getParentFile().mkdirs();
-                }
-                licensefile.transferTo(dest);
-                User user = new User();
-                user.setPhone(phone);
-                user.setName(name);
-                user.setPassword(password);
-                user.setIdno(idno);
-                user.setLicenseurl(lincenseurl);
-                user.setFirmname(firmname);
-                loginService.registerLawyer(phone, name, password, idno, lincenseurl, firmname);
-            }catch (RuntimeException e) {
-                e.printStackTrace();
-            }catch (IOException e){
-                e.printStackTrace();
-            }
-        }else {
-            logger.error("file upload fail!");
+                               MultipartHttpServletRequest request){
+        if (!password.equals(verify)) {
+            throw new LegalsysException(ErrorEnum.VERIFYNOTMATCH);
         }
+        String lincenseurl = uploadService.LicenseUpload(licensefile, request, phone);
+        User user = new User();
+        user.setPhone(phone);
+        user.setName(name);
+        user.setPassword(password);
+        user.setIdno(idno);
+        user.setLicenseurl(lincenseurl);
+        user.setFirmname(firmname);
+        loginService.registerLawyer(phone, name, password, idno, lincenseurl, firmname);
         return "redirect:/login";
     }
 

@@ -53,6 +53,11 @@ public class SessionService {
         logger.info("新的咨询已发布：{}", title);
     }
 
+    /**
+     * @Description 获得会话详情
+     * @param id 会话编号
+     * @return 会话详情
+     */
     public Session getSession(Integer id) {
         Session session = sessionDao.getSessionInfo(id);
         return session;
@@ -83,19 +88,16 @@ public class SessionService {
             throw new LegalsysException(ErrorEnum.SESSIONNOTEXIST_ERROR);
         }
         String phone = sessionDao.getPhone(id);
-        String title = sessionDao.getTitle(id);
         String content = sessionDao.getContent(id);
-        String initConvr = title + "\n" + content;
+        String initConvr = phone + "\t" + content;
         Convr convr = new Convr();
         convr.setPhone(phone);
         convr.setLawyerphone(lawyerphone);
         convr.setConvr(initConvr);
-        convr.setLawyerconvr("");
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
         Date date = new Date();
         String time = simpleDateFormat.format(date);
         convr.setTime(time);
-        convr.setLawyertime("");
         convrDao.newConvr(convr);
         sessionDao.setStatus(id, SessionStatusEnum.ESTABLISHED.getStatus());
         logger.info("用户{}和用户{}建立会话", phone, lawyerphone);

@@ -69,10 +69,8 @@ CREATE TABLE convrTable  (
   id int(11) NOT NULL AUTO_INCREMENT,
   phone varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   lawyerphone varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  convr varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  lawyerconvr varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  time varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  lawyertime varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  convr TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  time TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (id) USING BTREE,
   FOREIGN KEY (phone) REFERENCES userTable (phone),
   FOREIGN KEY (lawyerphone) REFERENCES userTable (phone)
@@ -99,6 +97,6 @@ INSERT INTO userTable
 (phone, name, password, idno)
 VALUES
 ('11111111111', 'admin', '111111', '111111111111111111');
-LOAD XML LOCAL INFILE 'C:/Users/83470/Desktop/My Repository/Online-Legal-Consulting-System/legalsys/src/main/resources/stature/penalLaw.xml' INTO TABLE statureTable;
+LOAD XML LOCAL INFILE 'C:/Users/83470/Desktop/My Repository/Online-Legal-Consulting-System/legalsys/src/main/resources/static/stature/penalLaw.xml' INTO TABLE statureTable;
 
 SET FOREIGN_KEY_CHECKS = 1;

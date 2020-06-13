@@ -17,21 +17,24 @@
             <div class="column_2">
                 <div class="first services">
                     <h2>功能说明</h2>
-                    <p>登录界面，用户在”手机号“中填入注册的手机号，在”密码“中填入注册的密码，点击登录按键，系统将检测账号密码是否匹配以及账号是否被冻结。若出现异常，系统将报错，此时请用户退回重试，若登录成功将转到系统主页。10分钟内登录失败5次将冻结账号10分钟。点击“用户注册”即可跳转至账号注册页面。</p>
+                    <p>登录界面，用户在”手机号“中填入注册的手机号，在”密码“中填入注册的密码，点击登录按键，系统将检测账号密码是否匹配以及账号是否被冻结。</p>
+                    <p>若出现异常，系统将报错，此时请用户退回重试，若登录成功将转到系统主页。</p>
+                    <p>10分钟内登录失败5次将冻结账号10分钟。</p>
+                    <p>点击“用户注册”即可跳转至账号注册页面。</p>
                     <h2>使用案例</h2>
                     <p>用户可以按照下述例子进行登录：</p>
-                    <p>手机号：12345678912：</p>
+                    <p>手机号：12345678912</p>
                     <p>密码：123456</p>
                 </div>
 
                 <div class="services">
                     <h2>用户登录</h2>
                     <form action="/login/verification" method="post">
-                        <p>手机号：<input type="text" name="phone" required="required"></p>
-                        <p>密码 ：<input type="password" name="password" required="required"></p>
+                        <p>手机号：<input type="text" name="phone" required></p>
+                        <p>密码 ：<input type="password" name="password" required></p>
                         <input type="submit" value="登录">
                         <p>没有账号？快来加入我们吧！</p>
-                        <p><a href="/register">用户注册</a></p>
+                        <p><a href="/register" style="color:darkorange">用户注册</a></p>
                     </form>
                 </div>
             </div>
