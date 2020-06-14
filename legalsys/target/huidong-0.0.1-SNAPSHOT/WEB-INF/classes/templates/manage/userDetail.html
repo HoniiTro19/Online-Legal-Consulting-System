@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="compoment/static::static"></head>
+
+<body>
+<div id="page">
+    <div id="wrap">
+        <div id="header">
+            <h1 id="logo"><a href="/">法律咨询系统</a></h1>
+            <div class="availability">
+                <a href="https://github.com/HoniiTro19/Online-Legal-Consulting-System" class="available" target="_blank"></a>
+            </div>
+            <div th:replace="compoment/navigatior::commonMenu(4)"></div>
+        </div>
+
+        <div id="main_content">
+            <div class="detail">
+                <h2>注册用户详情</h2>
+                <p>手机号（Phone）：[[${userInfo.phone}]]</p>
+                <p>真实姓名（Name）：[[${userInfo.name}]]<p>
+                <p>密码（Password）：[[${userInfo.password}]]<p>
+                <p>身份证号（Idno）：[[${userInfo.idno}]]<p>
+                <p>律所信息（Firm）：[[${userInfo.firmname}]]<p>
+                <p>律师执照（License）：<img th:src="@{'/manage/allUsers/getLicense?licenseurl='+${userInfo.licenseurl}}" width="473" height="355"></p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

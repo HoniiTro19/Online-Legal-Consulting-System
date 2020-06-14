@@ -35,13 +35,6 @@ public interface ConsultDao {
     ArrayList<Consult> getConsultsByPhone(String phone);
 
     /**
-     * @Description 删除记录
-     * @param id 咨询编号
-     * @return Boolean 是否成功删除
-     */
-    Boolean deleteConsult(Integer id);
-
-    /**
      * @Description 获得时间最近的k条咨询记录
      * @return List<Consult> 时间最近的k条咨询记录
      */

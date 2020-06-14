@@ -78,15 +78,6 @@ public class ManageService {
     }
 
     /**
-     * @Description 删除咨询记录
-     * @param id 咨询编号
-     */
-    public void deleteConsult(Integer id){
-        consultDao.deleteConsult(id);
-        logger.info("咨询记录{}被删除了", id);
-    }
-
-    /**
      * @Description 用户查询自己的会话记录
      * @param phone 手机号
      * @return ArrayList<Convr> 用户的会话记录
@@ -96,14 +87,6 @@ public class ManageService {
         return convrs;
     }
 
-    /**
-     * @Description 删除会话
-     * @param id 会话编号
-     */
-    public void deleteConvr(Integer id){
-        convrDao.deleteConvr(id);
-        logger.info("会话记录{}被删除了", id);
-    }
 
     /**
      * @Description 用户在会话中发送消息
@@ -147,7 +130,7 @@ public class ManageService {
      * @Description 获得所有咨询记录
      * @return ArrayList<Consult> 所有咨询记录
      */
-    public ArrayList<Consult> getAllConsults(){
+    public ArrayList<Consult> getAllConsults() {
         ArrayList<Consult> consults = consultDao.getAllConsults();
         return consults;
     }
@@ -156,8 +139,17 @@ public class ManageService {
      * @Description 获得所有会话记录
      * @return ArrayList<Convr> 所有会话记录
      */
-    public ArrayList<Convr> getAllConvrs(){
+    public ArrayList<Convr> getAllConvrs() {
         ArrayList<Convr> convrs = convrDao.getAllConvrs();
         return convrs;
+    }
+
+    public Boolean isLawyer(String phone) {
+        String lawyerPhone = userDao.isRegistedLawyer(phone);
+        if (lawyerPhone == null) {
+            return false;
+        }else {
+            return true;
+        }
     }
 }

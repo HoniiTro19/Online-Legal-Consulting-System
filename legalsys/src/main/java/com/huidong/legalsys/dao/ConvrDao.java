@@ -64,12 +64,6 @@ public interface ConvrDao {
      */
     ArrayList<Convr> getConvrs(String phone);
 
-    /**
-     * @Description 删除会话内容
-     * @param id 会话编号
-     * @return Boolean 是否成功删除
-     */
-    Boolean deleteConvr(Integer id);
 
     /**
      * @Description 获得所有会话内容

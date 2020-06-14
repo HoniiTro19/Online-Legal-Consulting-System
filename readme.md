@@ -95,7 +95,7 @@ legalsys
 │			├─application.yml（配置文件）
 │			├─application.properties（配置文件）
 │		├─resourcesupload（律师执照上传路径）
-│	├─test
+├─test（单元测试的一些代码，写的比较乱，所以部署的时候没放在src目录下）
 ├─init.sql（mysql新建数据库及表单）
 ├─pom.xml（Maven项目配置文件）
 ```
@@ -116,7 +116,50 @@ legalsys
 
 5. - IDEA中打开legalsys项目文件
    - 右键点击pom.xml，点击Maven，点击Reimport
-6. 
+6. - 修改项目的名字问legalsys
+   - 设置Spring Boot Configuration ：
+   - 点击Edit Configuration，从模板Templates新建Spring Boot，Main class选择com.huidong.legalsys.LegalsysApplication，Use classpath of modules选择legalsys文件夹
+   - 设置Tomcat Configuration：
+   - 从模板Templates新建Tomcat Local
+   - 找到File - Project Structure - Project Settings - Artifacts，新建legelsys:war exploded
+   - 在刚才新建的Tomcat Local，Before launch中添加刚才新建的legelsys:war exploded artifact
+   - 添加Mysql数据库连接，输入用户名root，密码******，数据库名称legalsys
+   - maven clean install 部署项目
+
+### 文档结构
+
+​	如果想要了解系统的设计过程，包括需求分析文档，静态模型，动态模型，数据库设计，测试文档，运行界面，可以查看“文档”目录下的“功能思维导图.xmind”和“文档信息.docx”。
+
+​	“文档信息.docx”的结构为：
+
+```
+文档信息.docx
+├─系统名称 
+├─开发及运行环境
+├─系统简介
+│	├─功能性需求
+│	├─非功能性需求
+├─软件体系结构
+├─系统完成情况
+├─分层UseCase模型
+├─类的描述
+├─静态模型
+│	├─分析类图
+│	├─设计类图
+├─动态模型
+│	├─活动图
+│	├─状态图
+│	├─时序图
+├─主要源代码以及可执行文件
+├─实现模型
+│	├─构件图
+│	├─部署图
+├─数据库表单
+├─ER图
+├─单元测试
+├─集成测试
+├─系统功能性测试
+```
 
 ### Acknowledgement
 

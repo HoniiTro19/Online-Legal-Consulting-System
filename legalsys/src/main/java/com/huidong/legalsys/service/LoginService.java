@@ -45,15 +45,18 @@ public class LoginService {
         String username = userDao.isRegisted(phone);
         if (username != null) {
             throw new LegalsysException(ErrorEnum.REGISTER_ERROR);
-        } else {
-            User user = new User();
-            user.setPhone(phone);
-            user.setName(name);
-            user.setPassword(password);
-            user.setIdno(idno);
-            userDao.register(user);
-            logger.info("注册新的普通用户: {}", user);
         }
+        String isIdno = userDao.getIdno(idno);
+        if (isIdno != null) {
+            throw new LegalsysException(ErrorEnum.IDNO_ERROR);
+        }
+        User user = new User();
+        user.setPhone(phone);
+        user.setName(name);
+        user.setPassword(password);
+        user.setIdno(idno);
+        userDao.register(user);
+        logger.info("注册新的普通用户: {}", user);
     }
 
     /**
@@ -69,17 +72,20 @@ public class LoginService {
         String username = userDao.isRegisted(phone);
         if (username != null) {
             throw new LegalsysException(ErrorEnum.REGISTER_ERROR);
-        } else {
-            User user = new User();
-            user.setPhone(phone);
-            user.setName(name);
-            user.setPassword(password);
-            user.setIdno(idno);
-            user.setLicenseurl(licenseurl);
-            user.setFirmname(firmname);
-            userDao.register(user);
-            logger.info("注册新的律师用户: {}", user);
         }
+        String isIdno = userDao.getIdno(idno);
+        if (isIdno != null) {
+            throw new LegalsysException(ErrorEnum.IDNO_ERROR);
+        }
+        User user = new User();
+        user.setPhone(phone);
+        user.setName(name);
+        user.setPassword(password);
+        user.setIdno(idno);
+        user.setLicenseurl(licenseurl);
+        user.setFirmname(firmname);
+        userDao.register(user);
+        logger.info("注册新的律师用户: {}", user);
     }
 
     /**

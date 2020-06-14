@@ -47,6 +47,13 @@ public interface UserDao {
     String getPassword(String phone);
 
     /**
+     * @Description 获取身份证号
+     * @param idno 身份证号
+     * @return String 身份证号
+     */
+    String getIdno(String idno);
+
+    /**
      * @Description 重置密码
      * @param phone 手机号
      * @param newpassword 新密码

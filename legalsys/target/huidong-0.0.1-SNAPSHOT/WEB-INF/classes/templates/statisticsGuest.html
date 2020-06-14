@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="compoment/static::static"></head>
+
+<body>
+<div id="page">
+    <div id="wrap">
+        <div id="header">
+            <h1 id="logo"><a href="/">法律咨询系统</a></h1>
+            <div class="availability">
+                <a href="https://github.com/HoniiTro19/Online-Legal-Consulting-System" class="available" target="_blank"></a>
+            </div>
+            <h1 id="register"><a href="/register">用户注册</a></h1>
+            <h1 id="login"><a href="/login">用户登录</a></h1>
+            <div th:replace="compoment/navigatior::commonMenu(0)"></div>
+            <p>当前在线人数为：<span th:text="${application.userMap.size()}"></span></p>
+            </div>
+
+        <div id="main_content">
+            <div class="column_3">
+                <div class="first services">
+                    <h2>功能说明</h2>
+                    <p>该界面为法律咨询系统的主页，提供用户注册登录链接，并且为用户推送热门法条、热门案件。</p>
+                    <p>界面上方有导航栏，导航栏内容为“主页”，“智能预测”，“讨论区”，“刑法大全”，“个人信息管理”共5个按键。</p>
+                    <p>点击“主页”可从任何位置跳转到本页面</p>
+                    <p>点击“智能预测”可跳转到智能预测界面，用户输入想要咨询的问题，系统会利用文本挖掘、信息检索、深度学习的方法给出预测结果</p>
+                    <p>点击“讨论区”可跳转至讨论区界面，用户可以在讨论区发布咨询问题，请求本平台注册的律师解答</p>
+                    <p>点击“刑法大全"可跳转至《中华人民共和国刑法》界面，用户可以下载刑法全文或者查看法条详情</p>
+                    <p>点击”个人信息管理”可以跳转至信息管理界面，普通用户可以修改密码、律师认证，查看自己的咨询记录、会话记录，律师用户可以查看所有用户的注册信息、咨询记录、会话记录。</p>
+
+                    <h2>使用注意点</h2>
+                    <p>用户需求注意以下几个方面：</p>
+                    <p><b>点击“用户登录”可以进入登录界面；点击“用户注册"可以进入注册界面。</b></p>
+                    <p><b>点击导航栏上的案件可以进入相应的功能区。</b></p>
+                    <p><b>除“主页”以外的其他功能区都需要用户登录才能使用。</b></p>
+                </div>
+                <div class="services">
+                    <h2>热门法条</h2>
+                    <ul>
+                        <li th:each="stature:${rcmdStatures}"><a th:href="@{'/penallaw/detail?lawid='+${stature.lawid}}">[[${stature.title}]]</a></li>
+                    </ul>
+                </div>
+                <div class="services">
+                    <h2>热门案件</h2>
+                    <ul>
+                        <li th:each="consult:${rcmdConsults}"><a th:href="@{'/manage/consult/detail?id='+${consult.id}}">[[${consult.title}]]</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

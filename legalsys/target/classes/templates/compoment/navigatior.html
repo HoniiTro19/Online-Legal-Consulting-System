@@ -1,0 +1,10 @@
+<!--导航组建-->
+<div id="menu_wrap" th:fragment="commonMenu(index)" xmlns:th="http://www.w3.org/1999/xhtml">
+    <ul id="menu">
+        <li><a href="/" title="主页" th:class="${index}==0?'current'">主页</a></li>
+        <li><a href="/consult" title="智能预测" th:class="${index}==1?'current'">智能预测</a></li>
+        <li><a href="/session" title="讨论区" th:class="${index}==2?'current'">讨论区</a></li>
+        <li><a href="/penallaw" title="刑法大全" th:class="${index}==3?'current'">刑法大全</a> </li>
+        <li><a href="/manage" title="个人信息管理" th:class="${index}==4?'current'">个人信息管理</a></li>
+    </ul>
+</div>

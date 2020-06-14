@@ -62,13 +62,16 @@ public class ManageController {
                        Map<String, Object> map){
         HttpSession session = request.getSession();
         User userInfo = (User) session.getAttribute("user");
+        String phone = userInfo.getPhone();
+        Boolean islawyer = manageService.isLawyer(phone);
         map.put("userInfo", userInfo);
         if (userInfo.getPhone().equals(adminPhone)) {
             return "manage/indexAdmin";
+        }else if (islawyer == false){
+            return "manage/indexNormal";
         }else {
-            return "manage/index";
+            return "manage/indexLawyer";
         }
-
     }
 
     /**
@@ -167,17 +170,6 @@ public class ManageController {
         return "manage/userConsults";
     }
 
-    /**
-     * @Description 用户删除咨询记录
-     * @param consultid 咨询记录编号
-     * @return 个人的咨询记录展示界面
-     */
-    @GetMapping("/manage/deleteConsult")
-    public String deleteConsult(@RequestParam("consultid") Integer consultid){
-        manageService.deleteConsult(consultid);
-        return "redirect:/manage/userConsults";
-    }
-
 
 
 
@@ -203,16 +195,6 @@ public class ManageController {
         return "manage/userConvrs";
     }
 
-    /**
-     * @Description 用户删除会话记录
-     * @param convrid 会话记录编号
-     * @return 会话记录的详情的界面
-     */
-    @GetMapping("/manage/deleteConvr")
-    public String deleteConvr(@RequestParam("convrid") Integer convrid) {
-        manageService.deleteConvr(convrid);
-        return "redirect:/manage/userConvrs";
-    }
 
     /**
      * @Description 查看会话记录的详情
@@ -251,6 +233,7 @@ public class ManageController {
         }
         map.put("myphone", myphone);
         map.put("recordconvrs", recordconvrs);
+        map.put("adminphone", adminPhone);
         return "manage/convrDetail";
     }
 

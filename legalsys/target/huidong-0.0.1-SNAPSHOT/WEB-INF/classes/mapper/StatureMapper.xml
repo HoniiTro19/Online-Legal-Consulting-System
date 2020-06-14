@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!--mybatis实现StatureDao接口定义的功能-->
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.huidong.legalsys.dao.StatureDao">
+
+    <update id="addClickrate">
+        update statureTable set clickrate = clickrate + 1 where lawid = #{lawid}
+    </update>
+
+    <select id="getStatureInfo" resultType="com.huidong.legalsys.domain.Stature">
+        select * from statureTable where lawid = #{lawid}
+    </select>
+
+    <select id="getAllStatures" resultType="com.huidong.legalsys.domain.Stature">
+        select * from statureTable
+    </select>
+
+    <select id="getTopkStatures" resultType="com.huidong.legalsys.domain.Stature">
+        select * from statureTable order by clickrate desc limit 5
+    </select>
+</mapper>
