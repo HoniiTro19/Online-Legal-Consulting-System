@@ -13,6 +13,7 @@
 - IDE：JetBrains Intelij IDEA 2020
 - 开发系统：Windows10
 - 网络服务器：Tomcat(9.0)
+- 客户端浏览器：尽量使用Google Chrome，目前已知IE浏览器会出现前端格式错误的问题
 
 ### 代码结构
 

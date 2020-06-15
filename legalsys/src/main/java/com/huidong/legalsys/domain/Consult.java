@@ -5,8 +5,6 @@ package com.huidong.legalsys.domain;
  * id 用户咨询编号
  * phone 用户的手机号
  * query 咨询的内容
- * type 咨询的类型
- *  @see com.huidong.legalsys.enumeration.ConsultTypeEnum
  * result 咨询的结果
  * time 咨询的时间
  */
@@ -16,7 +14,6 @@ public class Consult {
     private String phone;
     private String title;
     private String query;
-    private Integer type;
     private String result;
     private String time;
 
@@ -27,7 +24,6 @@ public class Consult {
                 ",phone=" + phone +
                 ",title=" + title +
                 ",query=" + query +
-                ",type=" + type +
                 ",result=" + result +
                 ",time=" + time + "}";
     }
@@ -54,12 +50,6 @@ public class Consult {
     }
 
     public String getQuery() {return query;}
-
-    public void setType(Integer type) {
-        this.type = type;
-    }
-
-    public Integer getType() {return type;}
 
     public String getResult() {return result;}
 

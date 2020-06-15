@@ -14,6 +14,8 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * @Description 用户咨询的业务逻辑层
@@ -23,12 +25,12 @@ public class ConsultService {
 
     private final static Logger logger = LoggerFactory.getLogger(ExceptionHandle.class);
 
-    @Value("${config.lawPython}")
-    String lawPythonPath;
-    @Value("${config.penaltyPython}")
-    String penaltyPythonPath;
+    @Value("${config.predictPython}")
+    String predictPythonPath;
     @Value("${config.pytorch}")
     String pytorchPath;
+    @Value("${config.pattern}")
+    String pattern;
     @Autowired
     private ConsultDao consultDao;
     @Autowired
@@ -58,25 +60,33 @@ public class ConsultService {
      * @Description 新建用户咨询
      * @param phone 手机号
      * @param query 咨询内容
-     * @param type 咨询类型
-     *  @see com.huidong.legalsys.enumeration.ConsultTypeEnum
-     * @return String 智能预测结果
+     * @return String 智能预测详情
      * @throws IOException
      */
-    public String newconsult(String phone, String title, String query, Integer type) throws IOException {
+    public String newconsult(String phone, String title, String query) {
         String[] args;
-        String result;
-        if (type.equals(0)) {
-            args = new String[]{pytorchPath, lawPythonPath, query};
-        } else {
-            args = new String[]{pytorchPath, penaltyPythonPath, query};
+        String result = "";
+        args = new String[]{pytorchPath, predictPythonPath, query};
+        try {
+            Process pr = Runtime.getRuntime().exec(args);
+            InputStreamReader in = new InputStreamReader(pr.getInputStream());
+            LineNumberReader input = new LineNumberReader(in);
+            result = input.readLine();
+            input.close();
+            in.close();
+        }catch (IOException e) {
+            e.printStackTrace();
         }
-        Process pr = Runtime.getRuntime().exec(args);
-        InputStreamReader in = new InputStreamReader(pr.getInputStream());
-        LineNumberReader input = new LineNumberReader(in);
-        result = input.readLine();
-        input.close();
-        in.close();
+        SimpleDateFormat format = new SimpleDateFormat(pattern);
+        Date date = new Date();
+        String time = format.format(date);
+        Consult consult = new Consult();
+        consult.setPhone(phone);
+        consult.setTitle(title);
+        consult.setQuery(query);
+        consult.setResult(result);
+        consult.setTime(time);
+        consultDao.newConsult(consult);
         logger.info("用户{}咨询：{}\n预测结果{}", phone, query, result);
         return result;
     }
