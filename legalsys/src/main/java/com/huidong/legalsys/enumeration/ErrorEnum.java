@@ -12,7 +12,8 @@ public enum ErrorEnum {
     NOTLAWYER_ERROR(106, "经过律师认证才可以执行此操作"),
     SESSIONNOTEXIST_ERROR(107, "讨论区不存在该会话"),
     VERIFYNOTMATCH(108, "登录密码前后不一致"),
-    IDNO_ERROR(109, "该身份证已被注册使用");
+    IDNO_ERROR(109, "该身份证已被注册使用"),
+    ESTBCONVR_ERROR(110, "不能与自己建立会话");
 
     private Integer code;
     private String msg;

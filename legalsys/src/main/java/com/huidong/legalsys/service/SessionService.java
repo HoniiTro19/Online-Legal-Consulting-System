@@ -81,13 +81,17 @@ public class SessionService {
     public void estbConvr(String lawyerphone, Integer id){
         String isLawyer = userDao.isRegistedLawyer(lawyerphone);
         Integer isExist = sessionDao.isExist(id);
-        if (isLawyer == null){
+        String phone = sessionDao.getPhone(id);
+        if (lawyerphone == phone) {
+            throw new LegalsysException(ErrorEnum.ESTBCONVR_ERROR);
+        }
+
+        if (isLawyer == null) {
             throw new LegalsysException(ErrorEnum.NOTLAWYER_ERROR);
         }
-        if (isExist == null){
+        if (isExist == null) {
             throw new LegalsysException(ErrorEnum.SESSIONNOTEXIST_ERROR);
         }
-        String phone = sessionDao.getPhone(id);
         String content = sessionDao.getContent(id);
         String initConvr = phone + "\t" + content;
         Convr convr = new Convr();
