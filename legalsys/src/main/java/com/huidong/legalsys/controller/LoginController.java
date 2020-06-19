@@ -5,6 +5,7 @@ import com.huidong.legalsys.enumeration.ErrorEnum;
 import com.huidong.legalsys.exception.LegalsysException;
 import com.huidong.legalsys.service.LoginService;
 import com.huidong.legalsys.service.UploadService;
+import com.huidong.legalsys.util.ValidateIdnoUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -97,13 +98,20 @@ public class LoginController {
      * @return 信息收集界面
      */
     @PostMapping("/register/normal/upload")
-    public String normalUpload(@Valid @RequestParam("phone") String phone,
+    public String normalUpload(@RequestParam("phone") String phone,
                                @RequestParam("name") String name,
                                @RequestParam("password") String password,
                                @RequestParam("verify") String verify,
                                @Valid @RequestParam("idno") String idno){
         if (!password.equals(verify)) {
             throw new LegalsysException(ErrorEnum.VERIFYNOTMATCH);
+        }
+        if (!phone.matches("^(13|15|18)\\d{9}$")) {
+            throw new LegalsysException(ErrorEnum.PHONELEN_ERROR);
+        }
+
+        if (!ValidateIdnoUtil.isIdno(idno)) {
+            throw new LegalsysException(ErrorEnum.IDNOLEN_ERROR);
         }
         User user = new User();
         user.setPhone(phone);
@@ -134,16 +142,25 @@ public class LoginController {
      * @return 信息收集界面
      */
     @PostMapping("/register/lawyer/upload")
-    public String lawyerUpload(@Valid @RequestParam("phone") String phone,
+    public String lawyerUpload(@RequestParam("phone") String phone,
                                @RequestParam("name") String name,
                                @RequestParam("password") String password,
                                @RequestParam("verify") String verify,
-                               @Valid @RequestParam("idno") String idno,
+                               @RequestParam("idno") String idno,
                                @RequestParam("firmname") String firmname,
+                               @RequestParam("category") String category,
+                               @RequestParam("description") String description,
                                @RequestParam("licensefile") MultipartFile licensefile,
                                MultipartHttpServletRequest request){
         if (!password.equals(verify)) {
             throw new LegalsysException(ErrorEnum.VERIFYNOTMATCH);
+        }
+        if (!phone.matches("^(13|15|18)\\d{9}$")) {
+            throw new LegalsysException(ErrorEnum.PHONELEN_ERROR);
+        }
+
+        if (!ValidateIdnoUtil.isIdno(idno)) {
+            throw new LegalsysException(ErrorEnum.IDNOLEN_ERROR);
         }
         String lincenseurl = uploadService.LicenseUpload(licensefile, request, phone);
         User user = new User();
@@ -153,7 +170,9 @@ public class LoginController {
         user.setIdno(idno);
         user.setLicenseurl(lincenseurl);
         user.setFirmname(firmname);
-        loginService.registerLawyer(phone, name, password, idno, lincenseurl, firmname);
+        user.setCategory(category);
+        user.setDescription(description);
+        loginService.registerLawyer(phone, name, password, idno, lincenseurl, firmname, category, description);
         return "redirect:/login";
     }
 

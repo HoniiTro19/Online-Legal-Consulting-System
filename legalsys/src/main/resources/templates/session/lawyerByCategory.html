@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="compoment/static::static"></head>
+
+<body>
+<div id="page">
+    <div id="wrap">
+        <div id="header">
+            <h1 id="logo"><a href="/">法律咨询系统</a></h1>
+            <div class="availability">
+                <a href="https://github.com/HoniiTro19/Online-Legal-Consulting-System" class="available" target="_blank"></a>
+            </div>
+            <div th:replace="compoment/navigatior::commonMenu(2)"></div>
+        </div>
+
+        <div id="main_content">
+            <div class="column_2">
+                <div class="first services">
+                    <h2>功能说明</h2>
+                    <p>律师信息展示界面，展示在本平台注册过的，用户所选类别的所有律师。</p>
+                    <p>用户点击律师名字，页面将跳转至律师的信息界面。</p>
+                    <h2>用户需要注意的问题</h2>
+                    <p><b>平台不会透露律师的身份证，律师执照信息。</b></p>
+                    <p><b>请不要打电话骚扰律师用户。</b></p>
+                </div>
+                <div class="services">
+                    <h2>[[${category}]] 类别下的所有律师</h2>
+                    <ul>
+                        <li th:each="lawyer:${lawyerByCategory}"><a th:href="@{'/session/lawyerInfo?phone='+${lawyer.phone}}">[[${lawyer.phone}]] [[${lawyer.name}]]</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -29,22 +29,44 @@
                     <p>登录密码：111111</p>
                     <p>确认密码：111111 与登录密码相同</p>
                     <p>身份证号：****************** 18位有效数字，位数不正确系统将提醒</p>
-                    <p>律所信息：××省××市××区××律所 律所信息需要尽可能详细：</p>
+                    <p>律所信息：××省××市××区××律所 律所信息需要尽可能详细</p>
+                    <p>擅长领域：人格权纠纷 该“擅长领域”指的是民事诉讼中的擅长领域，可以为空</p>
+                    <p>个人简介：  个人简介可以为空</p>
                     <p>律师执照：license.jpg</p>
                 </div>
 
                 <div class="services">
                     <h2>律师用户注册</h2>
                     <form action="/register/lawyer/upload" method="post" enctype="multipart/form-data">
-                        <p>手机号 ：<input type="text" name="phone" required></p>
-                        <p>真实姓名：<input type="text" name="name" required></p>
-                        <p>登录密码：<input type="text" name="password" required></p>
-                        <p>确认密码：<input type="text" name="verify" required></p>
-                        <p>身份证号：<input type="text" name="idno" required></p>
-                        <p>律所信息：<input type="text" name="firmname" required></p>
-                        <p>律师执照：<input type="file" name="licensefile" required></p>
+                        <p class="sheet">手机号 ：<input type="text" name="phone" required></p>
+                        <p class="sheet">真实姓名：<input type="text" name="name" required></p>
+                        <p class="sheet">登录密码：<input type="text" name="password" required></p>
+                        <p class="sheet">确认密码：<input type="text" name="verify" required></p>
+                        <p class="sheet">身份证号：<input type="text" name="idno" required></p>
+                        <p class="sheet">律所信息：<input type="text" name="firmname" required></p>
+                        <p class="sheet">擅长领域：<input type="text" name="category" list="categories"></p>
+                        <p class="sheet">个人简介：<input type="text" name="description"></p>
+                        <p class="sheet">律师执照：<input type="file" name="licensefile" required></p>
                         <input type="submit" value="注册" style="width:50px;height:20px">
                     </form>
+                    <datalist id="categories">
+                        <option>人格权纠纷</option>
+                        <option>婚姻家庭纠纷</option>
+                        <option>继承纠纷</option>
+                        <option>不动产登记纠纷</option>
+                        <option>物权保护纠纷</option>
+                        <option>所有权纠纷</option>
+                        <option>用益物权纠纷</option>
+                        <option>担保物权纠纷</option>
+                        <option>合同纠纷</option>
+                        <option>特殊类型的侵权纠纷</option>
+                        <option>不当得利纠纷</option>
+                        <option>无因管理纠纷</option>
+                        <option>知识产权合同纠纷</option>
+                        <option>知识产权权属、侵权纠纷</option>
+                        <option>不正当竞争、垄断纠纷</option>
+                        <option>劳动争议</option>
+                    </datalist>
                 </div>
 
             </div>

@@ -68,7 +68,7 @@ public class LoginService {
      * @param firmname   律所信息
      * @Description 对未注册的律师用户进行注册
      */
-    public void registerLawyer(String phone, String name, String password, String idno, String licenseurl, String firmname) {
+    public void registerLawyer(String phone, String name, String password, String idno, String licenseurl, String firmname, String category, String description) {
         String username = userDao.isRegisted(phone);
         if (username != null) {
             throw new LegalsysException(ErrorEnum.REGISTER_ERROR);
@@ -84,6 +84,8 @@ public class LoginService {
         user.setIdno(idno);
         user.setLicenseurl(licenseurl);
         user.setFirmname(firmname);
+        user.setCategory(category);
+        user.setDescription(description);
         userDao.register(user);
         logger.info("注册新的律师用户: {}", user);
     }

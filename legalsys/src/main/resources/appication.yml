@@ -1,4 +1,5 @@
 spring:
+#  数据库配置
   datasource:
     initialSize: 5
     minIdle: 5

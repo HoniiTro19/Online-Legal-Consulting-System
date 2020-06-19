@@ -13,7 +13,11 @@ public enum ErrorEnum {
     SESSIONNOTEXIST_ERROR(107, "讨论区不存在该会话"),
     VERIFYNOTMATCH(108, "登录密码前后不一致"),
     IDNO_ERROR(109, "该身份证已被注册使用"),
-    ESTBCONVR_ERROR(110, "不能与自己建立会话");
+    ESTBCONVR_ERROR(110, "不能与自己建立会话"),
+    CONSULT_ERROR(111, "未能成功预测相关法条与刑期"),
+    PHONELEN_ERROR(112, "请输入11位格式正确的手机号"),
+    IDNOLEN_ERROR(113, "请输入18位或15位正确的中国大陆居民身份证");
+
 
     private Integer code;
     private String msg;

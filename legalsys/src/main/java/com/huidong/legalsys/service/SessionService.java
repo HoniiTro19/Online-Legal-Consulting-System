@@ -1,10 +1,12 @@
 package com.huidong.legalsys.service;
 
 import com.huidong.legalsys.dao.ConvrDao;
+import com.huidong.legalsys.dao.DisputeDao;
 import com.huidong.legalsys.dao.SessionDao;
 import com.huidong.legalsys.dao.UserDao;
 import com.huidong.legalsys.domain.Convr;
 import com.huidong.legalsys.domain.Session;
+import com.huidong.legalsys.domain.User;
 import com.huidong.legalsys.enumeration.ErrorEnum;
 import com.huidong.legalsys.enumeration.SessionStatusEnum;
 import com.huidong.legalsys.exception.LegalsysException;
@@ -36,6 +38,8 @@ public class SessionService {
     private ConvrDao convrDao;
     @Autowired
     private UserDao userDao;
+    @Autowired
+    private DisputeDao disputeDao;
 
     /**
      * @Description 新建讨论区咨询
@@ -73,19 +77,18 @@ public class SessionService {
     }
 
     /**
-     * @Description 为用户新建立会话
+     * @Description 律师用户主动发起会话
      * @param lawyerphone 律师手机号
-     * @param id 普通用户手机号
+     * @param id 讨论区咨询的编号
      */
     @Transactional(noRollbackForClassName = "LegalsysException")
-    public void estbConvr(String lawyerphone, Integer id){
+    public void estbConvrLawyer(String lawyerphone, Integer id){
         String isLawyer = userDao.isRegistedLawyer(lawyerphone);
         Integer isExist = sessionDao.isExist(id);
         String phone = sessionDao.getPhone(id);
-        if (lawyerphone == phone) {
+        if (lawyerphone.equals(phone)) {
             throw new LegalsysException(ErrorEnum.ESTBCONVR_ERROR);
         }
-
         if (isLawyer == null) {
             throw new LegalsysException(ErrorEnum.NOTLAWYER_ERROR);
         }
@@ -105,5 +108,49 @@ public class SessionService {
         convrDao.newConvr(convr);
         sessionDao.setStatus(id, SessionStatusEnum.ESTABLISHED.getStatus());
         logger.info("用户{}和用户{}建立会话", phone, lawyerphone);
+    }
+
+    /**
+     * @Description 普通用户主动发起会话
+     * @param lawyerphone 律师手机号
+     * @param user 咨询者的个人信息
+     */
+    @Transactional(noRollbackForClassName = "LegalsysException")
+    public void estbConvr(String lawyerphone, User user){
+        String phone = user.getPhone();
+        String name = user.getName();
+        if (lawyerphone.equals(phone)) {
+            throw new LegalsysException(ErrorEnum.ESTBCONVR_ERROR);
+        }
+        String initConvr = phone + "\t" + "你好！我是" + name + "。我的手机号是" + phone;
+        Convr convr = new Convr();
+        convr.setPhone(phone);
+        convr.setLawyerphone(lawyerphone);
+        convr.setConvr(initConvr);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        Date date = new Date();
+        String time = simpleDateFormat.format(date);
+        convr.setTime(time);
+        convrDao.newConvr(convr);
+        logger.info("用户{}和用户{}建立会话", phone, lawyerphone);
+    }
+
+    /**
+     * @Description 获得所有法律纠纷类型
+     * @return ArrayList<String> 所有法律纠纷类型
+     */
+    public ArrayList<String> getAllCategories() {
+        ArrayList<String> allCategories = disputeDao.getAllCategories();
+        return allCategories;
+    }
+
+    /**
+     * @Description 获得某个类别的所有律师信息
+     * @param category 类别的名称
+     * @return 该类别下所有律师信息
+     */
+    public ArrayList<User> getlawyersByCategory(String category) {
+        ArrayList<User> lawyerByCategory = userDao.getLawyersByCategory(category);
+        return lawyerByCategory;
     }
 }

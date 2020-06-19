@@ -78,14 +78,37 @@ public interface UserDao {
     Boolean setFirmname(String phone, String newfirmname);
 
     /**
+     * @Description 修改律师专长
+     * @param phone 手机号
+     * @param newcategory 新的律师专长
+     * @return Boolean 是否设置成功
+     */
+    Boolean setCategory(String phone, String newcategory);
+
+    /**
+     * @Description 修改律师简介
+     * @param phone 手机号
+     * @param newdescription 新的律师简介
+     * @return Boolean 是否设置成功
+     */
+    Boolean setDescription(String phone, String newdescription);
+
+    /**
      * @Description 获得用户的信息
      * @return User 用户的信息
      */
     User getUserInfo(String phone);
 
     /**
+     * @Description 获得某个领域的所有律师
+     * @param category 领域名称
+     * @return ArrayList<User> 某个领域的所有律师信息
+     */
+    ArrayList<User> getLawyersByCategory(String category);
+
+    /**
      * @Description 获得所有注册用户信息
-     * @return List<User> 所有注册用户信息
+     * @return ArrayList<User> 所有注册用户信息
      */
     ArrayList<User> getAllUsers();
 }

@@ -1,8 +1,19 @@
 # 网上法律咨询系统
 
+网上法律咨询系统的开发项目，项目文件包括需求分析文档，项目源代码，系统测试文档，部分功能使用了文本挖掘算法与深度学习模型。
+
 ### Latest News
 
-- 网上法律咨询系统的开发项目，从需求分析，软件开发，系统测试，大部分内容都完成了，但是由于算法模型的代码还没有整理好，“智能预测”模板的功能还没有实现。
+- ~~(2020.06.14)~~
+  - ~~大部分内容都完成了，但是由于算法模型的代码还没有整理好，“智能预测”模板的功能还没有实现。~~
+- (2020.06.19)
+  - 完成了“智能预测”模块的功能。
+  - 修复了用户对话时UI的BUG。
+  - 增加了律师图谱的功能，律师用户可以选择自己擅长的民事诉讼领域，可以选择为自己增加个人简介；所有用户都可以查到注册的律师用户(需要律师填写擅长领域才能查到)，并且发起会话。
+  - 增加了用户注册时，对手机号和身份证号的表单验证。
+  - 深度学习部分的代码还未开源，只给出python接口，和[预测接口](https://pan.baidu.com/s/1HQAln92Y9RW3VqELnxuTxw)，提取码：hhcg。下载好model文件夹，将其放在/legalsys/src/main/resources/python目录下
+
+
 
 ### 开发环境
 
@@ -14,6 +25,8 @@
 - 开发系统：Windows10
 - 网络服务器：Tomcat(9.0)
 - 客户端浏览器：尽量使用Google Chrome，目前已知IE浏览器会出现前端格式错误的问题
+
+
 
 ### 代码结构
 
@@ -85,7 +98,9 @@ legalsys
 │				├─StatureMapper.xml
 │				├─UserMapper.xml
 │			├─python
+│				├─model（存放深度学习模型）
 │				├─preprocess.py
+│				├─predictor.py
 │			├─static
 │				├─css
 │					├─fonts
@@ -100,6 +115,8 @@ legalsys
 ├─init.sql（mysql新建数据库及表单）
 ├─pom.xml（Maven项目配置文件）
 ```
+
+
 
 ### 项目部署
 
@@ -126,6 +143,14 @@ legalsys
    - 在刚才新建的Tomcat Local，Before launch中添加刚才新建的legelsys:war exploded artifact
    - 添加Mysql数据库连接，输入用户名root，密码******，数据库名称legalsys
    - maven clean install 部署项目
+   
+7. - 安装python3，pytorch1.4环境，推荐通过[anaconda](https://www.anaconda.com/products/individual)配置
+   - 添加anaconda环境变量
+   - cmd运行cd legalsys根目录/src/main/resources/python
+   - 运行conda activate (你配置的pytorch1.4环境名)
+   - 运行python predictor.py启动深度学习模型计算的服务
+
+   
 
 ### 文档结构
 
@@ -161,6 +186,8 @@ legalsys
 ├─集成测试
 ├─系统功能性测试
 ```
+
+
 
 ### Acknowledgement
 

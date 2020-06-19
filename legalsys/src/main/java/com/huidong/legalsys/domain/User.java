@@ -13,14 +13,14 @@ import org.hibernate.validator.constraints.Length;
  */
 
 public class User {
-    @Length(min=11,max=11,message = "手机号为11位数字字符串")
     private String phone;
     private String name;
     private String password;
-    @Length(min=28,max=28,message = "身份证号为28为数字字符串")
     private String idno;
     private String licenseurl;
     private String firmname;
+    private String category;
+    private String description;
 
     @Override
     public String toString() {
@@ -30,7 +30,9 @@ public class User {
                 ", password=" + password +
                 ", idno=" + idno +
                 ", licenseurl=" + licenseurl +
-                ", firmname=" + firmname + "}";
+                ", firmname=" + firmname +
+                ", category=" + category +
+                ", description=" + description + "}";
     }
 
     public String getPhone() {
@@ -79,5 +81,21 @@ public class User {
 
     public void setFirmname(String firmname) {
         this.firmname = firmname;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

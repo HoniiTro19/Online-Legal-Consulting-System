@@ -15,7 +15,7 @@
 
         <div id="main_content">
             <div class="column_convr">
-                <div class="first services">
+                <div class="first">
                     <h2>功能说明</h2>
                     <p>用户聊天界面，用户在建立会话以后，可以与对方进行一对一交流。</p>
                     <p>普通用户就自己想咨询的问题追加更加详细的描述，律师用户根据普通用户的描述，凭借自己的专业知识进行答复。</p>
@@ -27,7 +27,7 @@
                 </div>
 
 
-                <div class="services">
+                <div class="second">
                     <h2>与用户[[${hisphone}]]的会话</h2>
                     <div class="chatlist">
                         <ul>
@@ -52,7 +52,7 @@
                     </div>
                     <div th:if="${myphone} ne ${adminphone}">
                         <form action="/manage/userConvrs/detail/upload" style="position: fixed; bottom: 0;right: 0;">
-                            <input type="text" name="record" style="width: 400px;height: 45px">
+                            <input type="text" name="record" style="width: 400px;height: 20px">
                             <input type="submit" value="发送">
                         </form>
                     </div>

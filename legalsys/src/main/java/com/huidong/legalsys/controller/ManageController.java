@@ -9,7 +9,9 @@ import com.huidong.legalsys.exception.LegalsysException;
 import com.huidong.legalsys.service.ManageService;
 import com.huidong.legalsys.service.ConsultService;
 
+import com.huidong.legalsys.service.SessionService;
 import com.huidong.legalsys.service.UploadService;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
@@ -22,6 +24,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import sun.font.TrueTypeFont;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
@@ -62,15 +65,16 @@ public class ManageController {
                        Map<String, Object> map){
         HttpSession session = request.getSession();
         User userInfo = (User) session.getAttribute("user");
+        map.put("userInfo", userInfo);
         String phone = userInfo.getPhone();
         Boolean islawyer = manageService.isLawyer(phone);
-        map.put("userInfo", userInfo);
+        Boolean isTrue = new Boolean(true);
+        map.put("islawyer", islawyer);
+        map.put("isTrue", isTrue);
         if (userInfo.getPhone().equals(adminPhone)) {
             return "manage/indexAdmin";
-        }else if (islawyer == false){
-            return "manage/indexNormal";
         }else {
-            return "manage/indexLawyer";
+            return "manage/index";
         }
     }
 
@@ -86,6 +90,11 @@ public class ManageController {
         HttpSession session = request.getSession();
         User userInfo = (User) session.getAttribute("user");
         map.put("userInfo", userInfo);
+        String phone = userInfo.getPhone();
+        Boolean islawyer = manageService.isLawyer(phone);
+        Boolean isTrue = new Boolean(true);
+        map.put("islawyer", islawyer);
+        map.put("isTrue", isTrue);
         return "manage/changePassword";
     }
 
@@ -124,28 +133,42 @@ public class ManageController {
         HttpSession session = request.getSession();
         User userInfo = (User) session.getAttribute("user");
         map.put("userInfo", userInfo);
+        String phone = userInfo.getPhone();
+        Boolean islawyer = manageService.isLawyer(phone);
+        Boolean isTrue = new Boolean(true);
+        map.put("islawyer", islawyer);
+        map.put("isTrue", isTrue);
         return "manage/lawyerAuth";
     }
 
     /**
      * @Description 用户修改律师认证信息
-     * @param licensefile 律师执照
      * @param firmname 律所信息
+     * @param category 擅长领域
+     * @param description 个人简介
+     * @param licensefile 律师执照
      * @param request Http请求
      * @return 用户个人信息界面
      */
     @PostMapping("/manage/lawyerAuth/upload")
     public String lawyerAuthUpload(@RequestParam("firmname") String firmname,
+                                   @RequestParam("category") String category,
+                                   @RequestParam("description") String description,
                                    @RequestParam("licensefile") MultipartFile licensefile,
                                    MultipartHttpServletRequest request){
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         String phone = user.getPhone();
         String licenseurl = uploadService.LicenseUpload(licensefile, request, phone);
+        manageService.lawyerAuth(phone, licenseurl, firmname, category, description);
+        user.setFirmname(firmname);
+        user.setCategory(category);
+        user.setDescription(description);
         user.setLicenseurl(licenseurl);
-        manageService.lawyerAuth(phone, licenseurl, firmname);
         return "redirect:/manage";
     }
+
+
 
 
 
@@ -287,6 +310,10 @@ public class ManageController {
                              Map<String, Object> map) {
         User userInfo = manageService.getUserInfo(phone);
         map.put("userInfo", userInfo);
+        Boolean isLawyer = manageService.isLawyer(userInfo.getPhone());
+        Boolean isTrue = new Boolean(true);
+        map.put("isLawyer", isLawyer);
+        map.put("isTrue", isTrue);
         return "manage/userDetail";
     }
 

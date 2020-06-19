@@ -22,6 +22,8 @@
                     <h2>使用案例</h2>
                     <p>用户可以按照下述方式进行操作：</p>
                     <p>修改律所信息：××省××市××区××律所</p>
+                    <p>修改擅长领域：人格权纠纷</p>
+                    <p>修改个人简介：你好</p>
                     <p>上传律师执照：license.jpg</p>
                     <p>提交，成功修改律师认证信息。</p>
                 </div>
@@ -31,17 +33,36 @@
                     <p>真实姓名（Name）：[[${userInfo.name}]]<p>
                     <p>密码（Password）：[[${userInfo.password}]]<p>
                     <p>身份证号（Idno）：[[${userInfo.idno}]]<p>
-                    <p>律所信息（Firm）：[[${userInfo.firmname}]]<p>
-                    <p>律师执照（License）：<img th:src="@{'/manage/allUsers/getLicense?licenseurl='+${userInfo.licenseurl}}" width="473" height="355"></p>
-
+                    <p th:if="${islawyer} eq ${isTrue}">律所信息（Firm）：[[${userInfo.firmname}]]<p>
+                    <p th:if="${islawyer} eq ${isTrue}">律师执照（License）：<img th:src="@{'/manage/allUsers/getLicense?licenseurl='+${userInfo.licenseurl}}" width="378" height="284"></p>
                 </div>
                 <div class="services">
                     <h2>修改律师认证</h2>
                     <form action="/manage/lawyerAuth/upload" method="post" enctype="multipart/form-data">
                         <p class="sheet">律所信息：<input type="text" name="firmname" required></p>
+                        <p class="sheet">擅长领域：<input type="text" name="category" list="categories"></p>
+                        <p class="sheet">个人简介：<input type="text" name="description"></p>
                         <p class="sheet">律师执照：<input type="file" name="licensefile" required></p>
                         <input type="submit" value="确认">
                     </form>
+                    <datalist id="categories">
+                        <option>人格权纠纷</option>
+                        <option>婚姻家庭纠纷</option>
+                        <option>继承纠纷</option>
+                        <option>不动产登记纠纷</option>
+                        <option>物权保护纠纷</option>
+                        <option>所有权纠纷</option>
+                        <option>用益物权纠纷</option>
+                        <option>担保物权纠纷</option>
+                        <option>合同纠纷</option>
+                        <option>特殊类型的侵权纠纷</option>
+                        <option>不当得利纠纷</option>
+                        <option>无因管理纠纷</option>
+                        <option>知识产权合同纠纷</option>
+                        <option>知识产权权属、侵权纠纷</option>
+                        <option>不正当竞争、垄断纠纷</option>
+                        <option>劳动争议</option>
+                    </datalist>
                 </div>
             </div>
         </div>

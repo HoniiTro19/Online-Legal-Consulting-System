@@ -90,6 +90,25 @@ a:hover{
 	background:url(../images/newsession.png) no-repeat;
 }
 
+/*lawyerMap*/
+#header #lawyerMap,
+#header #lawyerMap a{
+	width:132px;
+	height:37px;
+	cursor:pointer;
+}
+#header #lawyerMap{
+	text-indent:-999999px;
+	float:right;
+	padding:0px;
+	margin-right: 5px;
+}
+#header #lawyerMap a{
+	display:block;
+	background:url(../images/lawyerMap.png) no-repeat;
+}
+
+
 
 /*availability*/
 .availability,
@@ -292,6 +311,38 @@ a:hover{
 #main_content #lawyerAuth a{
 	display:block;
 	background:url(../images/lawyerAuth.png) no-repeat;
+}
+
+/*changeCategory*/
+#main_content #changeCategory,
+#main_content #changeCategory a{
+	width:169px;
+	height:43px;
+	cursor:pointer;
+}
+#main_content #changeCategory{
+	text-indent:-999999px;
+	padding:0px;
+}
+#main_content #changeCategory a{
+	display:block;
+	background:url(../images/changeCategory.png) no-repeat;
+}
+
+/*changeDescription*/
+#main_content #changeDescription,
+#main_content #changeDescription a{
+	width:168px;
+	height:43px;
+	cursor:pointer;
+}
+#main_content #changeDescription{
+	text-indent:-999999px;
+	padding:0px;
+}
+#main_content #changeDescription a{
+	display:block;
+	background:url(../images/changeDescription.png) no-repeat;
 }
 
 /*userConsults*/
@@ -497,6 +548,78 @@ a:hover{
 }
 
 
+/*column_convr*/
+#main_content .column_convr div h2{
+	font:28px/26px Georgia, "Times New Roman", Times, serif;
+	background:url(../images/grunge_line.gif) repeat-x bottom center;
+	margin-top: 25px;
+	padding-bottom:10px;
+	color: #2B2B36;
+	text-align: center;
+	margin-bottom:0px;
+}
+
+#main_content .column_convr .first{
+	width: 30%;
+	float:left;
+	padding-left:0;
+}
+
+#main_content .column_convr .second{
+	float:left;
+	width: 60%;
+	padding-left:56px;
+}
+
+#main_content .column_convr .second .chatlist{
+	padding:12px;
+}
+
+#main_content .column_convr .second .chatlist .time{
+	width: 80%;
+	text-align: center;
+}
+
+#main_content .column_convr .second .chatlist .time p{
+	padding:0 18px;
+	display:inline-block;
+	font-size:9pt;
+	color: darkgoldenrod;
+	border-radius: 2px;
+	background-color: #dcdcdc;
+}
+
+
+#main_content .column_convr .second .chatlist .chatout, .chatlist .chatin {
+	width: 100%;
+	margin-top: 10px;
+	float: left;
+}
+
+#main_content .column_convr .second .chatlist .chatout p, .chatlist .chatin p{
+	display: inline-block;
+	position:relative;
+	padding:10px;
+	min-height: 40px;
+	line-height:20px;
+	font-size: 13px;
+	word-break: break-all;
+	border-radius: 4px;
+	text-align: left;
+
+}
+
+#main_content .column_convr .second .chatlist .chatout p{
+	background-color: #ff0000;
+	color:#fff;
+}
+
+
+#main_content .column_convr .second .chatlist .chatin p{
+	background-color: #ffda74;
+}
+
+
 
 
 /*detail*/
@@ -507,25 +630,6 @@ a:hover{
 	background:url(../images/grunge_line.gif) repeat-x bottom center;
 	color: #2B2B36;
 }
-
-
-
-/*conversation*/
-#main_content .putIn{width:80%;height:50px;padding:6px 12px;position:fixed;bottom:0;}
-#main_content .putIn input{width:70%;float:left;background:#fff;}
-input[type=text]{border:0;height:38px;margin:0;}
-
-#main_content .chatlist{margin-top:44px;padding:12px;}
-#main_content .chatlist p.time{margin:0;text-align: center;}
-#main_content .chatlist p.time span{padding:0 18px;display:inline-block;font-size:9pt;color: darkgoldenrod;border-radius: 2px;background-color: #dcdcdc;}
-#main_content .chatlist .chatout,.chatlist .chatin{margin:10px 0;}
-#main_content .chatlist .chatout{text-align:right;}
-#main_content .chatlist .chatout img{float:right;width:40px;height:40px;border-radius:50%;margin: 0 0 0 10px;}
-#main_content .chatlist .chatout span{display: inline-block;position:relative;padding:10px;max-width: calc(100% - 90px);min-height: 40px;line-height:20px;font-size: 13px;word-break: break-all;border-radius: 4px;background-color: #ff0000;color:#fff;}
-#main_content .chatlist .chatout span:before{content: " ";position: absolute;top: 9px;left: 100%;border: 6px solid transparent;border-left-color: #ff0000;}
-#main_content .chatlist .chatin img{float:left;width:40px;height:40px;border-radius:50%;margin: 0 10px 0 0;}
-#main_content .chatlist .chatin span{display: inline-block;position:relative;padding:10px;max-width: calc(100% - 90px);min-height: 40px;line-height:20px;font-size: 13px;word-break: break-all;border-radius: 4px;text-align: left;background-color: #ffda74;}
-#main_content .chatlist .chatin span:before{content: " ";position: absolute;top: 9px;right: 100%;border: 6px solid transparent;border-right-color: #ffda74;}
 
 /*common styles*/
 

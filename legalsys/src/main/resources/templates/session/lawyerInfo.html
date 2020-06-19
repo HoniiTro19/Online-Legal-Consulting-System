@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="compoment/static::static"></head>
+
+<body>
+<div id="page">
+    <div id="wrap">
+        <div id="header">
+            <h1 id="logo"><a href="/">法律咨询系统</a></h1>
+            <div class="availability">
+                <a href="https://github.com/HoniiTro19/Online-Legal-Consulting-System" class="available" target="_blank"></a>
+            </div>
+            <div th:replace="compoment/navigatior::commonMenu(2)"></div>
+        </div>
+
+        <div id="main_content">
+            <div class="detail">
+                <h2>律师用户详情</h2>
+                <p>手机号（Phone）：[[${lawyerInfo.phone}]]</p>
+                <p>真实姓名（Name）：[[${lawyerInfo.name}]]<p>
+                <p>律所信息（Firm）：[[${lawyerInfo.firmname}]]<p>
+                <p>擅长领域（Category）：[[${lawyerInfo.category}]]<p>
+                <p>个人简介（Description）：[[${lawyerInfo.description}]]<p>
+            </div>
+        </div>
+
+        <a th:href="@{'/session/estbConvr?lawyerphone='+${lawyerInfo.phone}}">
+            <input type="button" value="建立会话" style="float: right; margin-right: 10px; margin-bottom: 10px; height: 45px; width: 80px">
+        </a>
+    </div>
+</div>
+</body>
+</html>

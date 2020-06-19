@@ -43,7 +43,7 @@
                 <div class="services">
                     <h2>热门案件</h2>
                     <ul>
-                        <li th:each="consult:${rcmdConsults}"><a th:href="@{'/manage/consult/detail?id='+${consult.id}}">[[${consult.title}]]</a></li>
+                        <li th:each="consult:${rcmdConsults}"><a th:href="@{'/consult/detail?id='+${consult.id}}">[[${consult.title}]]</a></li>
                     </ul>
                 </div>
             </div>

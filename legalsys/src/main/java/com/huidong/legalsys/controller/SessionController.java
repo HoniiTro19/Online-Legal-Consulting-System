@@ -2,6 +2,7 @@ package com.huidong.legalsys.controller;
 
 import com.huidong.legalsys.domain.Session;
 import com.huidong.legalsys.domain.User;
+import com.huidong.legalsys.service.ManageService;
 import com.huidong.legalsys.service.SessionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -22,6 +24,8 @@ public class SessionController {
 
     @Autowired
     private SessionService sessionService;
+    @Autowired
+    private ManageService manageService;
 
     /**
      * @Description 用户进入讨论区，可以看到其他用户提出的问题，可以查看问题的详细情况，也可以自己提出问题
@@ -82,13 +86,69 @@ public class SessionController {
      * @param request http请求
      * @return 讨论区界面
      */
-    @GetMapping("/session/estbConvr")
-    public String estbconvr(@RequestParam("sessionid") Integer sessionid,
+    @GetMapping("/session/estbConvrLawyer")
+    public String estbconvrLawyer(@RequestParam("sessionid") Integer sessionid,
                             HttpServletRequest request){
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         String lawyerphone = user.getPhone();
-        sessionService.estbConvr(lawyerphone, sessionid);
+        sessionService.estbConvrLawyer(lawyerphone, sessionid);
         return "redirect:/session";
+    }
+
+    /**
+     * @Description 普通用户主动建立的会话
+     * @param lawyerphone 律师手机号
+     * @param request http请求
+     * @return 讨论区界面
+     */
+    @GetMapping("/session/estbConvr")
+    public String estbconvr(@RequestParam("lawyerphone") String lawyerphone,
+                            HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+        sessionService.estbConvr(lawyerphone, user);
+        return "redirect:/manage/userConvrs";
+    }
+
+    /**
+     * @Description 返回所有民事诉讼类型
+     * @param map 前后端传递参数
+     * @return 所有民事诉讼类型的界面
+     */
+    @GetMapping("/session/lawyerMap")
+    public String lawyerMap(Map<String, Object> map) {
+        ArrayList<String> allCategories = sessionService.getAllCategories();
+        map.put("categories", allCategories);
+        return "/session/allCategories";
+    }
+
+    /**
+     * @Description 返回某个类别的所有律师信息
+     * @param category 民事诉讼的类型
+     * @param map 前后端传递参数
+     * @return 该类别下所有律师的信息
+     */
+    @GetMapping("/session/lawyerByCategories")
+    public String lawyerByCategories(@RequestParam("category") String category,
+                                     Map<String, Object> map) {
+        ArrayList<User> lawyerByCategory = sessionService.getlawyersByCategory(category);
+        map.put("lawyerByCategory", lawyerByCategory);
+        map.put("category", category);
+        return "session/lawyerByCategory";
+    }
+
+    /**
+     * @Description 获得律师的详细信息
+     * @param phone 律师手机号
+     * @param map 前后端传递参数
+     * @return 律师详情界面
+     */
+    @GetMapping("/session/lawyerInfo")
+    public String lawyersInfo(@RequestParam("phone") String phone,
+                              Map<String, Object> map) {
+        User lawyerInfo = manageService.getUserInfo(phone);
+        map.put("lawyerInfo", lawyerInfo);
+        return "session/lawyerInfo";
     }
 }

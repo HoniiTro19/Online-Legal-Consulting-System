@@ -17,8 +17,8 @@
     </select>
 
     <insert id="register" parameterType="com.huidong.legalsys.domain.User">
-        insert into userTable(phone, name, password, idno, licenseurl, firmname)
-        values (#{phone}, #{name}, #{password}, #{idno}, #{licenseurl}, #{firmname})
+        insert into userTable(phone, name, password, idno, licenseurl, firmname, category, description)
+        values (#{phone}, #{name}, #{password}, #{idno}, #{licenseurl}, #{firmname}, #{category}, #{description})
     </insert>
 
     <select id="login" resultType="com.huidong.legalsys.domain.User">
@@ -45,8 +45,20 @@
         update userTable set firmname = #{newfirmname} where phone = #{phone}
     </update>
 
+    <update id="setCategory">
+        update userTable set category = #{newcategory} where phone = #{phone}
+    </update>
+
+    <update id="setDescription">
+        update userTable set description = #{newdescription} where phone = #{phone}
+    </update>
+
     <select id="getUserInfo" resultType="com.huidong.legalsys.domain.User">
         select * from userTable where phone = #{phone}
+    </select>
+
+    <select id="getLawyersByCategory" resultType="com.huidong.legalsys.domain.User">
+        select * from userTable where category = #{category}
     </select>
 
     <select id="getAllUsers" resultType="com.huidong.legalsys.domain.User">

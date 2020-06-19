@@ -36,6 +36,8 @@ public class PenallawService {
         }
     }
 
+
+
     /**
      * @Description 获得所有法条信息
      * @return ArrayList<Stature> 所有法条信息

@@ -5,6 +5,7 @@
  * loginTable 记录用户的登录 com.huidong.legalsys.domain.Login
  * consultTable 记录用户的咨询 com.huidong.legalsys.domain.Consult
  * convrTable 记录用户的会话 com.huidong.legalsys.domain.Convr
+ * accusationTable 记录所有罪名 com.huidong.legalsys.domain.Accusation
  * 运行init.sql时，所有数据库信息都会被初始化
  */
 
@@ -24,6 +25,8 @@ CREATE TABLE userTable  (
   idno varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   licenseurl varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   firmname varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  category varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  description varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (phone) USING BTREE,
   UNIQUE(phone, idno, licenseurl)
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
@@ -37,8 +40,7 @@ CREATE TABLE statureTable  (
   title varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   content varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   clickrate int(11) NOT NULL,
-  PRIMARY KEY (lawid) USING BTREE,
-  UNIQUE (lawid)
+  PRIMARY KEY (lawid) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 DROP TABLE IF EXISTS loginTable;
@@ -55,8 +57,8 @@ DROP TABLE IF EXISTS consultTable;
 CREATE TABLE consultTable  (
   id int(11) NOT NULL AUTO_INCREMENT,
   phone varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  title varchar(1023) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  query varchar(1023) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  title varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  query varchar(2047) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   result varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   time varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (id) USING BTREE,
@@ -86,6 +88,19 @@ CREATE TABLE sessionTable  (
   FOREIGN KEY (phone) REFERENCES userTable (phone)
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
+DROP TABLE IF EXISTS accusationTable;
+CREATE TABLE accusationTable (
+    id int(11) NOT NULL AUTO_INCREMENT,
+    accu varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+    PRIMARY KEY (id) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+DROP TABLE IF EXISTS disputeTable;
+CREATE TABLE disputeTable (
+    id int(11) NOT NULL AUTO_INCREMENT,
+    category varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+    PRIMARY KEY (id) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 /*
  * MySQL数据库初始化设置
@@ -97,5 +112,7 @@ INSERT INTO userTable
 VALUES
 ('11111111111', 'admin', '111111', '111111111111111111');
 LOAD XML LOCAL INFILE 'C:/Users/83470/Desktop/My Repository/Online-Legal-Consulting-System/legalsys/src/main/resources/static/stature/penalLaw.xml' INTO TABLE statureTable;
+LOAD DATA LOCAL INFILE 'C:/Users/83470/Desktop/My Repository/Online-Legal-Consulting-System/legalsys/src/main/resources/static/stature/accu.txt' INTO TABLE accusationTable FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n';
+LOAD DATA LOCAL INFILE 'C:/Users/83470/Desktop/My Repository/Online-Legal-Consulting-System/legalsys/src/main/resources/static/stature/dispute.txt' INTO TABLE disputeTable FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n';
 
 SET FOREIGN_KEY_CHECKS = 1;

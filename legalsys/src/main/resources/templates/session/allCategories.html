@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="compoment/static::static"></head>
+
+<body>
+<div id="page">
+    <div id="wrap">
+        <div id="header">
+            <h1 id="logo"><a href="/">法律咨询系统</a></h1>
+            <div class="availability">
+                <a href="https://github.com/HoniiTro19/Online-Legal-Consulting-System" class="available" target="_blank"></a>
+            </div>
+            <div th:replace="compoment/navigatior::commonMenu(2)"></div>
+        </div>
+
+        <div id="main_content">
+            <div class="column_2">
+                <div class="first services">
+                    <h2>功能说明</h2>
+                    <p>律师类别分流界面，为有需求的用户提供快速找到合适律师的机会。</p>
+                    <p>用户点击自己想咨询的法律纠纷类型，页面将跳转至相关的律师信息界面。</p>
+                    <h2>用户需要注意的问题</h2>
+                    <p><b>只会显示在该平台注册过的律师信息。</b></p>
+                    <p><b>如果没有相关类型的律师，则跳转后的界面为空。</b></p>
+                </div>
+                <div class="services">
+                    <h2>民事诉讼类型</h2>
+                    <ul>
+                        <li th:each="category:${categories}"><a th:href="@{'/session/lawyerByCategories?category='+${category}}">[[${category}]]</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -57,10 +57,12 @@ public class ManageService {
      * @param firmname 律所信息
      */
     @Transactional(rollbackForClassName = "RuntimeException")
-    public void lawyerAuth(String phone, String licenseurl, String firmname){
+    public void lawyerAuth(String phone, String licenseurl, String firmname, String category, String description){
         if (licenseurl != null && firmname != null){
             userDao.setLicenseurl(phone, licenseurl);
             userDao.setFirmname(phone, firmname);
+            userDao.setCategory(phone, category);
+            userDao.setDescription(phone, description);
             logger.info("用户{}成功修改律师认证信息", phone);
         }else {
             throw new LegalsysException(ErrorEnum.AUTH_ERROR);
@@ -117,6 +119,7 @@ public class ManageService {
         User userInfo = userDao.getUserInfo(phone);
         return userInfo;
     }
+
     /**
      * @Description 获得所有注册用户信息
      * @return ArrayList<User> 所有注册用户信息
