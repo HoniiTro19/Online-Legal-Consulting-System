@@ -79,10 +79,10 @@ public class ConsultController {
         ArrayList<String> accusation = new ArrayList<>();
         try {
             for (int i = 0; i < accusationId.length(); i++) {
-                accusation.add(consultService.getAccu(articleId.getInt(i)));
+                accusation.add(consultService.getAccu(accusationId.getInt(i)));
             }
             for (int i = 0; i < accusationId.length(); i++) {
-                article.add(penallawService.getStature(accusationId.getInt(i)));
+                article.add(penallawService.getStature(articleId.getInt(i)));
             }
         }catch (JSONException e) {
             e.printStackTrace();

@@ -6,20 +6,31 @@ import threading
 import json
 import numpy as np
 import ipdb
+import os
 
 tfidf = joblib.load('./model/tfidf.model')
 law = joblib.load('./model/law.model')
 accu = joblib.load('./model/accu.model')
 time = joblib.load('./model/time.model')
+
 batch_size = 1
 cut = thulac.thulac(seg_only = True)
+
+data_path = "law"
+for file_name in os.listdir(data_path):
+    inf = open(os.path.join(data_path, file_name), "r", encoding='utf-8')
+    id2lawid = {}
+    for line in inf:
+        id2lawid[len(id2lawid)+1] = int(line.strip('\n'))
+
 def predict_law(vec):
-    y = law.predict(vec)
-    return [y[0] + 1]
+    y = [law.predict(vec)[0]]
+    y = [id2lawid[temp+1] for temp in y]
+    return y
 
 def predict_accu(vec):
     y = accu.predict(vec)
-    return [y[0] + 1]
+    return [y[0]+1]
 
 def predict_time(vec):
     y = time.predict(vec)[0]
