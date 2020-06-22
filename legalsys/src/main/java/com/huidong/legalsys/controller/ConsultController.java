@@ -20,6 +20,9 @@ import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.*;
 
+/**
+ * @Description 用户咨询的控制层
+ */
 @Controller
 public class ConsultController {
 
@@ -28,6 +31,12 @@ public class ConsultController {
     @Autowired
     private PenallawService penallawService;
 
+    /**
+     * @Description 查看咨询详情
+     * @param id 咨询编号
+     * @param map 前后端传递数据
+     * @return 咨询详情界面
+     */
     @GetMapping("/consult/detail")
     public String consultDetail(@RequestParam("id") Integer id,
                                 Map<String, Object> map) {
@@ -62,11 +71,21 @@ public class ConsultController {
         return "consult/detail";
     }
 
+    /**
+     * @Description 返回咨询表单界面
+     * @return 咨询表单界面
+     */
     @GetMapping("/consult")
     public String consult() {
         return "consult/index";
     }
 
+    /**
+     * @Description 返回咨询结果界面
+     * @param map 前后端传递数据
+     * @param request http请求
+     * @return 咨询结果界面
+     */
     @GetMapping("/consult/result")
     public String consultResult(Map<String, Object> map,
                                 HttpServletRequest request) {
@@ -100,6 +119,13 @@ public class ConsultController {
     }
 
 
+    /**
+     * @Description 咨询上传
+     * @param title 咨询标题
+     * @param query 咨询内容
+     * @param request http请求
+     * @return 咨询结果界面
+     */
     @PostMapping("/consult/upload")
     public String consultUpload(@RequestParam("title") String title,
                                 @RequestParam("query") String query,

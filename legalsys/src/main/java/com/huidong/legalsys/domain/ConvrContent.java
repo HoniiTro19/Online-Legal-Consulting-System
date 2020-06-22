@@ -1,5 +1,11 @@
 package com.huidong.legalsys.domain;
 
+/**
+ * 会话内容表单
+ * phone 发送信息用户的手机号
+ * content 发送的信息
+ * time 发送的时间
+ */
 public class ConvrContent {
     private String phone;
     private String content;

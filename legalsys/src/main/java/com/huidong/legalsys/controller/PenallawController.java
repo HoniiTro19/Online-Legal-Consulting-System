@@ -54,6 +54,10 @@ public class PenallawController {
         return "penallaw/detail";
     }
 
+    /**
+     * @Description 刑法条文下载
+     * @param response 传递数据
+     */
     @GetMapping("/penallaw/download")
     public void download(HttpServletResponse response) {
         File file = new File(penallawPath);

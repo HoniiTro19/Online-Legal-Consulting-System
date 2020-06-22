@@ -7,6 +7,9 @@ import org.springframework.context.annotation.Configuration;
 
 import javax.sql.DataSource;
 
+/**
+ * 数据池配置类
+ */
 @Configuration
 
 public class DataSourceConfiguration {

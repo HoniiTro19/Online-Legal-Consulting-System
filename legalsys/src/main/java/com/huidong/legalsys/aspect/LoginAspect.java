@@ -25,6 +25,12 @@ public class LoginAspect {
 
     }
 
+    /**
+     * @Description 权限管理
+     * @param joinPoint
+     * @return
+     * @throws Throwable
+     */
     @Around("login()")
     public Object isLogin(ProceedingJoinPoint joinPoint) throws Throwable{
         ServletRequestAttributes attributes=(ServletRequestAttributes)

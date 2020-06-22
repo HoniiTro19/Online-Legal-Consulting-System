@@ -17,7 +17,7 @@
             <div class="detail">
                 <h2>用户咨询详情</h2>
                 <p>标题（Title）：[[${consult.title}]]</p>
-                <p>内容（Query）：[[${query}]]</p>
+                <p>内容（Query）：[[${consult.query}]]</p>
                 <p>法条（Article）：
                 <ul>
                     <li th:each="article:${articles}"><a th:href="@{'/penallaw/detail?lawid='+${article.lawid}}">[[${article.title}]]</a></li>

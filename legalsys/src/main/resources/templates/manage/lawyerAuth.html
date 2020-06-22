@@ -34,6 +34,8 @@
                     <p>密码（Password）：[[${userInfo.password}]]<p>
                     <p>身份证号（Idno）：[[${userInfo.idno}]]<p>
                     <p th:if="${islawyer} eq ${isTrue}">律所信息（Firm）：[[${userInfo.firmname}]]<p>
+                    <p th:if="${islawyer} eq ${isTrue}">擅长领域（Category）：[[${userInfo.category}]]<p>
+                    <p th:if="${islawyer} eq ${isTrue}">个人简介（Description）：[[${userInfo.description}]]<p>
                     <p th:if="${islawyer} eq ${isTrue}">律师执照（License）：<img th:src="@{'/manage/allUsers/getLicense?licenseurl='+${userInfo.licenseurl}}" width="378" height="284"></p>
                 </div>
                 <div class="services">
