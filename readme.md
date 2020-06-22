@@ -17,7 +17,7 @@
 
 ### 开发环境
 
-- 开发语言： 后端 - Java(jdk1.8)，Python(3.7)，前端 - Html，JavaScript     
+- 开发语言： 后端 - Java(jdk1.8)，Python(3.7)，前端 - Html
 - 使用框架：Spring Boot(2.1.3)，MyBatis，Junit，pytorch(1.4)
 - 数据库：mysql(8.0)
 - 项目管理：Maven
