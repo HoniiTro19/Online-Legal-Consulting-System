@@ -11,7 +11,7 @@
   - 修复了用户对话时UI的BUG。
   - 增加了律师图谱的功能，律师用户可以选择自己擅长的民事诉讼领域，可以选择为自己增加个人简介；所有用户都可以查到注册的律师用户(需要律师填写擅长领域才能查到)，并且发起会话。
   - 增加了用户注册时，对手机号和身份证号的表单验证。
-  - 深度学习部分的代码还未开源，只给出python接口，和[预测接口](https://pan.baidu.com/s/1HQAln92Y9RW3VqELnxuTxw)，提取码：hhcg。下载好model文件夹，将其放在/legalsys/src/main/resources/python目录下
+  - 深度学习部分的代码还未开源，只给出python接口，和[预测接口](https://pan.baidu.com/s/1n-oUKt0iE67VKSISNgb1Uw?pwd=207s)。下载好model文件夹，将其放在/legalsys/src/main/resources/python目录下
 
 
 
